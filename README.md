@@ -10,4 +10,14 @@ This tutorial is licensed under a <a href="http://creativecommons.org/licenses/b
 
 # Table of Contents
 
+# From `pandas` to `matplotlib`
+
+# Working with `pandas` and `seaborn`
+
+# Enter, `plotly`!
+
+# Practice problems
+
+# Lab Notebook Questions
+
 # Lab Notebook Questions
