@@ -14,6 +14,16 @@ https://pandas.pydata.org/docs/user_guide/visualization.html
 
 https://pandas.pydata.org/docs/getting_started/intro_tutorials/04_plotting.html
 
+Wes McKinney Chapter 9
+
+https://seaborn.pydata.org/introduction.html
+
+Eric Mathes Python Crash Course Chapter 15 "Generating Data"
+
+https://plotly.com/python/
+
+https://dash.plotly.com/
+
 # Table of Contents
 
 # `pandas` and `matplotlib`
@@ -626,6 +636,67 @@ For more on `seaborn`:
 
 
 # Enter, `plotly`!
+
+Up to this point, we have been generatic static image plots in Python using a combination of `pandas`, `matplotlib`, and `seaborn`.
+
+But in many cases we may want to generate interactive plots that an exist on the web.
+
+We see this type of interactivity in data journalism projects :
+
+We also see this kind of interactivity in dashboard-style interfaces:
+
+The two leading Python packages that can be used to generate interactive visualizations for the web are `bokeh` and `plotly`.
+
+We'll provide a brief overview for each, with some comparison considerations, before focusing on `plotly`.
+
+## `bokeh`
+
+"Bokeh is an interactive visualization library for modern web browsers. It provides elegant, concise construction of versatile graphics, and affords high-performance interactivity over large or streaming datasets. Bokeh can help anyone who would like to quickly and easily make interactive plots, dashboards, and data applications" ([bokeh documentation](https://docs.bokeh.org/en/latest/index.html))
+
+`bokeh` emerged in 2013, and uses a glyph and model based approach when building interactive visualizations.
+
+`bokeh` is built on `D3.js`, a JavaScript library for interactive visualization.
+
+Full customization in `bokeh` requires some knowledge of JavaScript.
+
+FIGURE 1
+
+Sample code and output for a `bokeh` plot.
+
+For more on `bokeh`:
+- [`bokeh` documentation](https://docs.bokeh.org/en/latest/index.html#)
+- [`bokeh`, Installation](https://docs.bokeh.org/en/latest/docs/installation.html)
+- [`bokeh`, User Guide](https://docs.bokeh.org/en/latest/docs/user_guide.html)
+- [`bokeh`, Tutorial](htthttps://mybinder.org/v2/gh/bokeh/bokeh-notebooks/7b6da26945e284b19df07daecc6beabdb7adbe81)
+- [`bokeh`, Reference](https://docs.bokeh.org/en/latest/docs/reference.html#refguide)
+- Charlie Harper, "Visualizing Data with Bokeh and Pandas," *The Programming Historian* 7 (2018), [https://doi.org/10.46430/phen0081](https://doi.org/10.46430/phen0081)
+
+## `plotly`
+
+"Plotly is a technical computing company headquartered in Montreal, Quebec, that develops online data analytics and visualization tools. Plotly provides online graphing, analytics, and statistics tools for individuals and collaboration, as well as scientific graphing libraries for Python, R, MATLAB, Perl, Julia, Arduino, and REST" ([Wikipedia](https://en.wikipedia.org/wiki/Plotly)).
+
+The `plotly` Python graphing library is supported by the Plotly company.
+
+Plotly relies on Python and the Django framework, using JavaScript, D3.js, HTML, and CSS for its front-end.
+
+Plotly files are stored on Amazon Web Services' Simple Storage Service (S3).
+
+The company was founded in 2012 and went on to be a featured startup at 2013 PyCon, sponsoring the SciPy conference in 2018.
+
+During Series A funding, Plotly raised $5.5 million, supported by MHS Capital, Siemens Venture Capital, Rho Ventures, Real Ventures, and Silicon Valley Bank.
+
+Plotly offers a range of products, some of which are free or open-source, and others that are subscription based.
+
+
+
+For more `bokeh` and `plotly` comparisons:
+- Paul Iacomi, ["Plotly vs. Bokeh: Interactive Python Visualisation Pros and Cons"](https://pauliacomi.com/2020/06/07/plotly-v-bokeh.html) *personal blog* (7 June 2020)
+- stackshare, ["Bokeh vs Plotly](https://stackshare.io/stackups/bokeh-vs-plotly)
+- Flavian, ["Bokeh vs Dash- Which is the Best Framework for Python?](https://www.sicara.ai/blog/2018-01-30-bokeh-dash-best-dashboard-framework-python) *Sicara* (20 February 2020)
+- reddit, ["Plotly vs Bokeh vs..."](https://www.reddit.com/r/Python/comments/5nwk9r/plotly_vs_bokeh_vs/) (2017)
+- Scott Fitzpatrick, ["Creating Python Dashboards: Dash Vs Bokeh"](https://www.activestate.com/blog/dash-vs-bokeh/) *Active State* (19 September 2019)
+- Gabriela Moreira Mafra, ["Choosing one of many Python visualization tools"](https://blog.magrathealabs.com/choosing-one-of-many-python-visualization-tools-7eb36fa5855f) *Magrathea Lab Blog* (22 September 2018)
+- Antoine Hue, ["Which library should I use for my Python dashboard?"](https://towardsdatascience.com/which-library-should-i-use-for-my-dashboard-c432726a52bf) *Towards Data Science* (31 August 2020)
 
 # Practice problems
 
