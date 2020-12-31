@@ -10,6 +10,10 @@ This tutorial is licensed under a <a href="http://creativecommons.org/licenses/b
 
 https://jakevdp.github.io/PythonDataScienceHandbook/04.14-visualization-with-seaborn.html 
 
+https://pandas.pydata.org/docs/user_guide/visualization.html
+
+https://pandas.pydata.org/docs/getting_started/intro_tutorials/04_plotting.html
+
 # Table of Contents
 
 # `pandas` and `matplotlib`
@@ -429,6 +433,196 @@ For more on plotting with `pandas` and `matplotlib`:
 
 # Working with `pandas` and `seaborn`
 
+As we've covered previously, `matplotlib` gives you a wide range of base components to work with when generating plots.
+
+But, `matplotlib` does have limitations, and building a plot from the ground up, specifying each component can be cumbersome (and result in significant boilerplate code).
+
+Advanced statistical analysis with `matplotlib` is possible, but cumbersome.
+
+If you need to engage in advanced statistical analysis beyond what is easily accessible in `matplotlib`, `seaborn` is a statistical data visualization library that works well with `pandas`.
+
+"`seaborn` is a Python data visualization library based on matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics" (["Seaborn"](https://seaborn.pydata.org/).
+
+`seaborn` works with `numpy`, `scipy`, `pandas`, and `matplotlib` to simply high-level functions for common statistical plots.
+
+Let's compare `seaborn` and `matplotlib` using random walk data and a line plot.
+
+Sample line plot generated using only `matplotlib`:
+```Python
+# import necessary packages
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+# create random walk data
+rng = np.random.RandomState(0)
+x = np.linspace(0, 10, 500)
+y = np.cumsum(rng.randn(500, 6), 0)
+
+# create figure
+fig, ax = plt.subplots()
+
+# generate line plot
+ax.plot(x, y)
+
+# create legend
+ax.legend('ABCDEF', ncol=2, loc='upper left')
+
+# show plot
+plt.show()
+```
+
+An okay plot, but not particularly effective for this data.
+
+Let's generate the same plot with `seaborn` running on top of `matplotlib`.
+```Python
+# add seaborn package
+import seaborn as sns
+
+# set seaborn  style
+sns.set()
+
+# create figure
+fig, ax = plt.subplots()
+
+# generate line plot
+ax.plot(x, y)
+
+# create legend
+ax.legend('ABCDEF', ncol=2, loc='upper left')
+
+# show plot
+plt.show()
+```
+
+A simple way to incorporate `seaborn` with `matplotlib` is to use `seaborn`'s plot styling.
+
+`matplotlib` also has a few different style sheets based on `seaborn`.
+
+Let's look at a couple more sophisticated statistical plots built using `seaborn`.
+
+We can create a plot that highlights the relationship between resturaunt bill amount, tip, and meal time.
+
+This data comes from the `tips` example dataset already packaged in `seaborn`.
+```Python
+# import seaborn
+import seaborn as sns
+
+# apply default seaborn theme
+sns.set_theme()
+
+# load dataset already stored as dataframe
+tips = sns.load_dataset("tips")
+
+# create plot
+sns.relplot(data=tips, x="total_bill", y="tip", col="time", hue="smoker", style="smoker", size="size",)
+```
+
+`seaborn` draws on `matplotlib`, but we don't need to directly load or import `matplotlib`.
+
+We load the `tips` dataset as a `DataFrame`.
+
+We then create a visualization that shows the relationships between the five dataset variables through the single call to the `.relplot()` function.
+
+We can start to think through all of the work happening behind the scenes in `matplotlib` to generate this visualization:
+- create figure/axes object with a 2, 1 subplot grid
+- create subplots
+- set tick values and labels for each axis for both subplots
+- set axis labels and plot titles for both subplots
+- set plot type for each subplot
+- set symbol types, color, and size for each type of datapoint, for each subplot
+- generate legend
+
+And the list goes on.
+
+`seaborn` handles all of those translations from the dataframe to `matplotlib` arguments.
+
+This simplifies the work of writing code to generate this plot.
+
+`seaborn`'s `.relplot()` function is designed to visualize statistical relationships.
+
+Sometimes scatterplots are the most effective way to show these relationships.
+
+But, in a relationship where one variable is a measure of time, a line can be a more effective representation.
+
+We can use the `kind` parameter with the `.relplot()` function to make this change.
+
+An example of `.relplot()` using a different sample dataset.
+```Python
+# load sample dataset as dataframe
+dots = sns.load_dataset('dots')
+
+# creat line plot showing relationships
+sns.relplot(
+    data=dots, kind="line",
+    x="time", y="firing_rate", col="align",
+    hue="choice", size="coherence", style="choice",
+    facet_kws=dict(sharex=False),
+)
+```
+
+In this example, the `style` parameter impacted line weight and style, rather than marker size as it did in the previous example.
+
+A few other `seaborn` examples.
+
+Relationship plot that presents average of one variable as a function of other variables.
+```Python
+fmri = sns.load_dataset("fmri")
+sns.relplot(
+    data=fmri, kind="line",
+    x="timepoint", y="signal", col="region",
+    hue="event", style="event",
+)
+```
+
+`seaborn` estimates the statistical values using bootstrapping to compute confidence intervals and draw error bars to show uncertainty.
+
+We could go back to our bill and tip data to generate a scatterplot that includes a linear regression model.
+```Python
+sns.lmplot(data=tips, x="total_bill", y="tip", col="time", hue="smoker")
+```
+
+We can visualize variable distribution with kernel density estimation.
+```Python
+sns.displot(data=tips, x="total_bill", col="time", kde=True)
+```
+
+`seaborn` can also calculate and plot the empirical cumulative distribution function (`ecdf`).
+```Python
+sns.displot(data=tips, kind="ecdf", x="total_bill", col="time", hue="smoker", rug=True)
+```
+
+We can also generate plots that are geared toward categorical data.
+
+A `swarm` plot is a scatterplot with adjusted point positions on the categorical axis to minimize overlap
+```Python
+sns.catplot(data=tips, kind="swarm", x="day", y="total_bill", hue="smoker")
+```
+
+We could also display this categorical data using kernel density estimation and a violin plot.
+```Python
+sns.catplot(data=tips, kind="violin", x="day", y="total_bill", hue="smoker", split=True)
+```
+
+We could also display this data with a grouped bar chart that shows mean values and confidence intervals for each category.
+```Python
+sns.catplot(data=tips, kind="bar", x="day", y="total_bill", hue="smoker")
+```
+
+This is just a taste of how `seaborn` works to generate more advanced statistical plots.
+
+Because the package integrates with `matplotlib`, customizing `seaborn` plots requires knowledge of `matplotlib` functionality and syntax.
+
+Dropping down to the `matplotlib` layer is not always necessary (as shown in these examples), but a robust `matplotlib` foundation is knowledge that transfers when working with `seaborn`.
+
+For more on `seaborn`:
+- [`seaborn`, "seaborn: statistical data visualization"](http://seaborn.pydata.org/)
+- [`seaborn`, "Installing and getting started"](https://seaborn.pydata.org/installing.html)
+- [`seaborn`, "An introduction to seaborn"](http://seaborn.pydata.org/introduction.html)
+- [`seaborn`, "User guide and tutorial"](http://seaborn.pydata.org/tutorial.html)
+- [`seaborn`, "Example gallery"](https://seaborn.pydata.org/examples/index.html)
+- [`seaborn`, "API reference"](https://seaborn.pydata.org/api.html)
+- [Jake VanderPlas, "Visualization With Seaborn" from *Python Data Science Handbook*](https://jakevdp.github.io/PythonDataScienceHandbook/04.14-visualization-with-seaborn.html)
 
 
 # Enter, `plotly`!
