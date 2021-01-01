@@ -1217,7 +1217,7 @@ fig.show()
 
 There's a lot to get into in terms of the differences between `plotly.express` function syntax and `plotly.graph_object` syntax.
 
-For our purposes, we'll focus on how values, labels, and a hole parameter are passed to `go.Figure()` to create the plot.
+For our purposes, we can focus on how values, labels, and a hole parameter are passed to `go.Figure()` and `go.Pie()` to create the plot.
 
 #### Sunburst Charts
 
@@ -1331,7 +1331,247 @@ For more on bubble charts in `plotly`:
 
 ### Plotting Categorical Data
 
+For our purposes, categorical data is defined as qualitative, nominal, or ordinal data that is discrete, or non-continuous.
+
+Categorical data contrasts with numerical data that is continuous.
+
+The axis type determines how the data is plotted in the resulting figure.
+
+Axis types recognized in `plotly`:
+- `linear` 
+- `log`
+- `date`
+- `category`
+- `multicategory`
+
+The axis type is auto-detected by `plotly` based on the data linked to the specific axis.
+
+If `plotly` does not recognize the data as `multicategory`, `date`, or `category` (it checks sequentially in that order), it defaults to `linear`.
+
+When testing for `multicategory` data, `plotly` looks for to see if there is a nested array.
+
+When testing for `date` or `category`, `plotly` requires more than twice as many distinct date or category strings as distinct numbers in order to choose one of these axis types.
+
+We can imagine scenarios in which we are working with categorical data that would not be accurately auto-detected by `plotly`.
+
+We can instruct `plotly` to recongize an axis as having categorical data through the `xaxis_type` and `yaxis_type` attributes.
+
+An example of categorical data represented as a bar chart.
+```Python
+# import plotly
+import plotly.express as px
+
+# create figure
+fig = px.bar(x=["a", "a", "b", 3], y = [1,2,3,4])
+
+# update x axis type
+fig.update_xaxes(type='category')
+
+# show figure
+fig.show()
+```
+In this example, the auto-detected `X` axis type would be `linear`.
+
+By using `.update_xaxes(type='category')`, we force the `X` axis to be categorical.
+
+We can also control the category order by passing a dictionary to the `category_orders` parameter.
+
+An example with side-by-side bar charts of categorical data for the resturaunt and tip data.
+```Python
+# import plotly
+import plotly.express as px
+
+# load data
+df = px.data.tips()
+
+# create figure
+fig = px.bar(df, x="day", y="total_bill", color="smoker", barmode="group", facet_col="sex",
+             category_orders={"day": ["Thur", "Fri", "Sat", "Sun"],
+                              "smoker": ["Yes", "No"],
+                              "sex": ["Male", "Female"]})
+# show figure
+fig.show()
+```
+
+In addition to setting `color`, `barmode`, and `facet_col` parameters, we pass a dictionary to `category_orders` to determine the order for each category in the plot.
+
+We can also automatically sort categories by name or total value by using `.update_xaxes()` or `.update_yaxes()` in combination with the `categoryorder` parameter.
+
+Setting `categoryorder` to `category ascending` or `category descending` sorts categories alphabetically.
+
+Setting `categoryorder` to `total ascending` or `total descending` sorts categories numerically by total value.
+
+#### Additional resources
+
+For more on categorical data and `plotly`:
+- [`plotly`, Categorical Axes in Python](https://plotly.com/python/categorical-axes/)
+- [`plotly`, Axes in Python](https://plotly.com/python/axes/)
+- [`plotly`, Python Figure Reference: `layout.xaxis`](https://plotly.com/python/reference/layout/xaxis/)
+
+### Maps
+
+Up to this point, we have been working with data plotted on a 2D cartesian coordinate system, with `x` and `y` axes.
+
+For our purposes, it's most useful to think of maps in the same way--as data plotted on a coordinate system.
+
+Except for maps, that coordinate system is typically some type of latitude or longitude based projection, and the data to be plotted includes explicit location information (rather than a numerical or categorical field that can be mapped to an axis).
+
+`plotly` supports two different types of maps.
+
+***Mapbox maps*** are tile-based maps that are rendered using tiles that join together to form the map plot. 
+
+***Geo maps*** are outline-based maps that are rendered using the `layout.geo` object  that contains map configuration information.
+
+We'll start by looking at Geo outline-based maps before exploring Mapbox tile-based maps.
+
+#### Geo maps
+
+##### Base map layer
+
+`plotly` Geo maps have a built-in base map layer composed of "physical" and "cultural" data from the [Natural Earth Dataset](https://www.naturalearthdata.com/downloads/).
+
+We can show or hide, as well as modify, various components of this base layer.
+
+We can take a look at the built-in base map, showing only country sub-units.
+```Python
+# import plotly
+import plotly.graph_objects as go
+
+# create figure
+fig = go.Figure(go.Scattergeo())
+
+# update figure to not show physical attributes and show country attributes
+fig.update_geos(
+    visible=False, resolution=50,
+    showcountries=True, countrycolor="RebeccaPurple"
+)
+
+# update figure layout
+fig.update_layout(height=300, margin={"r":0,"t":0,"l":0,"b":0})
+
+# show figure
+fig.show()
+```
+
+There are a few options for zooming or focusing the area represented in the base map.
+
+We can set the `layout.geo.fitbounds` attribute to `locations` to automatically center the visual base map  range based on the data being plotted.
+```Python
+# import plotly
+import plotly.express as px
+
+# create geographic line plot
+fig = px.line_geo(lat=[0,15,20,35], lon=[5,10,25,30])
+
+# update figure to center and zoom base map based on data parameters
+fig.update_geos(fitbounds="locations")
+
+# udpate figure size and layout
+fig.update_layout(height=300, margin={"r":0,"t":0,"l":0,"b":0})
+
+# show figure
+fig.show()
+```
+
+We can also set the scope of a map using a named sub-set.
+
+Available named scopes include:
+- `world`
+- `usa`
+- `europe`
+- `asia`
+- `africa`
+- `north america`
+- `south america`
+
+Sorry, penguins and polar bears.
+
+##### Point data
+
+add point data to geo maps
+
+##### Polygon data
+
+add polygon data to geo maps
+
+#### Mapbox and tile maps
+
+##### Base map layer
+
+how basemaps work with tile maps
+
+##### Point data
+
+adding point data to tile maps
+
+##### Polygon data
+
+adding polygon data to tile maps
+
+#### Additional resources
+
+For more on maps in `plotly`:
+
 ### Tables
+
+`plotly.express` does not include a table function, but we can create a graph object table using `go.Figure()` in combination with `go.Table()`.
+
+We can create two columns of data with sample scores for `A` and `B` letter grades.
+
+```Python
+# import plotly
+import plotly.graph_objects as go
+
+# create figure with data
+fig = go.Figure(data=[go.Table(header=dict(values=['A Scores', 'B Scores']),
+                 cells=dict(values=[[100, 90, 80, 90], [95, 85, 75, 95]]))
+                     ])
+# show figure
+fig.show()
+```
+
+There's a lot to get into in terms of the differences between `plotly.express` function syntax and `plotly.graph_object` syntax.
+
+For our purposes, we can focus on how the table header takes a dictionary with column labels, and the cells also take a dictionary with two lists of values.
+
+These dictionaries are passed to `go.Figure()` and `go.Table()` to create the plot.
+
+We could also generate a table from data stored in a `pandas` `DataFrame`.
+
+This example also includes style parameters for the table.
+```Python
+# import plotly
+import plotly.graph_objects as go
+
+# import pandas
+import pandas as pd
+
+# create dataframe
+df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/2014_usa_states.csv')
+
+# create figure
+fig = go.Figure(data=[go.Table(
+    header=dict(values=list(df.columns),
+                fill_color='paleturquoise',
+                align='left'),
+    cells=dict(values=[df.Rank, df.State, df.Postal, df.Population],
+               fill_color='lavender',
+               align='left'))
+])
+
+# show figure
+fig.show()
+```
+
+This example includes style attributes like `fill_color` and `align` for both `header` and `cells`.
+
+For `header`, this example takes a dictionary with the `DataFrame` column labels as a list, and the `DataFrame` column values as values for the `cells`.
+
+### Additional resources
+
+For more on tables in `plotly`:
+- [`plotly`, Tables in Python](https://plotly.com/python/table/)
+- [`plotly`, Python Figure Reference: `table` Traces](https://plotly.com/python/reference/table/)
 
 ### Additional Chart Types and Resources
 
@@ -1363,9 +1603,13 @@ For more types of scientific charts: [`plotly`, Plotly Python Open Source Graphi
 
 For more types of financial charts: [`plotly`, Plotly Python Open Source Graphing Library Financial Charts](https://plotly.com/python/financial-charts/)
 
+For more types of maps: [`plotly`, Plotly Open Source Graphing Library Maps](https://plotly.com/python/maps/)
+
 Full gallery of chart types: [`plotly`, Plotly Python Open Source Graphing Library](https://plotly.com/python/)
 
-### Maps
+
+## from `plotly` to `dash`
+
 
 
 # Practice problems
