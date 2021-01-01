@@ -639,7 +639,7 @@ For more on `seaborn`:
 
 Up to this point, we have been generatic static image plots in Python using a combination of `pandas`, `matplotlib`, and `seaborn`.
 
-But in many cases we may want to generate interactive plots that an exist on the web.
+But in many cases we may want to generate interactive plots that can exist on the web.
 
 We see this type of interactivity in data journalism projects :
 
@@ -1488,29 +1488,548 @@ Sorry, penguins and polar bears.
 
 ##### Point data
 
-add point data to geo maps
+Now that we have a base map layer that will serve as the coordinate system for our plot, we can plot data using this coorinate system.
+
+When we understand maps a just another time of plot that uses a different projection system, maps with markers are just another kind of scatterplot.
+
+We can use the `px.scatter_geo()` function to plot point data with geospatial dimensions.
+
+We can create a point map for the global population dataset.
+
+```Python
+# import plotly
+import plotly.express as px
+
+# load single year of data
+df = px.data.gapminder().query("year == 2007")
+
+# create figure
+fig = px.scatter_geo(df, locations="iso_alpha", size="pop")
+
+# show figure
+fig.show()
+```
+
+In this exapmle, we pass the entire data frame `df` to the `px.scatter_geo()` function.
+
+We use `locations` to note the column with location information.
+
+The `size` parameter determines the size of each marker based on the `pop` field value.
+
+Let's say we wanted to use a different type of global projection, and color the points by continent.
+
+```Python
+# import plotly
+import plotly.express as px
+
+# load single year of data
+df = px.data.gapminder().query("year == 2007")
+
+# create figure
+fig = px.scatter_geo(df, locations="iso_alpha", size="pop", color="continent", hover_name="country", projection="natural earth")
+
+# show figure
+fig.show()
+```
+
+In the modified example, we set `color` to assign a color to each unique value in `continent`.
+
+We set the `hover_name` to `country`.
+
+And we set `projection` to `natural earth` to change the underlying base map layer.
+
+We can also create a map from geospatial data stored in a `pandas` `DataFrame` using `GeoPandas`.
+
+An example using US airport traffic data.
+
+```Python
+# import plotly
+import plotly.graph_objects as go
+
+# import pandas
+import pandas as pd
+
+# load data
+df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/2011_february_us_airport_traffic.csv')
+
+# set column names and data types
+df['text'] = df['airport'] + '' + df['city'] + ', ' + df['state'] + '' + 'Arrivals: ' + df['cnt'].astype(str)
+
+# create figure
+fig = go.Figure(data=go.Scattergeo(
+        lon = df['long'],
+        lat = df['lat'],
+        text = df['text'],
+        mode = 'markers',
+        marker_color = df['cnt'],
+        ))
+
+# update figure layout with title and scope
+fig.update_layout(
+        title = 'Most trafficked US airports<br>(Hover for airport names)',
+        geo_scope='usa',
+    )
+
+# show figure
+fig.show()
+```
+In this example, we use `plotly`'s `graph_object` syntax to create the figure and specify which columns in the `dataframe` include latitude and longitude information.
 
 ##### Polygon data
 
-add polygon data to geo maps
+We can easily imagine a scenario in which a map with point data (or a scatterplot on a map projection system) is not the most effective way to represent data.
+
+For example, when working with geospatial units that are not singular latitude and longitude points, representing an area using a polygon may yield a more insightful plot.
+
+When working with data at the county, state, country, etc. level, polygons may be preferable to points.
+
+We call these kinds of maps ***choropleth maps***.
+
+We can use the `px.choropleth()` function to create an outline-based choropleth map in `plotly`.
+
+Choropleth maps require two main types of input to generate a map:
+- ***Geometry information***: can be supplied using a GeoJSON file in which each feature (polygon) has an id field that can be used to connect attribute data; 
+  * `plotly` includes built-in geometries for US states and world countries
+- ***Attribute data***, or a list of values indexed by feature identifiers (an id reflected in the geometry information)
+
+Let's take a quick look at the underlying JSON object for a sample GeoJSON file.
+
+```Python
+# import urlrequest
+from urllib.request import urlopen
+
+# import json package
+import json
+
+# load url data
+with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
+    counties = json.load(response)
+
+# select first feature in dataset
+counties["features"][0]
+```
+
+We are now seeing the underlying JSON object for the first feature in the county GeoJSON data.
+```JSON
+{'type': 'Feature',
+ 'properties': {'GEO_ID': '0500000US01001',
+  'STATE': '01',
+  'COUNTY': '001',
+  'NAME': 'Autauga',
+  'LSAD': 'County',
+  'CENSUSAREA': 594.436},
+ 'geometry': {'type': 'Polygon',
+  'coordinates': [[[-86.496774, 32.344437],
+    [-86.717897, 32.402814],
+    [-86.814912, 32.340803],
+    [-86.890581, 32.502974],
+    [-86.917595, 32.664169],
+    [-86.71339, 32.661732],
+    [-86.714219, 32.705694],
+    [-86.413116, 32.707386],
+    [-86.411172, 32.409937],
+    [-86.496774, 32.344437]]]},
+ 'id': '01001'}
+ ```
+ 
+ We have our geometric information loaded.
+ 
+ Now on to the attribute data, or data values indexed by an id field.
+ 
+ This example uses county-level unemployment data, indexed by [FIPS code](https://en.wikipedia.org/wiki/FIPS_county_code) as the unique id.
+ 
+ ```Python
+# import pandas
+import pandas as pd
+
+# load dataframe
+df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv",
+                   dtype={"fips": str})
+# show first five rows
+df.head()
+```
+
+Now we can work with the geometric information and the attribute data to generate a choropleth map.
+
+We do this using the `px.choropleth()` function.
+
+```Python
+# import urllib module
+from urllib.request import urlopen
+
+# import json module
+import json
+
+# load geometric data
+with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
+    counties = json.load(response)
+
+# import pandas
+import pandas as pd
+
+# load dataframe
+df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv",
+                   dtype={"fips": str})
+
+# import plotly
+import plotly.express as px
+
+# create figure
+fig = px.choropleth(df, geojson=counties, locations='fips', color='unemp',
+                           color_continuous_scale="Viridis",
+                           range_color=(0, 12),
+                           scope="usa",
+                           labels={'unemp':'unemployment rate'}
+                          )
+
+# update figure margins
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+
+# show figure
+fig.show()
+```
+
+Behold, a choropleth map showing unemployment rates for US counties.
+
+In this example, we set the `counties` GeoJSON as the geometric data.
+
+We specify the common field to use to connect the two datasets, `fips`.
+
+We base polygon color on the `unemp` field using `color`.
+
+We set the number of colors or color range using `range_color`.
+
+We select a continuous colormap using `color_continuous_scale`.
+
+And we update the `unemp` field name using `labels`.
+
+##### Additional resources
+
+For more on outline-based maps in `plotly`:
+- [`plotly`, Map Configuration and Styling in Python](https://plotly.com/python/map-configuration/)
+- [`plotly`, Scatter Plots on Maps in Python](https://plotly.com/python/scatter-plots-on-maps/)
+- [`plotly`, Choropleth Maps in Python](https://plotly.com/python/choropleth-maps/)
+- [`plotly`, Plotly Python Open Source Graphing Library Maps](https://plotly.com/python/maps/)
+
+For more on `GeoPandas`: [https://geopandas.org](https://geopandas.org/)
 
 #### Mapbox and tile maps
 
+Now on to tile-based maps.
+
+***Mapbox maps*** are tile-based maps that are rendered using tiles that join together to form the map plot. 
+
+Mapbox tile maps are layer-based.
+
+The base map layer is defined by `layout.mapbox.style`.
+
+The data layer plotted on the base map is controlled by a `plotly.express` or `graph_object` function.
+
+`layout.mapbox.layers` can define additional layers as needed.
+
+In the default `plotly` settings, these layers are rendered in the following order:
+- base layer (`layout.mapbox.style`)
+- data layer (`trace` object)
+- additional layers (`layout.mapbox.layers`)
+
+In these examples, Mapbox refers to the open-source Mapbox GL JavaScript library.
+
+The Mapbox JavaScript library is integrated into `plotly`.
+
+Some components of Mapbox are available without an access token.
+
+Other Mapbox components require an access token to use.
+
+Navigate to https://docs.mapbox.com/help/how-mapbox-works/access-tokens/ to set up a free Mapbox account and obtain an access token.
+
+When needed, the token can be set using the `px.set_mapbox_access_token()` configuration function.
+
 ##### Base map layer
 
-how basemaps work with tile maps
+There are a few options for base map layers using `layout.mapbox.style`.
+
+`white-bg` is an empty white canvas and includes no external HTTP requests.
+
+Raster tiles from public tile servers:
+- `open-street-map
+- `carto-positron`
+- `carto-darkmatter`
+- `stamen-terrain`
+- `stamen-toner`
+- `stamen-watercolor`
+
+Vector tiles from Mapbox service (require access token):
+- `basic`
+- `streets`
+- `outdoors`
+- `light`
+- `dark`
+- `satellite`
+- `satellite-streets`
+
+We can also specify the base map layer using a Mapbox service style URL.
+
+These styles require an access token. 
+
+Browse the [Mapbox Galery](https://www.mapbox.com/gallery/).
+
+Let's create a base map layer using `open-street-map`.
+
+```Python
+# import plotly
+import plotly.express as px
+
+# create figure
+fig = px.scatter_mapbox(height=300)
+
+# update figure base map layer
+fig.update_layout(mapbox_style="open-street-map")
+
+# update figure margin
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+
+# show figure
+fig.show()
+```
+
+We could change the value assigned to `mapbox_style` to change the base map layer style.
+
+In a situation where we are loading  a base map layer from a URL, we would set `mapbox_style` to `white-bg` to create a blank canvas for the external base map layer style.
+
+Another example that uses public tiles from the United States Geological Survey (USGS). No access token required.
+
+```Python
+# import plotly
+import plotly.express as px
+
+# create figure
+fig = px.scatter_mapbox()
+
+# update figure base map
+fig.update_layout(
+    mapbox_style="white-bg",
+    mapbox_layers=[
+        {
+            "below": 'traces',
+            "sourcetype": "raster",
+            "sourceattribution": "United States Geological Survey",
+            "source": [
+                "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"
+            ]
+        }
+      ])
+
+# update figure layout
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+
+# show figure
+fig.show()
+```
+
+One last example using `dark` from the Mapbox service. An access token is required.
+
+```Python
+# load mapbox access token
+token = open(".mapbox_token").read()
+
+# import plotly
+import plotly.express as px
+
+# create figure
+fig = px.scatter_mapbox()
+
+# update figure base map layer
+fig.update_layout(mapbox_style="dark", mapbox_accesstoken=token)
+
+# update figure layout
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+
+# show figure
+fig.show()
+```
 
 ##### Point data
 
-adding point data to tile maps
+Now we can use the `px.scatter_mapbox()` function to add point data to our figure.
+
+This example take sthe `open-street-map` base map from the previous section and adds point data for 1,000 US cities with highest population count.
+
+```Python
+# import pandas
+import pandas as pd
+
+# load dataframe
+us_cities = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/us-cities-top-1k.csv")
+
+# import plotly 
+import plotly.express as px
+
+# create figure
+fig = px.scatter_mapbox(us_cities, lat="lat", lon="lon", hover_name="City", hover_data=["State", "Population"],
+                        color_discrete_sequence=["fuchsia"], zoom=3, height=300)
+
+# update figure base map
+fig.update_layout(mapbox_style="open-street-map")
+
+# update figure layout
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+
+# show figure
+fig.show()
+```
+
+We specify which fields in the `us_cities` dataframe incldue latitude and longitude information (`lat` and `lon`).
+
+We set a color sequence with discrete colors.
+
+But since no field is assigned for a color attribute, all points are the same color.
+
+If we wanted to color the points based on population size, we would want to switch to a continuous color scale.
+```Python
+fig = px.scatter_mapbox(us_cities, lat="lat", lon="lon", hover_name="City", hover_data=["State", "Population"],
+                        color_continuous_scale=px.colors.sequential.Viridis, color="Population", zoom=3, height=300)
+```
+
+If we wanted out point size to be based on the population value, we would modify the `size` parameter.
+```Python
+fig = px.scatter_mapbox(us_cities, lat="lat", lon="lon", hover_name="City", hover_data=["State", "Population"],
+                        color_discrete_sequence=["fuchsia"], zoom=3, height=300, size="Population")
+```
+
+Another example that uses rideshare data for Montreal.
+
+In this example, point size is based on the number of car hours (`car_hours`) and point color is based on time of day (`peak_hour`).
+
+```Python
+# import plotly
+import plotly.express as px
+
+# set mapbox access token
+px.set_mapbox_access_token(open(".mapbox_token").read())
+
+# load data
+df = px.data.carshare()
+
+# create figure
+fig = px.scatter_mapbox(df, lat="centroid_lat", lon="centroid_lon", color="peak_hour", size="car_hours", color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10)
+# show figure
+fig.show()
+```
+
+We pass the entire dataframe to `px.scatter_mapbox` and specify which fields include geospatial information.
+
+We set `color` and `size` and assign a maximum size for the points.
+
+`plotly` includes a number of built-in discrete and continuous colormaps.
+
+To learn more about the built-in colormap options:
+- [`plotly`, Continuous Color Scales and Color Bars in Python](https://plotly.com/python/colorscales/#color-scales-in-plotly-express)
+- [`plotly`, Built-In Continuous Color Scales in Python](https://plotly.com/python/builtin-colorscales/#using-builtin-continuous-color-scales)
+- [`plotly`, Discrete Colors in Python](https://plotly.com/python/discrete-color/)
+
+We can also use `px.scatter_mapbox()` in combination with `GeoPandas`.
+
+An example that includes point data for natural earth cities.
+```Python
+# import plotly
+import plotly.express as px
+
+# import geopandas
+import geopandas as gpd
+
+# load data
+geo_df = gpd.read_file(gpd.datasets.get_path('naturalearth_cities'))
+
+# set mapbox access token
+px.set_mapbox_access_token(open(".mapbox_token").read())
+
+# create figure
+fig = px.scatter_mapbox(geo_df,
+                        lat=geo_df.geometry.y,
+                        lon=geo_df.geometry.x,
+                        hover_name="name",
+                        zoom=1)
+# show figure
+fig.show()
+```
 
 ##### Polygon data
 
-adding polygon data to tile maps
+We can also create tile-map choropleth maps using the `px.choropleth_mapbox()` function.
 
-#### Additional resources
+Tile-map choropleth maps require the same two main types of input to generate a map:
+- ***Geometry information***: can be supplied using a GeoJSON file in which each feature (polygon) has an id field that can be used to connect attribute data; 
+  * `plotly` includes built-in geometries for US states and world countries
+- ***Attribute data***, or a list of values indexed by feature identifiers (an id reflected in the geometry information)
 
-For more on maps in `plotly`:
+We'll use the same county unemployment data from the previous choropleth map section.
+
+With `px.choropleth_mapbox()`, each row of the dataframe is represented by a polygon.
+
+An sample choropleth map of the county unemployment data, using the base layer `carto-positron` which does not require an access token.
+
+```Python
+# import urllib
+from urllib.request import urlopen
+
+# import json
+import json
+
+# load geojson data
+with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
+    counties = json.load(response)
+
+# import pandas
+import pandas as pd
+
+# load attribute data as dataframe
+df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv",
+                   dtype={"fips": str})
+
+# import plotly
+import plotly.express as px
+
+# create figure
+fig = px.choropleth_mapbox(df, geojson=counties, locations='fips', color='unemp',
+                           color_continuous_scale="Viridis",
+                           range_color=(0, 12),
+                           mapbox_style="carto-positron",
+                           zoom=3, center = {"lat": 37.0902, "lon": -95.7129},
+                           opacity=0.5,
+                           labels={'unemp':'unemployment rate'}
+                          )
+
+# update figure layout
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+
+# show figure
+fig.show()
+```
+
+And again, we have a choropleth map showing unemployment rates for US counties.
+
+In this example, we set the `counties` GeoJSON as the geometric data.
+
+We specify the common field to use to connect the two datasets, `fips`.
+
+We base polygon color on the `unemp` field using `color`.
+
+We set the number of colors or color range using `range_color`.
+
+We select a continuous colormap using `color_continuous_scale`.
+
+And we update the `unemp` field name using `labels`.
+
+##### Additional resources
+
+For more on tile-based maps in `plotly`:
+- [`plotly`, Map Configuration and Styling in Python](https://plotly.com/python/map-configuration/)
+- [`plotly`, Mapbox Map Layers in Python](https://plotly.com/python/mapbox-layers/)
+- [`plotly`, Scatter Plots on Mapbox in Python](https://plotly.com/python/scattermapbox/)
+- [`plotly`, Mapbox Choropleth Maps in Python](https://plotly.com/python/mapbox-county-choropleth/)
+- [`plotly`, Plotly Python Open Source Graphing Library Maps](https://plotly.com/python/maps/)
+
+For more on `GeoPandas`: [https://geopandas.org](https://geopandas.org/)
 
 ### Tables
 
@@ -1608,7 +2127,515 @@ For more types of maps: [`plotly`, Plotly Open Source Graphing Library Maps](htt
 Full gallery of chart types: [`plotly`, Plotly Python Open Source Graphing Library](https://plotly.com/python/)
 
 
-## from `plotly` to `dash`
+## Exporting from `plotly`
+
+At this point, we have generated a *wide* range of interactive plots using `plotly`.
+
+Now what?
+
+`plotly` figures are interactive when viewed in a web browser.
+
+But since version 4.0, `plotly` is offline only, which means all figures are rendered in the local environment.
+
+Even if figures are displaying in a web browser window, the figure does not exist online--the web browser is loading a figure from the local environment.
+
+For more on `plotly`'s move to offline-only: plotly, ["Plotly.py 4.0 is here: Offline Only, Express First, Displayable Anywhere"](https://medium.com/plotly/plotly-py-4-0-is-here-offline-only-express-first-displayable-anywhere-fc444e5659ee) *Medium* (22 July 2019).
+
+### Static image export
+
+We can export `plotly` figures as static image file formats (`.png`, `.jpeg`, `.svg`, and `.pdf`).
+
+Static image generation requires the [`Kaleido` package](https://github.com/plotly/Kaleido).
+
+To install `Kaleido`:
+- using `pip`: `pip install kaleido`
+- using `conda`: `conda install conda-forge python-kaleido`
+
+Once a figure has been created, we can use the `.write_image()` method in combination with `plotly` to write the figure to an image file.
+
+```Python
+# write to png
+fig.write_image("filepath/filename.png")
+
+# write to jpeg
+fig.write_image("filepath/filename.jpeg")
+
+# write to svg
+fig.write_image("filepath/filename.svg")
+
+# write to pdf
+fig.write_image("filepath/filename.pdf")
+```
+
+For more on static image export: [`plotly`, Static Image Export in Python](https://plotly.com/python/static-image-export/)
+
+### Saving to HTML 
+
+We can also export `plotly` figures as `HTML` files which will can be loaded in a web browser.
+
+Unlike static image exports, these `HTML` files will include the interactivity of the `plotly` figure.
+
+Once a figure has been created, we can use the `.write_html()` method to save the figure as an `HTML` file.
+
+```Python
+fig.write_html("filepath/filename.html")
+```
+
+For more on HTML file export: [`plotly`, Interactive HTML Export in Python](https://plotly.com/python/interactive-html-export/)
+
+### `dash`
+
+We may want to create an interactive web application featuring a `plotly` figure.
+
+We see this kind of interactivity in dashboard-style interfaces:
+SUCH AS
+
+We can use the `dash` web application framework in combination with `plotly` to "publish" a figure as an interactive web application.
+
+`dash` was developed by the Plotly team and released in 2017.
+
+In addition to a limited free open-source version, Plotly also offers paid enterprise versions of `dash`.
+
+What exactly is `dash`?
+
+"Dash is a productive Python framework for building web analytic applications. Written on top of Flask, Plotly.js, and React.js, Dash is ideal for building data visualization apps with highly custom user interfaces in pure Python. It's particularly suited for anyone who works with data in Python. Through a couple of simple patterns, Dash abstracts away all of the technologies and protocols that are required to build an interactive web-based application. Dash is simple enough that you can bind a user interface around your Python code in an afternoon. Dash apps are rendered in the web browser. You can deploy your apps to servers and then share them through URLs. Since Dash apps are viewed in the web browser, Dash is inherently cross-platform and mobile ready" (`plotly`, [Introduction to Dash](https://dash.plotly.com/introduction)).
+
+For those familiar with RStudio's [Shiny package](v) (designed to build interactive web applications from within the R/RStudio programming environment), `dash` was originally pitched as the equivalent package for Python.
+
+Though originally built exclusively for `Python`, `dash` has since released versions for R/RStudio and Julia.
+
+For more background on `dash`:
+- plotly, ["Introducing Dash"](https://medium.com/plotly/introducing-dash-5ecf7191b503) *Medium* (21 June 2017)
+- Plotly, ["PLOTCON 2016: Chris Parmer, Dash: Shiny for Python"](https://youtu.be/5BAthiN0htc) *YouTube* (1 December 2016)
+- `plotly`, [Dash Enterprise App Gallery](https://dash-gallery.plotly.host/Portal/)
+- [Plotly, Dash GitHub repository](https://github.com/plotly/dash)
+
+To install `dash`:
+- using `pip`: `pip install dash`
+- in Jupyter notebook using `pip`: `pip install jupyter-dash`
+- in Jupyter notebook using `conda`: `conda install -c conda-forge -c plotly jupyter-dash`
+
+The remainder of this tutorial focuses on `dash` outside the Jupyter notebook environment.
+
+For more on using `dash` in a notebook environment: plotly, [Jupyter-Dash Github Repository](https://github.com/plotly/jupyter-dash)
+
+#### Basic `dash` syntax
+
+`dash` apps include two main components.
+
+The app ***layout*** describes what the application looks like.
+
+The app ***interactivity*** describes the application's interactivity.
+
+`dash` uses pre-built Python classes for all visual components of the application (which can be customized if needed using JavaScript and React.js).
+
+The basic syntax for creating an application using `dash`:
+
+```Python
+# at this point the figure has already been created and updated/configured/customized as needed
+
+# import dash components
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+
+# create app
+app = dash.Dash()
+
+# set app layout
+app.layout = html.Div([
+    dcc.Graph(figure=fig)
+])
+
+# run app
+app.run_server(debug=True, use_reloader=False)
+```
+
+Let's create an app using our tile-based choropleth map.
+```Python
+# import urllib
+from urllib.request import urlopen
+
+# import json
+import json
+
+# load geojson data
+with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
+    counties = json.load(response)
+
+# import pandas
+import pandas as pd
+
+# load attribute data as dataframe
+df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv",
+                   dtype={"fips": str})
+
+# import plotly
+import plotly.express as px
+
+# create figure
+fig = px.choropleth_mapbox(df, geojson=counties, locations='fips', color='unemp',
+                           color_continuous_scale="Viridis",
+                           range_color=(0, 12),
+                           mapbox_style="carto-positron",
+                           zoom=3, center = {"lat": 37.0902, "lon": -95.7129},
+                           opacity=0.5,
+                           labels={'unemp':'unemployment rate'}
+                          )
+
+# update figure layout
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+
+# show figure
+fig.show()
+
+# import dash components
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+
+# create app
+app = dash.Dash()
+
+# set app layout
+app.layout = html.Div([
+    dcc.Graph(figure=fig)
+])
+
+# run app
+app.run_server(debug=True, use_reloader=False)
+```
+
+At the bottom of each documentation page for a `plotly` figure type will be a "What About Dash?" section that provides a brief overview of how to publish that figure in a `dash` application.
+
+For example, [link to the "What About Dash?"](https://plotly.com/python/scattermapbox/#what-about-dash) section of the "Scatter Plots on Mapbox in Python" page.
+
+#### Customizing `dash` layout with `dash-html-components`
+
+This example makes very few modifications to `app.layout`.
+
+We can start to customize a `dash` app by using an external style sheet.
+
+Similar to how we use CSS in combination with HTML, external style sheets can also be loaded and applied in `dash`.
+```Python
+# load style sheet; this example uses URL; could also use local .css file
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+# call style sheet when starting app
+app = dash.Dash(APP_NAME, external_stylesheets=external_stylesheets)
+```
+
+We can also start to modify components of the application by declaring HTML tags.
+
+Remember in HTML, tags like `<h1>`, `<p>`, etc. are used for styling and formatting.
+
+The `dash_html_components` library has a component for every HTML tag.
+
+We can create declarations for those elements to govern how they are formatted or styled in the `dash` application.
+
+This is similar to how we create declarations in an external style sheet.
+
+Let's modify our app layout to include a `H1` title, a `div` subtitle, and a `Graph` object.
+
+```Python
+# omitted code creates and customizes figure
+
+# import dash components
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+
+# load style sheet; this example uses URL; could also use local .css file
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+# call style sheet when starting app
+app = dash.Dash(Test_App, external_stylesheets=external_stylesheets)
+
+# set app layout
+app.layout = html.Div(children=[
+    html.H1(children='Hello Dash'),
+
+    html.Div(children='''
+        Dash: A web application framework for Python.
+    '''),
+
+    dcc.Graph(
+        id='example-graph',
+        figure=fig
+    )
+])
+
+# run app
+app.run_server(debug=True, use_reloader=False)
+```
+
+We see the component declarations nested under `app.layout`.
+
+`dash` generates an HTML element for each of these components.
+
+For example, `dash` takes `html.H1(children='Hello Dash')` and generates `<h1>Hello Dash</h1>`.
+
+`dash` can also take keyword arguments as part of these component declarations.
+
+Let's say we want to override the external style sheet or set formatting for an element not convered in the style sheet.
+```Python
+# import dash components
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+
+# load style sheet; this example uses URL; could also use local .css file
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+# call style sheet when starting app
+app = dash.Dash(Test_App, external_stylesheets=external_stylesheets)
+
+# color declaration 
+colors = {'background': '#111111', 'text': '#7FDBFF'}
+
+# omitted code creates figure
+
+# update figure layout using colors dictionary keys
+fig.update_layout(plot_bgcolor=colors['background'], paper_bgcolor=colors['background'], font_color=colors['text'])
+
+# set app layout
+app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
+    html.H1(
+        children='Hello Dash',
+        style={
+            'textAlign': 'center',
+            'color': colors['text']
+        }
+    ),
+
+    html.Div(children='Dash: A web application framework for Python.', style={
+        'textAlign': 'center',
+        'color': colors['text']
+    }),
+
+    dcc.Graph(
+        id='example-graph-2',
+        figure=fig
+    )
+])
+
+# run app
+if Test_App == '__main__':
+    app.run_server(debug=True)
+```
+
+We create the `colors` dictionary with `background` and `text` keys and color values.
+
+We apply those custom colors to the figure using `fig.update_layout`.
+
+We apply those custom colors as keyword arguments for the `app.layout` components.
+
+For more on the `dash-html-components` library: [`plotly`, Dash HTML Components](https://dash.plotly.com/dash-html-components)
+
+For more on the `dash` layout options: [`plotly`, Dash Layout](https://dash.plotly.com/layout)
+
+#### Customizing `dash` using `dash-core-components`
+
+Where `dash` really shines (and has functionality that compares with RStudio Shiny) is in the higher-level core components.
+
+These core components include things like:
+- Dropdown input menu
+- Slider
+- Range slider
+- Input box
+- Input text area
+- Checkboxes
+- Radio buttons
+- Buttons
+- Single date picker
+- Date range picker
+- File upload
+- Multi-tab disply
+
+These core components are generated through a combination of JavaScript, HTML, and CSS in combination with the React.js library.
+
+The syntax for `dash-core-components` is similar to the HTML element declarations in the previous sections.
+
+A few examples are provided below.
+
+##### Dropdown
+
+```Python
+# import dash core components
+import dash_core_components as dcc
+
+# sample code for a dropdown menu
+dcc.Dropdown(
+    options=[
+        {'label': 'New York City', 'value': 'NYC'},
+        {'label': 'Montréal', 'value': 'MTL'},
+        {'label': 'San Francisco', 'value': 'SF'}
+    ],
+    value='MTL'
+)
+
+# this example takes a list of dictionaries as the label and value pairs for the dropdown; value sets the default dropdown valu
+
+# sample code for multi-select dropdown
+dcc.Dropdown(
+    options=[
+        {'label': 'New York City', 'value': 'NYC'},
+        {'label': 'Montréal', 'value': 'MTL'},
+        {'label': 'San Francisco', 'value': 'SF'}
+    ],
+    multi=True,
+    value="MTL"
+) 
+
+# setting multi to True allows for multi-select
+
+# for more on dropdown components: https://dash.plotly.com/dash-core-components/dropdown
+```
+##### Slider
+
+```Python
+# import dash core components
+import dash_core_components as dcc
+
+# sample code for a slider
+dcc.Slider(
+    min=-5,
+    max=10,
+    step=0.5,
+    value=-3
+)  
+
+# this example sets the min and max value for the slider, as well as the step increments and default value
+
+# another example that includes slider labels
+dcc.Slider(
+    min=0,
+    max=9,
+    marks={i: 'Label {}'.format(i) for i in range(10)},
+    value=5,
+)
+
+# this example sets marks for each slider value
+
+# for more on slider components: https://dash.plotly.com/dash-core-components/slider
+```
+##### RangeSlider
+
+```Python
+# import dash core components
+import dash_core_components as dcc
+
+# sample code for a range slider
+dcc.RangeSlider(
+    count=1,
+    min=-5,
+    max=10,
+    step=0.5,
+    value=[-3, 7]
+)  
+
+# example specifies min and max values, default positions, and step increment
+
+# another range slider example with labels
+dcc.RangeSlider(
+    marks={i: 'Label {}'.format(i) for i in range(-5, 7)},
+    min=-5,
+    max=6,
+    value=[-3, 4]
+)
+
+# again marks is used to set the mark position and label text
+
+# for more on range sliders: https://dash.plotly.com/dash-core-components/rangeslider
+```
+
+##### Input
+
+```Python
+# import dash core components
+import dash_core_components as dcc
+
+# sample code for an input box
+dcc.Input(
+    placeholder='Enter a value...',
+    type='text',
+    value=''
+)  
+
+# placeholder sets the placeholder text; type sets the input type; value sets the default value
+
+# for more on input: https://dash.plotly.com/dash-core-components/input
+```
+
+##### TextArea
+
+```Python
+# import dash core components
+import dash_core_components as dcc
+
+# sample code for a text area box
+dcc.Textarea(
+    placeholder='Enter a value...',
+    value='This is a TextArea component',
+    style={'width': '100%'}
+)
+
+# placeholder sets the placeholder value, value sets the default value, and style sets the box width
+
+# for more on Textarea: https://dash.plotly.com/dash-core-components/textarea 
+```
+
+##### Checkboxes
+
+```Python
+# import dash core components
+import dash_core_components as dcc
+
+# sample code for vertical list of checkboxes (default includes multi-select)
+dcc.Checklist(
+    options=[
+        {'label': 'New York City', 'value': 'NYC'},
+        {'label': 'Montréal', 'value': 'MTL'},
+        {'label': 'San Francisco', 'value': 'SF'}
+    ],
+    value=['MTL', 'SF']
+)  
+
+# options set the label and value for each check box, and value sets the default values
+
+# another example with a horizontal or inline list of checkboxes
+dcc.Checklist(
+    options=[
+        {'label': 'New York City', 'value': 'NYC'},
+        {'label': 'Montréal', 'value': 'MTL'},
+        {'label': 'San Francisco', 'value': 'SF'}
+    ],
+    value=['MTL', 'SF'],
+    labelStyle={'display': 'inline-block'}
+)
+
+# modifying labelStyle changes the layout
+
+# for more on Checklist: https://dash.plotly.com/dash-core-components/checklist
+```
+
+##### Other core component types
+
+You're starting to get the picture.
+
+For more examples and documentation:
+- [`dcc.RadioItems()`](https://dash.plotly.com/dash-core-components/radioitems)
+- [`html.Button()`](https://dash.plotly.com/dash-html-components/button)
+- [`dcc.DatePickerSingle()`](https://dash.plotly.com/dash-core-components/datepickersingle)
+- [`dcc.DatePickerRange()`](https://dash.plotly.com/dash-core-components/datepickerrange)
+- [`dcc.Upload()`](https://dash.plotly.com/dash-core-components/upload)
+- [`dcc.Tabs()`](https://dash.plotly.com/dash-core-components/tabs)
+- [`dcc.Graph()`](https://dash.plotly.com/dash-core-components/graph)
+
+
+For more on the `dash_core_components` library: [`plotly`, Dash Core Components](https://dash.plotly.com/dash-core-components)
+
+#### Setting up callbacks
 
 
 
