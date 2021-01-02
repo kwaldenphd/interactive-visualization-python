@@ -2635,12 +2635,214 @@ For more examples and documentation:
 
 For more on the `dash_core_components` library: [`plotly`, Dash Core Components](https://dash.plotly.com/dash-core-components)
 
+For more on the `dash_html_components` library: [`plotly`, Dash HTML Components](https://dash.plotly.com/dash-html-components)
+
 #### Setting up callbacks
 
+At this point, these layout components are interactive in the sense that you can interact with them.
 
+But the components are not response, in the sense that interacting with them does not change the app's behavior.
+
+We need to make the layout components responsive and interactive.
+
+We can do this in `dash` using callback functions.
+
+In `dash` syntax, callback functions are Python functions called by `dash` whenever an input component's property changes.
+
+An example that uses a responsive input box.
+```Python
+# import dash components
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+from dash.dependencies import Input, Output
+
+# set external style sheet
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+# initialize app
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+
+# configure app layout
+app.layout = html.Div([
+    html.H6("Change the value in the text box to see callbacks in action!"),
+    html.Div(["Input: ",
+              dcc.Input(id='my-input', value='initial value', type='text')]),
+    html.Br(),
+    html.Div(id='my-output'),
+
+])
+
+# decorator that tells dash to call named function when input value changes so output components reflect that change
+@app.callback(
+    Output(component_id='my-output', component_property='children'),
+    Input(component_id='my-input', component_property='value')
+)
+
+# name output function
+def update_output_div(input_value):
+    return 'Output: {}'.format(input_value)
+
+
+# initialize app
+if __name__ == '__main__':
+    app.run_server(debug=True)
+```
+
+Let's walk through what happens in this example.
+
+The application inputs and outputs are described using the `@app.callback` decorator, similar to the layout and component declarations covered previously.
+
+The decorator instructs `dash` to call this function whenever the input value changes, so the output components are updated accordingly.
+
+What you name the function arguments is up to you, as long as the names in the function definition match the names in the callback.
+
+The `@app.callback` decorator references components described in `app.layout`.
+
+Thus the component names in `@app.callback` need to reflect the component names used with `app.layout`.
+
+In this example, those component names are `my-input` and `my-output`.
+
+We see those names set using the `id` parameter with `app.layout`, and reflected in the callback.
+
+The `@app.callback` decorator should always come immediately before the `def` function definition.
+
+For more on function decorators in Python: [`python`, PEP 318 -- Decorators for Functions and Methods](https://www.python.org/dev/peps/pep-0318/)
+
+In `dash` syntax, application inputs and outputs are treated as component properties. 
+
+In this example, the `my-input` component is set to take the input as its `value`, and `my-output` is set to reflect the `my-input` value.
+
+Whenever an input property changes (in this example characters in the input box change), the callback function is automatically called.
+
+`dash` provides the function with the new input value and updates the output component property.
+
+Note that we had to import `from dash.dependencies import Input, Output`, which is different than `dash_core_components.Input`.
+
+Taken together, this functionality is called ***reactive programming***.
+
+The keyword arguments used to describe each component become incredibly important when setting up callback functions.
+
+Let's look at another application that uses callbacks.
+
+In this examle, global population data is plotted as a bubble chart.
+
+Points are colored by continent, sized by population, and a slider is used to mark each year of available data.
+
+```Python
+# import dash components and plotly
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+from dash.dependencies import Input, Output
+import plotly.express as px
+
+# import pandas
+import pandas as pd
+
+# load dataframe
+df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv')
+
+# load external stylesheet
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+# initialize app
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+
+# set app layout with graph and slider components
+app.layout = html.Div([
+    dcc.Graph(id='graph-with-slider'),
+    dcc.Slider(
+        id='year-slider',
+        min=df['year'].min(),
+        max=df['year'].max(),
+        value=df['year'].min(),
+        marks={str(year): str(year) for year in df['year'].unique()},
+        step=None
+    )
+])
+
+
+# set callback for slider and graph; note the slider is the input and the graph is the output
+@app.callback(
+    Output('graph-with-slider', 'figure'),
+    Input('year-slider', 'value'))
+
+# function definition for slider
+def update_figure(selected_year):
+    filtered_df = df[df.year == selected_year]
+
+    fig = px.scatter(filtered_df, x="gdpPercap", y="lifeExp",
+                     size="pop", color="continent", hover_name="country",
+                     log_x=True, size_max=55)
+
+    fig.update_layout(transition_duration=500)
+
+    return fig
+
+
+# launch application
+if __name__ == '__main__':
+    app.run_server(debug=True)
+```
+
+This example loads as `pandas` dataframe using `pd.read_csv()`.
+
+Loading the data outside of the callback functions means that the data loading operation is only done once, rather than each time the function is called.
+
+The callback does not modify the original data--it works with `pandas` filters to to create copies of the `dataframe`.
+
+NOTE: callback functions should NEVER alter the underlying `dataframe`.
+
+We also set the layout transition time using `fig.update_layout()` in combination with `transition_duration`. 
+
+This parameter gives the resulting figure smooth transitions between slider year values.
+
+For more on `dash` callbacks:
+- [`plotly`, Basic Dash Callbacks](https://dash.plotly.com/basic-callbacks)
+- [`plotly`, Advanced Callbacks](https://dash.plotly.com/advanced-callbacks)
+
+#### Additional resources
+
+We're just scratching the surface of what you can do using `dash`.
+
+Callback functions can include multiple inputs and outputs, as well as chained callback functions.
+- [`plotly`, Basic Callbacks](https://dash.plotly.com/basic-callbacks)
+
+`dash` also allows for interactive visualizations that change based on how the user is interacting with the visualization.
+- [`plotly`, Interactive Visualizations](https://dash.plotly.com/interactive-graphing)
+
+To learn more, consult the [Dash User Guide](https://dash.plotly.com/).
+
+The [Dash Enterprise App Gallery](https://dash-gallery.plotly.host/Portal/) includes sample apps with the back-end `dash` code.
+
+See also: Daniel Barker, ["A short Python tutorial using the open-source Plotly "Dash" library"](https://towardsdatascience.com/a-short-python-tutorial-using-the-open-source-plotly-dash-library-part-i-e59fb1f1a457) *Towards Data Science* (24 April 2018).
+
+In these examples, we are still working in your local environment.
+
+The `dash` app may run in a web browser, but it uses your computer as a local host (`localhost`).
+
+For a `dash` app to be available via the World Wide Web, you need to deploy it to a server.
+
+A few free server options that support public Flask applications (the framework `dash` is built on) include Heroku and Reclaim Hosting.
+
+*Alternatively you could take Prof. Walden's "Minimal Computing" class and build your own LAMP stack server.*
+
+More information on deplying a `dash` app using Heroku (free): [`plotly`, Heroku for Sharing Public Dash apps for Free](https://dash.plotly.com/deployment).
+
+Another option for acquiring a domain and web hosting is Reclaim Hosting.
+
+"Founded in 2013, Reclaim Hosting provides educators and institutions with an easy way to offer their students domains and web hosting that they own and control. Our goal is to make the process of offering a flexible web space and domain name to your students as easy as possible and giving you the support you need to make it all happen" ([About Reclaim Hosting](https://reclaimhosting.com/about/)).
+
+At the time this tutorial was written (December 2020), [Reclaim Hosting's personal plan](https://reclaimhosting.com/shared-hosting/) is $30 annually and includes 2 GB of storage.
+
+For more information in deploying a Flask app using Reclaim Hosting (or another cPanel provider):
+- [`python`, Flask: Deploy an App](https://python-adv-web-apps.readthedocs.io/en/latest/flask_deploy.html)
+- Tony Hirst, ["Creating a Simple Python Flash App via cPanel on Reclaim Hosting"](https://blog.ouseful.info/2016/09/17/creating-a-simple-python-flask-app-running-on-reclaim-hosting/) *OUseful.Info* (17 September 2016)
 
 # Practice problems
 
-# Lab Notebook Questions
+There are no practice problems. There is only final project proposal work.
 
 # Lab Notebook Questions
+
