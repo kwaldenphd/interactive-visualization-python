@@ -2830,6 +2830,8 @@ A few free server options that support public Flask applications (the framework 
 
 More information on deplying a `dash` app using Heroku (free): [`plotly`, Heroku for Sharing Public Dash apps for Free](https://dash.plotly.com/deployment).
 
+See also: Elsa Scola, ["The Easiest Way to Deploy Your Dash App for Free"](https://towardsdatascience.com/the-easiest-way-to-deploy-your-dash-app-for-free-f92c575bb69e) *Towards Data Science* (2 May 2020).
+
 Another option for acquiring a domain and web hosting is Reclaim Hosting.
 
 "Founded in 2013, Reclaim Hosting provides educators and institutions with an easy way to offer their students domains and web hosting that they own and control. Our goal is to make the process of offering a flexible web space and domain name to your students as easy as possible and giving you the support you need to make it all happen" ([About Reclaim Hosting](https://reclaimhosting.com/about/)).
