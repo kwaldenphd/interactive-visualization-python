@@ -1,4 +1,4 @@
-# Lab #12: Visualizing Data Using Matplotlib
+# Interactive Visualizatin in Python
 
 <a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license"><img style="border-width: 0;" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" alt="Creative Commons License" /></a>
 This tutorial is licensed under a <a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
@@ -8,23 +8,117 @@ This tutorial is licensed under a <a href="http://creativecommons.org/licenses/b
 
 ## Acknowledgements
 
-https://jakevdp.github.io/PythonDataScienceHandbook/04.14-visualization-with-seaborn.html 
-
-https://pandas.pydata.org/docs/user_guide/visualization.html
-
-https://pandas.pydata.org/docs/getting_started/intro_tutorials/04_plotting.html
-
-Wes McKinney Chapter 9
-
-https://seaborn.pydata.org/introduction.html
-
-Eric Mathes Python Crash Course Chapter 15 "Generating Data"
-
-https://plotly.com/python/
-
-https://dash.plotly.com/
+The author consulted the following resources when writing  this tutorial:
+- Chapter 4.14 "Visualization With Seaborn" from Jake VanderPlas, [*Python Data Science Handbook: Essential Tools for Working with Data*](https://jakevdp.github.io/PythonDataScienceHandbook/04.14-visualization-with-seaborn.html ) (O'Reilly, 2016)
+- `pandas`, [User Guide, "Visualization"](https://pandas.pydata.org/docs/user_guide/visualization.html)
+- `pandas`, [Getting Started, "Plotting"](https://pandas.pydata.org/docs/getting_started/intro_tutorials/04_plotting.html)
+- Chapter 9 "Plotting and Visualization" from Wes McKinney, [*Python for Data Analysis: Data Wrangling With pandas, Numpy, and IPython*](https://www.oreilly.com/library/view/python-for-data/9781491957653/) (O'Reilly, 2017)
+- Chapter 15 "Generating Data" from Eric Matthes, [*Python Crash Course: A Hands-On, Project-Based Introduction to Programming*](https://ehmatthes.github.io/pcc/) (No Starch Press, 2019).
+- [`seaborn` package documentation](https://seaborn.pydata.org/introduction.html)
+- [`plotly` documentation and tutorials](https://plotly.com/python/)
+- [`dash` documentation and tutorials](https://dash.plotly.com/)
 
 # Table of Contents
+
+## Condensed Table of Contents
+
+
+- [`pandas` and `matplotlib`](#pandas-and-matplotlib)
+  * [Plotting in `pandas`Uusing `.plot()`](#plotting-in-pandas-using-plot)
+    * [Time Series Data and Line Plots](#time-series-data-and-line-plots)
+    * [Bar Charts](#bar-charts)
+      * [Grouped Bar Charts](#grouped-bar-charts)
+      * [Stacked Bar Charts](#stacked-bar-charts)
+      * [Horizontal Bar Charts](#horizontal-bar-charts)
+    * [Histograms](#histograms)
+    * [Box Plots](#box-plots)
+    * [Area Plots](#area-plots)
+    * [Scatter Plots](#scatter-plots)
+    * [Pie Charts](#pie-charts)
+  * [`.plot()` and Missing Data](#plot-and-missing-data)
+- [Working with `pandas` and `seaborn`](#working-with-pandas-and-seaborn)
+- [Interactive Visualization in Python](#interactive-visualization-in-python)
+  * [`bokeh`](#bokeh)
+  * [`plotly`](#plotly)
+  * [`bokeh` vs. `plotly`](#bokeh-vs-plotly)
+- [Getting Started With `plotly`](#getting-started-with-plotly)
+  * [The Mechanics of `plotly`](#the-mechanics-of-plotly)
+  * [`plotly.express`](#plotlyexpress)
+    * [Scatter Plots](#scatter-plots)
+    * [Line Plots](#line-plots)
+    * [Bar Charts](#bar-charts)
+    * [Pie Charts](#pie-charts)
+    * [Bubble Charts](#bubble-charts)
+    * [Plotting Categorical Data](#plotting-categorical-data)
+    * [Maps](#maps)
+    * [Tables](#tables)
+    * [Additional Plot Types and Resources](#additional-plot-types-and-resources)
+  * [Exporting from `plotly`](#exporting-from-plotly)
+    * [Static Image Export](#static-image-export)
+    * [Saving to HTML](#saving-to-html)
+- [`dash`](#dash)
+  * [Basic `dash` Syntax](#basic-dash-syntax)
+  * [Customizing `dash` Layout with `dash_html_components`](#customizing-dash-layout-with-dash-html-components)
+  * [Customizing `dash` Layoout with `dash_core_components`](#customizing-dash-layout-with-dash-core-components)
+  * [Setting Up Callbacks](#setting-up-callbacks)
+  * [Additional Resources](#additional-resources)
+- [Practice Problems](#practice-problems)
+- [Lab Notebook Questions](#lab-notebook-questions)
+
+## Detailed Table of Contents
+
+- [`pandas` and `matplotlib`](#pandas-and-matplotlib)
+  * [Plotting in `pandas`Uusing `.plot()`](#plotting-in-pandas-using-plot)
+    * [Time Series Data and Line Plots](#time-series-data-and-line-plots)
+    * [Bar Charts](#bar-charts)
+      * [Grouped Bar Charts](#grouped-bar-charts)
+      * [Stacked Bar Charts](#stacked-bar-charts)
+      * [Horizontal Bar Charts](#horizontal-bar-charts)
+    * [Histograms](#histograms)
+    * [Box Plots](#box-plots)
+    * [Area Plots](#area-plots)
+    * [Scatter Plots](#scatter-plots)
+    * [Pie Charts](#pie-charts)
+  * [`.plot()` and Missing Data](#plot-and-missing-data)
+- [Working with `pandas` and `seaborn`](#working-with-pandas-and-seaborn)
+- [Interactive Visualization in Python](#interactive-visualization-in-python)
+  * [`bokeh`](#bokeh)
+  * [`plotly`](#plotly)
+  * [`bokeh` vs. `plotly`](#bokeh-vs-plotly)
+- [Getting Started With `plotly`](#getting-started-with-plotly)
+  * [The Mechanics of `plotly`](#the-mechanics-of-plotly)
+  * [`plotly.express`](#plotlyexpress)
+    * [Scatter Plots](#scatter-plots)
+    * [Line Plots](#line-plots)
+    * [Bar Charts](#bar-charts)
+    * [Pie Charts](#pie-charts)
+      * [Donut Charts](#donut-charts)
+      * [Sunburst Charts](#sunburst-charts)
+    * [Bubble Charts](#bubble-charts)
+    * [Plotting Categorical Data](#plotting-categorical-data)
+    * [Maps](#maps)
+      * [Geo Maps](#geo-maps)
+      * [Mapbox and Tile-Based Maps](#mapbox-and-tile-based-maps)
+    * [Tables](#tables)
+    * [Additional Plot Types and Resources](#additional-plot-types-and-resources)
+  * [Exporting from `plotly`](#exporting-from-plotly)
+    * [Static Image Export](#static-image-export)
+    * [Saving to HTML](#saving-to-html)
+- [`dash`](#dash)
+  * [Basic `dash` Syntax](#basic-dash-syntax)
+  * [Customizing `dash` Layout with `dash_html_components`](#customizing-dash-layout-with-dash-html-components)
+  * [Customizing `dash` Layoout with `dash_core_components`](#customizing-dash-layout-with-dash-core-components)
+    * [Dropdown](#dropdown)
+    * [Slider](#slider)
+    * [RangeSlider](#rangeslider)
+    * [Input](#input)
+    * [TextArea](#textarea)
+    * [Checkboxes](#checkboxes)
+    * [Other Core Component Types](#other-core-component-types)
+  * [Setting Up Callbacks](#setting-up-callbacks)
+  * [Additional Resources](#additional-resources)
+- [Practice Problems](#practice-problems)
+- [Lab Notebook Questions](#lab-notebook-questions)
 
 # `pandas` and `matplotlib`
 
@@ -38,7 +132,7 @@ The `pandas` `.plot()` attribute relies on the `matplotlib` API to generate plot
 
 And in many cases, the `.plot()` syntax is similar to `matplotlib` `OO` syntax.
 
-## Plotting in `pandas` using `.plot()`
+## Plotting in `pandas` Using `.plot()`
 
 Let's go back to the air quality data we were working with previously in `pandas`.
 
