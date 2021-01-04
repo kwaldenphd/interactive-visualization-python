@@ -36,7 +36,7 @@ The author consulted the following resources when writing  this tutorial:
     * [Static Image Export](#static-image-export)
     * [Saving to HTML](#saving-to-html)
     * [`dash`](#dash)
-- [Practice Problems](#practice-problems)
+- [Project Prompts](#project-prompts)
 - [Lab Notebook Questions](#lab-notebook-questions)
 
 # Overview
@@ -1575,9 +1575,9 @@ fig.write_html("filepath/filename.html")
 
 305. [For more on getting started with `dash`](https://github.com/kwaldenphd/dash-python/)
 
-# Practice problems
+# Project Prompts
 
-There are no practice problems. There is only final project proposal work.
+There are no project prompts. There is only final project proposal work.
 
 # Lab Notebook Questions
 
