@@ -24,7 +24,7 @@ The author consulted the following resources when writing  this tutorial:
 
 
 - [`pandas` and `matplotlib`](#pandas-and-matplotlib)
-  * [Plotting in `pandas`Uusing `.plot()`](#plotting-in-pandas-using-plot)
+  * [Plotting in `pandas` Using `.plot()`](#plotting-in-pandas-using-plot)
     * [Time Series Data and Line Plots](#time-series-data-and-line-plots)
     * [Bar Charts](#bar-charts)
       * [Grouped Bar Charts](#grouped-bar-charts)
@@ -328,14 +328,12 @@ plt.figure()
 df.plot()
 ```
 
-#### Additional Resources
-
 For more on line plots:
 - [`pandas`, "Basic plotting"](https://pandas.pydata.org/docs/user_guide/visualization.html#basic-plotting-plot)
 - [`pandas.DataFrame.plot`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html)
 - [`pandas.DataFrame.plot.line`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.line.html)
 
-### Bar charts
+### Bar Charts
 
 Let's say we want to create a bar chart with a single line of data from our `df` `DataFrame`.
 
@@ -352,7 +350,7 @@ df.iloc[5].plot.bar()
 plt.show()
 ```
 
-#### Grouped bar chrat
+#### Grouped Bar Charts
 
 Let's say we want to produce a grouped bar chart.
 
@@ -370,21 +368,19 @@ By default, `.plot.bar()` creates a separate bar for each of the numeric columns
 
 We could select a single column using `['']` to only show one bar or column value.
 
-#### Stacked bar chart
+#### Stacked Bar Charts
 
 If we wanted to show this data as a stacked bar chart, we would set the `stacked` parameter to `True`.
 ```Python
 df2.plot.bar(stacked=True)
 ```
 
-#### Horizontal bar chart
+#### Horizontal Bar Charts
 
 Remember `.plot.barh()` generates a horizontal bar chart, and we can also set `stacked` to `True` here to create a horizontal stacked bar chart.
 ```Python
 df2.plot.barh(stacked=True)
 ```
-
-#### Additional Resources
 
 For more on bar charts:
 - [`pandas`, "Bar plots"](https://pandas.pydata.org/docs/user_guide/visualization.html#bar-plots)
@@ -421,14 +417,12 @@ df4.plot.hist(bins=20)
 
 We can use the `.hist()` method in `matplotlib` to further customize our histogram: [`matplotlib.axes.Axes.hist`](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.hist.html#matplotlib.axes.Axes.hist)
 
-#### Additional Resources
-
 For more on histograms:
 - [`pandas`, "Visualization, Histograms"](https://pandas.pydata.org/docs/user_guide/visualization.html#visualization-hist)
 - [`pandas.DataFrame.plot.hist`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.hist.html)
 - [`pandas.DataFrame.hist`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.hist.html)
 
-#### Box plots
+### Box plots
 
 We can generate box plots using `.plot.box()` or `.boxplot()`.
 
@@ -458,8 +452,6 @@ color = {"boxes": "DarkGreen", "whiskers": "DarkOrange", "medians": "DarkBlue", 
 ```Python
 df.plot.box(color=color, sym="r+")
 ```
-
-#### Additional Resources
 
 For more on box plots:
 - [`pandas`, "Visualization, Box plots"](https://pandas.pydata.org/docs/user_guide/visualization.html#box-plots)
@@ -494,7 +486,7 @@ For more on scatter plots:
 - [`pandas.DataFrame.plot`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html)
 - [`pandas.DataFrame.plot.scatter`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.scatter.html)
 
-### Pie Plots
+### Pie Charts
 
 Basic syntax:
 ```Python
@@ -508,7 +500,7 @@ For more on pie plots:
 - [`pandas.DataFrame.plot`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html)
 - [`pandas.DataFrame.plot.scatter`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.scatter.html)
 
-## `.plot()` and missing data
+## `.plot()` and Missing Data
 
 Just like `pandas` has built-in settings for handling missing data or `NaN` values, the `.plot()` method also has default settings for how each type of plot handles missing data.
 
@@ -527,7 +519,7 @@ Pie | Fills 0s
 
 To customize or alter these default settings, you would use `.fillna()` or `.dropna()` to filter the `DataFrame` before generating the plot.
 
-## Additional resources
+## Additional Resources
 
 For more on plotting with `pandas` and `matplotlib`:
 - [`pandas`, Tutorials, "Plotting"](https://pandas.pydata.org/docs/getting_started/intro_tutorials/04_plotting.html)
@@ -729,7 +721,7 @@ For more on `seaborn`:
 - [Jake VanderPlas, "Visualization With Seaborn" from *Python Data Science Handbook*](https://jakevdp.github.io/PythonDataScienceHandbook/04.14-visualization-with-seaborn.html)
 
 
-# Interactive visualization in Python
+# Interactive Visualization in Python
 
 Up to this point, we have been generatic static image plots in Python using a combination of `pandas`, `matplotlib`, and `seaborn`.
 
@@ -827,7 +819,7 @@ For more in-depth `bokeh` and `plotly` comparisons:
 - Gabriela Moreira Mafra, ["Choosing one of many Python visualization tools"](https://blog.magrathealabs.com/choosing-one-of-many-python-visualization-tools-7eb36fa5855f) *Magrathea Lab Blog* (22 September 2018)
 - Antoine Hue, ["Which library should I use for my Python dashboard?"](https://towardsdatascience.com/which-library-should-i-use-for-my-dashboard-c432726a52bf) *Towards Data Science* (31 August 2020)
 
-# Getting started with `plotly`
+# Getting Started with `plotly`
 
 To install `plotly`:
 - using `pip`: `pip install plotly`
@@ -835,7 +827,7 @@ To install `plotly`:
 - using Jupyter Notebook: `pip install "notebook>=5.3" "ipywidgets>=7.2"`
 - using `conda` in Jupyter Notebook: `conda install "notebook>=5.3" "ipywidgets>=7.2"`
 
-## The mechanics of `plotly`
+## The Mechanics of `plotly`
 
 Plotly.js, the JavaScript library `plotly` is based on understands figures as trees with named nodes called attributes.
 
@@ -930,7 +922,7 @@ The `plotly.express` module contains functions that can create entire figures at
 
 A graph object is created as part of any `plotly.express` function, but the point of the `plotly.express` function is to significantly reduce the amount of code needed to create, customize, and render the graph object.
 
-### Scatter Plots
+### `px.scatter()`, Scatter Plots
 
 To create a scatterplot using `plotly.express`, we use the `px.scatter()` function, which takes values for the `X` and `Y` axis.
 
@@ -994,15 +986,13 @@ In this modified example, `color` specifies what field to use to color points.
 
 `hover_data` adds fields not already incorporated in the figure to the hover label, which now includes 5 different fields.
 
-#### Additional resources
-
 For more on scatter plots in `plotly`:
 - [`plotly`, Scatter Plots in Python](https://plotly.com/python/line-and-scatter/)
 - [`plotly.express.scatter`](https://plotly.com/python-api-reference/generated/plotly.express.scatter)
 - [`plotly`, Python Figure Reference: `scatter` Traces](https://plotly.com/python/reference/scatter/)
 - [`plotly`, Python Figure Reference: `scattergl` Traces](https://plotly.com/python/reference/scattergl/)
 
-### Line Plots
+### `px.line()`, Line Plots
 
 We can create a simple line plot using `px.line()`.
 
@@ -1068,14 +1058,12 @@ We use `hover_name` to set a title or name for the hover labels.
 
 The country name is now at the top of each over label.
 
-#### Additional resources
-
 For more on line plots in `plotly`:
 - [`plotly`, Line Charts in Python](https://plotly.com/python/line-charts/)
 - [`plotly.express.line`](https://plotly.com/python-api-reference/generated/plotly.express.line)
 - [`plotly`, Python Figure Reference: `scatter` Traces](https://plotly.com/python/reference/scatter/)
 
-### Bar Charts
+### `px.bar()`, Bar Charts
 
 We can create a bar chart using `px.bar()`.
 
@@ -1135,7 +1123,7 @@ wide_df
 
 `plotly.express` and `px.bar()` can generate the same plot from either data form.
 
-#### Stacked bar chart
+#### Stacked Bar Charts in `plotly`
 
 To create a stacked bar chart using the long data form:
 ```Python
@@ -1217,11 +1205,11 @@ We can also set the bar mode using `.update_layout()` with the `barmode` attribu
 
 Setting `barmode` to `stack` produces a stacked bar chart.
 
-### Grouped bar chart
+### Grouped Bar Charts in `plotly`
 
 Setting `barmode` to `group` produces a grouped bar chart.
 
-### Horizontal bar chart
+### Horizontal Bar Charts in `plotly`
 
 We can set the `orientation` attribute to `h` to produce a horizontal bar chart.
 ```Python
@@ -1230,7 +1218,7 @@ fig = px.bar(data, x="X field", y="Y field", orientation="h")
 
 Remember in a horizontal bar chart, the `X` and `Y` axis values are the inverse of a vertical bar chart.
 
-#### Additional resources
+Additional Resources
 
 For more on bar charts in `plotly`:
 - [`plotly`, Bar Charts in Python](https://plotly.com/python/bar-charts/)
@@ -1240,7 +1228,7 @@ For more on bar charts in `plotly`:
 - [`plotly.express.bar`](https://plotly.com/python-api-reference/generated/plotly.express.bar)
 - [`plotly`, Python Figure Reference: `bar` Traces](https://plotly.com/python/reference/bar/)
 
-### Pie Charts
+### `px.pie()`, Pie Charts
 
 We can create a pie chart using `px.pie()`.
 
@@ -1285,7 +1273,7 @@ In this example, we pass the entire data frame to `px.pie()` and assign `tip` as
 
 Each day is a slice of the pie, and `plotly.express` and the `px.pie()` function have done the underlying calculations to show the aggregate tip data as a percent.
 
-#### Donut Chart
+#### Donut Charts in `plotly`
 
 A donut chart is a modified pie chart with an empty circle at the middle of the pie.
 
@@ -1313,7 +1301,7 @@ There's a lot to get into in terms of the differences between `plotly.express` f
 
 For our purposes, we can focus on how values, labels, and a hole parameter are passed to `go.Figure()` and `go.Pie()` to create the plot.
 
-#### Sunburst Charts
+#### Sunburst Charts in `plotly`
 
 Multilevel pie charts are known as sunburst charts.
 
@@ -1368,7 +1356,7 @@ fig =px.sunburst(
 # show figure
 fig.show()
 ```
-#### Additional resources
+Additional resources
 
 For more on pie charts in `plotly`:
 - [`plotly`, Pie Charts in Python](https://plotly.com/python/pie-charts/)
@@ -1380,7 +1368,7 @@ For more on sunburst charts in `plotly`:
 - [`plotly.express.sunburst`](https://plotly.com/python-api-reference/generated/plotly.express.sunburst)
 - [`plotly`, Python Figure Reference: `sunburst` Traces](https://plotly.com/python/reference/sunburst/)
 
-### Bubble Charts
+### Bubble Charts in `plotly`
 
 A bubble chart is as scatter plot in which the marker size is tied to a third dimension of the data.
 
@@ -1416,7 +1404,6 @@ We set a name or title for the hover labels using `hover_name`.
 
 Setting `log_x` to `True` (the default for this attribute is `False`) means the `X` axis will be log-scaled in cartesian coordinates.
 
-### Additional resources
 
 For more on bubble charts in `plotly`:
 - [`plotly`, Bubble Charts in Python](https://plotly.com/python/bubble-charts/)
@@ -1495,8 +1482,6 @@ Setting `categoryorder` to `category ascending` or `category descending` sorts c
 
 Setting `categoryorder` to `total ascending` or `total descending` sorts categories numerically by total value.
 
-#### Additional resources
-
 For more on categorical data and `plotly`:
 - [`plotly`, Categorical Axes in Python](https://plotly.com/python/categorical-axes/)
 - [`plotly`, Axes in Python](https://plotly.com/python/axes/)
@@ -1518,9 +1503,9 @@ Except for maps, that coordinate system is typically some type of latitude or lo
 
 We'll start by looking at Geo outline-based maps before exploring Mapbox tile-based maps.
 
-#### Geo maps
+### Geo Maps, or Outline-Based Maps
 
-##### Base map layer
+#### Base Map Layer
 
 `plotly` Geo maps have a built-in base map layer composed of "physical" and "cultural" data from the [Natural Earth Dataset](https://www.naturalearthdata.com/downloads/).
 
@@ -1580,7 +1565,7 @@ Available named scopes include:
 
 Sorry, penguins and polar bears.
 
-##### Point data
+#### Point Data
 
 Now that we have a base map layer that will serve as the coordinate system for our plot, we can plot data using this coorinate system.
 
@@ -1669,7 +1654,7 @@ fig.show()
 ```
 In this example, we use `plotly`'s `graph_object` syntax to create the figure and specify which columns in the `dataframe` include latitude and longitude information.
 
-##### Polygon data
+#### Polygon Data
 
 We can easily imagine a scenario in which a map with point data (or a scatterplot on a map projection system) is not the most effective way to represent data.
 
@@ -1797,7 +1782,7 @@ We select a continuous colormap using `color_continuous_scale`.
 
 And we update the `unemp` field name using `labels`.
 
-##### Additional resources
+#### Additional resources
 
 For more on outline-based maps in `plotly`:
 - [`plotly`, Map Configuration and Styling in Python](https://plotly.com/python/map-configuration/)
@@ -1807,7 +1792,7 @@ For more on outline-based maps in `plotly`:
 
 For more on `GeoPandas`: [https://geopandas.org](https://geopandas.org/)
 
-#### Mapbox and tile maps
+### Mapbox and Tile-Based Maps
 
 Now on to tile-based maps.
 
@@ -1838,7 +1823,7 @@ Navigate to https://docs.mapbox.com/help/how-mapbox-works/access-tokens/ to set 
 
 When needed, the token can be set using the `px.set_mapbox_access_token()` configuration function.
 
-##### Base map layer
+#### Tile-Map Base Map Layer
 
 There are a few options for base map layers using `layout.mapbox.style`.
 
@@ -1942,7 +1927,7 @@ fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 ```
 
-##### Point data
+#### Tile-Map Point data
 
 Now we can use the `px.scatter_mapbox()` function to add point data to our figure.
 
@@ -2047,7 +2032,7 @@ fig = px.scatter_mapbox(geo_df,
 fig.show()
 ```
 
-##### Polygon data
+#### Tile-Based maps and Polygon Data
 
 We can also create tile-map choropleth maps using the `px.choropleth_mapbox()` function.
 
@@ -2114,8 +2099,6 @@ We select a continuous colormap using `color_continuous_scale`.
 
 And we update the `unemp` field name using `labels`.
 
-##### Additional resources
-
 For more on tile-based maps in `plotly`:
 - [`plotly`, Map Configuration and Styling in Python](https://plotly.com/python/map-configuration/)
 - [`plotly`, Mapbox Map Layers in Python](https://plotly.com/python/mapbox-layers/)
@@ -2179,8 +2162,6 @@ fig.show()
 This example includes style attributes like `fill_color` and `align` for both `header` and `cells`.
 
 For `header`, this example takes a dictionary with the `DataFrame` column labels as a list, and the `DataFrame` column values as values for the `cells`.
-
-### Additional resources
 
 For more on tables in `plotly`:
 - [`plotly`, Tables in Python](https://plotly.com/python/table/)
@@ -2277,7 +2258,7 @@ fig.write_html("filepath/filename.html")
 
 For more on HTML file export: [`plotly`, Interactive HTML Export in Python](https://plotly.com/python/interactive-html-export/)
 
-### `dash`
+# `dash`
 
 We may want to create an interactive web application featuring a `plotly` figure.
 
@@ -2313,7 +2294,7 @@ The remainder of this tutorial focuses on `dash` outside the Jupyter notebook en
 
 For more on using `dash` in a notebook environment: plotly, [Jupyter-Dash Github Repository](https://github.com/plotly/jupyter-dash)
 
-#### Basic `dash` syntax
+## Basic `dash` Syntax
 
 `dash` apps include two main components.
 
@@ -2404,7 +2385,7 @@ At the bottom of each documentation page for a `plotly` figure type will be a "W
 
 For example, [link to the "What About Dash?"](https://plotly.com/python/scattermapbox/#what-about-dash) section of the "Scatter Plots on Mapbox in Python" page.
 
-#### Customizing `dash` layout with `dash-html-components`
+## Customizing `dash` Layout with `dash_html-_omponents`
 
 This example makes very few modifications to `app.layout`.
 
@@ -2528,7 +2509,7 @@ For more on the `dash-html-components` library: [`plotly`, Dash HTML Components]
 
 For more on the `dash` layout options: [`plotly`, Dash Layout](https://dash.plotly.com/layout)
 
-#### Customizing `dash` using `dash-core-components`
+## Customizing `dash` Layout Using `dash_core_components`
 
 Where `dash` really shines (and has functionality that compares with RStudio Shiny) is in the higher-level core components.
 
@@ -2552,7 +2533,7 @@ The syntax for `dash-core-components` is similar to the HTML element declaration
 
 A few examples are provided below.
 
-##### Dropdown
+### Dropdown
 
 ```Python
 # import dash core components
@@ -2585,7 +2566,7 @@ dcc.Dropdown(
 
 # for more on dropdown components: https://dash.plotly.com/dash-core-components/dropdown
 ```
-##### Slider
+### Slider
 
 ```Python
 # import dash core components
@@ -2613,7 +2594,7 @@ dcc.Slider(
 
 # for more on slider components: https://dash.plotly.com/dash-core-components/slider
 ```
-##### RangeSlider
+### RangeSlider
 
 ```Python
 # import dash core components
@@ -2643,7 +2624,7 @@ dcc.RangeSlider(
 # for more on range sliders: https://dash.plotly.com/dash-core-components/rangeslider
 ```
 
-##### Input
+### Input
 
 ```Python
 # import dash core components
@@ -2661,7 +2642,7 @@ dcc.Input(
 # for more on input: https://dash.plotly.com/dash-core-components/input
 ```
 
-##### TextArea
+### TextArea
 
 ```Python
 # import dash core components
@@ -2679,7 +2660,7 @@ dcc.Textarea(
 # for more on Textarea: https://dash.plotly.com/dash-core-components/textarea 
 ```
 
-##### Checkboxes
+### Checkboxes
 
 ```Python
 # import dash core components
@@ -2713,7 +2694,7 @@ dcc.Checklist(
 # for more on Checklist: https://dash.plotly.com/dash-core-components/checklist
 ```
 
-##### Other core component types
+### Other Core Component Types
 
 You're starting to get the picture.
 
@@ -2731,7 +2712,7 @@ For more on the `dash_core_components` library: [`plotly`, Dash Core Components]
 
 For more on the `dash_html_components` library: [`plotly`, Dash HTML Components](https://dash.plotly.com/dash-html-components)
 
-#### Setting up callbacks
+## Setting Up Callbacks
 
 At this point, these layout components are interactive in the sense that you can interact with them.
 
@@ -2896,7 +2877,7 @@ For more on `dash` callbacks:
 - [`plotly`, Basic Dash Callbacks](https://dash.plotly.com/basic-callbacks)
 - [`plotly`, Advanced Callbacks](https://dash.plotly.com/advanced-callbacks)
 
-#### Additional resources
+## Additional resources
 
 We're just scratching the surface of what you can do using `dash`.
 
@@ -2911,6 +2892,8 @@ To learn more, consult the [Dash User Guide](https://dash.plotly.com/).
 The [Dash Enterprise App Gallery](https://dash-gallery.plotly.host/Portal/) includes sample apps with the back-end `dash` code.
 
 See also: Daniel Barker, ["A short Python tutorial using the open-source Plotly "Dash" library"](https://towardsdatascience.com/a-short-python-tutorial-using-the-open-source-plotly-dash-library-part-i-e59fb1f1a457) *Towards Data Science* (24 April 2018).
+
+## Publishing a `dash` App
 
 In these examples, we are still working in your local environment.
 
