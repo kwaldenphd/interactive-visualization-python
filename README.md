@@ -5,6 +5,16 @@ This tutorial is licensed under a <a href="http://creativecommons.org/licenses/b
 
 ## Lab Goals
 
+This lab provides an overview of interactive data visualization in Python using `plotly`. It provides an overview and comparison of the `bokeh` and `plotly` packages. It provides an overview of `plotly` functionality, focusing on `plotly.express` functions for a variety of plot types, including 2D cartesian coordinate system plots and mapping using geospatial data. It ends with an overview of export options for `plotly` figures.
+
+By the end of this lab, students will be able to:
+- Understand the basic components of interactive Python visualization packages `bokeh` and `pandas`
+- Understand the basic syntax used to generate a `plotly` figure for a variety of plot types, using `plotly.express` functions
+- Understand the syntax and options available for customizing a `plotly` figure
+- Understand the export options for a `plotly` figure
+- Be able to use `plotly.express` functions to generate their own figures, with a basic level of customization
+- Understand how to navigate and interact with `plotly` documentation for tutorials and troubleshooting
+
 ## Acknowledgements
 
 The author consulted the following resources when writing  this tutorial:
@@ -800,6 +810,37 @@ fig.show()
 - [`plotly`, Axes in Python](https://plotly.com/python/axes/)
 - [`plotly`, Python Figure Reference: `layout.xaxis`](https://plotly.com/python/reference/layout/xaxis/)
 
+<blockquote>Q1: Build at least three different types of figures using plotly and data stored in a Pandas DataFrame. Include code + comments.
+ 
+Each plot should include the following elements:
+ <ul>
+  <li>Title</li>
+  <li>Axis labels</li>
+  <li>Legend</li>
+  <li>Scale or tickmarks</li>
+ <li>Hover label</li>
+  <li>Data source</li>
+ </ul>
+ 
+Plot types to choose from:
+ <ul>
+ <li>Line plots</li>
+ <li>Bar chart</li>
+ <li>Grouped bar chart</li>
+ <li>Horizontal bar chart</li>
+ <li>Stacked bar chart</li>
+ <li>Histogram</li>
+ <li>Box plot</li>
+ <li>Area plot</li>
+ <li>Scatter plot</li>
+ <li>Pie chart</li>
+ <li>Donut chart</li>
+ <li>Sunburst chart</li>
+ <li>Table</li>
+ </ul>
+ </blockquote>
+
+
 ### Maps
 
 165. Up to this point, we have been working with data plotted on a 2D cartesian coordinate system, with `x` and `y` axes.
@@ -1419,6 +1460,30 @@ fig.show()
 
 268. For more on `GeoPandas`: [https://geopandas.org](https://geopandas.org/)
 
+<blockquote>Q3: Build at least two different types of maps using plotly. Include code + comments.
+Each plot should include the following elements:
+ <ul>
+  <li>Title</li>
+  <li>Hover labels</li>
+  <li>Scale</li>
+  <li>Data source</li>
+ </ul>
+
+Types of maps to choose from:
+<ul>
+ <li>Geo Maps, or Outline-Based Maps</li>
+ <ul>
+  <li>Point map</li>
+  <li>Choropleth map</li
+ </ul>
+  <li>Mapbox or Tile-Based Maps</li>
+  <ul>
+   <li>Point map</li>
+   <li>Choropleth map</li>
+  </ul>
+ </ul>
+ </blockquote>
+
 ### Tables
 
 269. `plotly.express` does not include a table function, but we can create a graph object table using `go.Figure()` in combination with `go.Table()`.
@@ -1554,6 +1619,8 @@ fig.write_image("filepath/filename.pdf")
 
 299. For more on static image export: [`plotly`, Static Image Export in Python](https://plotly.com/python/static-image-export/)
 
+<blockquote>Q4: Add to the code for at least one of the figures generated earlier in this lab to save the figure as a static image. Include code + comments.</blockquote>
+
 ### Saving to HTML 
 
 300. We can also export `plotly` figures as `HTML` files which will can be loaded in a web browser.
@@ -1568,6 +1635,8 @@ fig.write_html("filepath/filename.html")
 
 303. For more on HTML file export: [`plotly`, Interactive HTML Export in Python](https://plotly.com/python/interactive-html-export/)
 
+<blockquote>Q5: Add to the code for at least one of the figures generated earlier in this lab to save the figure as an HTML file. Include code + comments.</blockquote>
+
 ### `dash`
 
 304. `plotly` figures can also be part of an itneractive web app built using `dash`.
@@ -1580,4 +1649,47 @@ There are no project prompts. There is only final project proposal work.
 
 # Lab Notebook Questions
 
-PLACEHOLDER FOR LAB NOTEBOOK QUESTIONS
+Q1: Build at least three different types of plots using matplotlib and data stored in a Pandas DataFrame. Include code + comments. 
+
+Each plot should include the following elements:
+- Title
+- Axis labels
+- Legend
+- Scale or tickmarks
+- Hover label
+- Data source
+ 
+Plot types to choose from:
+- Line plots
+- Bar chart
+- Grouped bar chart
+- Horizontal bar chart
+- Stacked bar chart
+- Histogram
+- Box plot
+- Area plot
+- Scatter plot
+- Pie chart
+- Donut chart
+- Sunburst chart
+- Table
+
+Q3: Build at least two different types of maps using plotly. Include code + comments.
+
+Each plot should include the following elements:
+- Title
+- Hover labels
+- Scale
+- Data source
+
+Types of maps to choose from:
+- Geo Maps, or Outline-Based Maps
+  * Point map
+  * Choropleth map
+- Mapbox or Tile-Based Maps
+  * Point map
+  * Choropleth map
+
+Q4: Add to the code for at least one of the figures generated earlier in this lab to save the figure as a static image. Include code + comments.
+
+Q5: Add to the code for at least one of the figures generated earlier in this lab to save the figure as an HTML file. Include code + comments.
