@@ -62,8 +62,7 @@ The author consulted the following resources when writing  this tutorial:
 9. `bokeh` is built on `D3.js`, a JavaScript library for interactive visualization.
 
 10. Full customization in `bokeh` requires some knowledge of JavaScript.
-
-<p align="center"><a href="https://github.com/kwaldenphd/interactive-visualization-python/blob/main/Figure_1.png?raw=true"><img class="aligncenter" src="https://github.com/kwaldenphd/interactive-visualization-python/blob/main/Figure_1.png?raw=true" /></a></p>
+                                                                                                                                                   
 
 11. Sample code and output for a `bokeh` plot.
 
