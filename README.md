@@ -15,6 +15,8 @@ By the end of this lab, students will be able to:
 - Be able to use `plotly.express` functions to generate their own figures, with a basic level of customization
 - Understand how to navigate and interact with `plotly` documentation for tutorials and troubleshooting
 
+[Click here](https://raw.githubusercontent.com/kwaldenphd/interactive-visualization-python/main/interactive-visualization-python.ipynb) and select the "Save As" option to download this lab as as Jupyter Notebook.
+
 ## Acknowledgements
 
 The author consulted the following resources when writing  this tutorial:
