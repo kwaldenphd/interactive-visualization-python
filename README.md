@@ -1323,7 +1323,7 @@ fig = px.scatter_mapbox(us_cities, lat="lat", lon="lon", hover_name="City", hove
                         color_continuous_scale=px.colors.sequential.Viridis, color="Population", zoom=3, height=300)
 ```
 
-247. If we wanted out point size to be based on the population value, we would modify the `size` parameter.
+247. If we wanted our point size to be based on the population value, we would modify the `size` parameter.
 ```Python
 fig = px.scatter_mapbox(us_cities, lat="lat", lon="lon", hover_name="City", hover_data=["State", "Population"],
                         color_discrete_sequence=["fuchsia"], zoom=3, height=300, size="Population")
