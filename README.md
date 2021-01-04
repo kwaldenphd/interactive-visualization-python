@@ -14,7 +14,7 @@ The author consulted the following resources when writing  this tutorial:
 
 # Table of Contents
 
-- [Interactive Visualization in Python](#interactive-visualization-in-python)
+- [Overview](#overview)
   * [`bokeh`](#bokeh)
   * [`plotly`](#plotly)
   * [`bokeh` vs. `plotly`](#bokeh-vs-plotly)
@@ -30,7 +30,7 @@ The author consulted the following resources when writing  this tutorial:
     * [Bubble Charts](#bubble-charts)
     * [Plotting Categorical Data](#plotting-categorical-data)
     * [Maps](#maps)
-      * [Geo Maps](#geo-maps)
+      * [Geo Maps, or Outline-Based Maps](#geo-maps-or-outline-based-maps)
       * [Mapbox and Tile-Based Maps](#mapbox-and-tile-based-maps)
     * [Tables](#tables)
     * [Additional Plot Types and Resources](#additional-plot-types-and-resources)
@@ -43,10 +43,11 @@ The author consulted the following resources when writing  this tutorial:
   * [Customizing `dash` Layout with `dash_core_components`](#customizing-dash-layout-with-dash-core-components)
   * [Setting Up Callbacks](#setting-up-callbacks)
   * [Additional Resources](#additional-resources)
+  * [Publishing a `dash` App](#publishing-a-dash-app)
 - [Practice Problems](#practice-problems)
 - [Lab Notebook Questions](#lab-notebook-questions)
 
-# Interactive Visualization in Python
+# Overview
 
 Up to this point, we have been generatic static image plots in Python using a combination of `pandas`, `matplotlib`, and `seaborn`.
 
@@ -247,7 +248,7 @@ The `plotly.express` module contains functions that can create entire figures at
 
 A graph object is created as part of any `plotly.express` function, but the point of the `plotly.express` function is to significantly reduce the amount of code needed to create, customize, and render the graph object.
 
-### `px.scatter()`, Scatter Plots
+### Scatter Plots
 
 To create a scatterplot using `plotly.express`, we use the `px.scatter()` function, which takes values for the `X` and `Y` axis.
 
@@ -317,7 +318,7 @@ For more on scatter plots in `plotly`:
 - [`plotly`, Python Figure Reference: `scatter` Traces](https://plotly.com/python/reference/scatter/)
 - [`plotly`, Python Figure Reference: `scattergl` Traces](https://plotly.com/python/reference/scattergl/)
 
-### `px.line()`, Line Plots
+### Line Plots
 
 We can create a simple line plot using `px.line()`.
 
@@ -388,7 +389,7 @@ For more on line plots in `plotly`:
 - [`plotly.express.line`](https://plotly.com/python-api-reference/generated/plotly.express.line)
 - [`plotly`, Python Figure Reference: `scatter` Traces](https://plotly.com/python/reference/scatter/)
 
-### `px.bar()`, Bar Charts
+### Bar Charts
 
 We can create a bar chart using `px.bar()`.
 
@@ -448,7 +449,7 @@ wide_df
 
 `plotly.express` and `px.bar()` can generate the same plot from either data form.
 
-#### Stacked Bar Charts in `plotly`
+#### Stacked Bar Charts
 
 To create a stacked bar chart using the long data form:
 ```Python
@@ -530,11 +531,11 @@ We can also set the bar mode using `.update_layout()` with the `barmode` attribu
 
 Setting `barmode` to `stack` produces a stacked bar chart.
 
-### Grouped Bar Charts in `plotly`
+### Grouped Bar Charts
 
 Setting `barmode` to `group` produces a grouped bar chart.
 
-### Horizontal Bar Charts in `plotly`
+### Horizontal Bar Charts
 
 We can set the `orientation` attribute to `h` to produce a horizontal bar chart.
 ```Python
@@ -553,7 +554,7 @@ For more on bar charts in `plotly`:
 - [`plotly.express.bar`](https://plotly.com/python-api-reference/generated/plotly.express.bar)
 - [`plotly`, Python Figure Reference: `bar` Traces](https://plotly.com/python/reference/bar/)
 
-### `px.pie()`, Pie Charts
+### Pie Charts
 
 We can create a pie chart using `px.pie()`.
 
@@ -598,7 +599,7 @@ In this example, we pass the entire data frame to `px.pie()` and assign `tip` as
 
 Each day is a slice of the pie, and `plotly.express` and the `px.pie()` function have done the underlying calculations to show the aggregate tip data as a percent.
 
-#### Donut Charts in `plotly`
+#### Donut Charts
 
 A donut chart is a modified pie chart with an empty circle at the middle of the pie.
 
@@ -626,7 +627,7 @@ There's a lot to get into in terms of the differences between `plotly.express` f
 
 For our purposes, we can focus on how values, labels, and a hole parameter are passed to `go.Figure()` and `go.Pie()` to create the plot.
 
-#### Sunburst Charts in `plotly`
+#### Sunburst Charts
 
 Multilevel pie charts are known as sunburst charts.
 
@@ -693,7 +694,7 @@ For more on sunburst charts in `plotly`:
 - [`plotly.express.sunburst`](https://plotly.com/python-api-reference/generated/plotly.express.sunburst)
 - [`plotly`, Python Figure Reference: `sunburst` Traces](https://plotly.com/python/reference/sunburst/)
 
-### Bubble Charts in `plotly`
+### Bubble Charts
 
 A bubble chart is as scatter plot in which the marker size is tied to a third dimension of the data.
 
@@ -1148,7 +1149,7 @@ Navigate to https://docs.mapbox.com/help/how-mapbox-works/access-tokens/ to set 
 
 When needed, the token can be set using the `px.set_mapbox_access_token()` configuration function.
 
-#### Tile-Map Base Map Layer
+#### Base Map Layer
 
 There are a few options for base map layers using `layout.mapbox.style`.
 
@@ -1175,7 +1176,7 @@ We can also specify the base map layer using a Mapbox service style URL.
 
 These styles require an access token. 
 
-Browse the [Mapbox Galery](https://www.mapbox.com/gallery/).
+Browse the [Mapbox Gallery](https://www.mapbox.com/gallery/).
 
 Let's create a base map layer using `open-street-map`.
 
@@ -1252,7 +1253,7 @@ fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 ```
 
-#### Tile-Map Point data
+#### Point data
 
 Now we can use the `px.scatter_mapbox()` function to add point data to our figure.
 
@@ -1357,7 +1358,7 @@ fig = px.scatter_mapbox(geo_df,
 fig.show()
 ```
 
-#### Tile-Based maps and Polygon Data
+#### Polygon Data
 
 We can also create tile-map choropleth maps using the `px.choropleth_mapbox()` function.
 
@@ -1492,7 +1493,7 @@ For more on tables in `plotly`:
 - [`plotly`, Tables in Python](https://plotly.com/python/table/)
 - [`plotly`, Python Figure Reference: `table` Traces](https://plotly.com/python/reference/table/)
 
-### Additional Chart Types and Resources
+### Additional Plot Types and Resources
 
 Dot plots:
 - [`plotly`, Dot Plots in Python](https://plotly.com/python/dot-plots/)
@@ -1541,7 +1542,7 @@ Even if figures are displaying in a web browser window, the figure does not exis
 
 For more on `plotly`'s move to offline-only: plotly, ["Plotly.py 4.0 is here: Offline Only, Express First, Displayable Anywhere"](https://medium.com/plotly/plotly-py-4-0-is-here-offline-only-express-first-displayable-anywhere-fc444e5659ee) *Medium* (22 July 2019).
 
-### Static image export
+### Static Image export
 
 We can export `plotly` figures as static image file formats (`.png`, `.jpeg`, `.svg`, and `.pdf`).
 
@@ -1710,7 +1711,7 @@ At the bottom of each documentation page for a `plotly` figure type will be a "W
 
 For example, [link to the "What About Dash?"](https://plotly.com/python/scattermapbox/#what-about-dash) section of the "Scatter Plots on Mapbox in Python" page.
 
-## Customizing `dash` Layout with `dash_html-_omponents`
+## Customizing `dash` Layout with `dash_html_components`
 
 This example makes very few modifications to `app.layout`.
 
