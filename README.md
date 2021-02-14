@@ -1651,7 +1651,7 @@ There are no project prompts. There is only final project proposal work.
 
 # Lab Notebook Questions
 
-Q1: Build at least three different types of plots using matplotlib and data stored in a Pandas DataFrame. Include code + comments. 
+Q1: Build at least three different types of plots using plotly and data stored in a Pandas DataFrame. Include code + comments. 
 
 Each plot should include the following elements:
 - Title
