@@ -1462,7 +1462,7 @@ fig.show()
 
 268. For more on `GeoPandas`: [https://geopandas.org](https://geopandas.org/)
 
-<blockquote>Q3: Build at least two different types of maps using plotly. Include code + comments.
+<blockquote>Q2: Build at least two different types of maps using plotly. Include code + comments.
 Each plot should include the following elements:
  <ul>
   <li>Title</li>
@@ -1621,7 +1621,7 @@ fig.write_image("filepath/filename.pdf")
 
 299. For more on static image export: [`plotly`, Static Image Export in Python](https://plotly.com/python/static-image-export/)
 
-<blockquote>Q4: Add to the code for at least one of the figures generated earlier in this lab to save the figure as a static image. Include code + comments.</blockquote>
+<blockquote>Q3: Add to the code for at least one of the figures generated earlier in this lab to save the figure as a static image. Include code + comments.</blockquote>
 
 ### Saving to HTML 
 
@@ -1637,7 +1637,7 @@ fig.write_html("filepath/filename.html")
 
 303. For more on HTML file export: [`plotly`, Interactive HTML Export in Python](https://plotly.com/python/interactive-html-export/)
 
-<blockquote>Q5: Add to the code for at least one of the figures generated earlier in this lab to save the figure as an HTML file. Include code + comments.</blockquote>
+<blockquote>Q4: Add to the code for at least one of the figures generated earlier in this lab to save the figure as an HTML file. Include code + comments.</blockquote>
 
 ### `dash`
 
@@ -1676,7 +1676,7 @@ Plot types to choose from:
 - Sunburst chart
 - Table
 
-Q3: Build at least two different types of maps using plotly. Include code + comments.
+Q2: Build at least two different types of maps using plotly. Include code + comments.
 
 Each plot should include the following elements:
 - Title
@@ -1692,6 +1692,6 @@ Types of maps to choose from:
   * Point map
   * Choropleth map
 
-Q4: Add to the code for at least one of the figures generated earlier in this lab to save the figure as a static image. Include code + comments.
+Q3: Add to the code for at least one of the figures generated earlier in this lab to save the figure as a static image. Include code + comments.
 
-Q5: Add to the code for at least one of the figures generated earlier in this lab to save the figure as an HTML file. Include code + comments.
+Q4: Add to the code for at least one of the figures generated earlier in this lab to save the figure as an HTML file. Include code + comments.
