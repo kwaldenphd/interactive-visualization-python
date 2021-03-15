@@ -17,6 +17,8 @@ By the end of this lab, students will be able to:
 
 [Click here](https://raw.githubusercontent.com/kwaldenphd/interactive-visualization-python/main/interactive-visualization-python.ipynb) and select the "Save As" option to download this lab as as Jupyter Notebook.
 
+[Link to lab overview video](https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=bd472501-2743-4bda-8f91-acec000e619f) (ND users, Panopto).
+
 ## Acknowledgements
 
 The author consulted the following resources when writing  this tutorial:
