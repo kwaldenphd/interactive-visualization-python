@@ -57,9 +57,13 @@ The author consulted the following resources when writing  this tutorial:
 
 2. But in many cases we may want to generate interactive plots that can exist on the web.
 
-3. We see this type of interactivity in data journalism projects :
+3. We see this type of interactivity in data journalism projects:
+- *NewYorkTimes* [TheUpshot](https://www.nytimes.com/section/upshot)
+- [*FiveThirtyEight*](https://fivethirtyeight.com/)
+- [*The Guardian*](https://www.theguardian.com/data)
+- *The Atlantic*, ["The Language of The State of the Union"](https://www.theatlantic.com/politics/archive/2015/01/the-language-of-the-state-of-the-union/384575/) (18 January 2015)
 
-4. We also see this kind of interactivity in dashboard-style interfaces:
+4. We see this kind of interactivity in dashboard-style interfaces, like the [Johns Hopkins University COVID-19 Dashboard](https://coronavirus.jhu.edu/map.html).
 
 5. The two leading Python packages that can be used to generate interactive visualizations for the web are `bokeh` and `plotly`.
 
