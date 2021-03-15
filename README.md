@@ -81,6 +81,19 @@ The author consulted the following resources when writing  this tutorial:
 
 11. Sample code and output for a `bokeh` plot.
 
+```Python
+# import bokeh
+from bokeh.plotting import figure, output_file, show
+
+# create figure 
+p = figure(plot_width = 400, plot_height = 400)
+
+# add data to figure
+p.circle([1, 2, 3, 4, 5], [6, 7, 2, 4, 5], size=15, line_color="navy", fill_color="orange", fill_alpha=0.5)
+
+# show figure
+show(p)
+```
 <p align="center"><a href="https://github.com/kwaldenphd/interactive-visualization-python/blob/main/Figure_1.png?raw=true"><img class="aligncenter" src="https://github.com/kwaldenphd/interactive-visualization-python/blob/main/Figure_1.png?raw=true" /></a></p>
 
 12. For more on `bokeh`:
