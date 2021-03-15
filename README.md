@@ -371,7 +371,7 @@ fig.show()
 import plotly.express as px
 
 # load dataframe subset
-df = px.data.gapminder().query("continent !- 'Asia'")
+df = px.data.gapminder().query("continent != 'Asia'")
 
 # create figure
 fig = px.line(df, x="year", y="lifeExp", color='continent', line_group='country', hover_name='country', title='Country Life Expectancy by Continent')
@@ -638,7 +638,9 @@ fig.show()
 
 128. Let's say we have a family tree that we want to represent using a sunburst chart.
 
-129. With `px.sunburst()`, each row of the `DataFrame` is a sector of the sunburst (analogous to a slice of the pie in a pie chart).
+129. With `px.sunburst()`, each row of the `DataFrame` is a sector of the sunburst.
+
+130. Each sector in the sunburst chart is analogous to a slice of the pie in a pie chart.
 
 ```Python
 # import plotly
@@ -662,29 +664,6 @@ fig =px.sunburst(
 fig.show()
 ```
 
-130. A more complex example for the Kennedy family tree:
-
-```Python
-# import plotly
-import plotly.express as px
-
-# create dictionary with data
-data = dict(
-    person=["Patrick Joseph Kennedy", "John F. Fitzgerald", "Joseph P. Kennedy", "Rose Fitzgerald Kennedy", "Ted Kennedy", "John F. Kennedy", "Robert F. Kennedy", "Jean Kennedy", "Eunice Kennedy Shriver", "Patrick Joseph Kennedy II", "Caroline Kennedy", "Mark Kennedy Shriver", "Robert Shriver", "Maria Shriver", "Kathleen Kennedy", "Joseph Patrick Kennedy II", "Mary Kennedy", "Joseph Patrick Kennedy III"],
-    parent=["", "", "Patrick Joseph Kennedy", "John Fitzgerald Kennedy", "Joseph P. Kennedy", "Joseph P. Kennedy", "Joseph P. Kennedy", "Joseph P. Kennedy", "Joseph P. Kennedy", "Ted Kennedy", "John F. Kennedy", "Eunice Kennedy Shriver", "Eunice Kennedy Shriver", "Eunice Kennedy Shriver", "Robert F. Kennedy", "Robert F. Kennedy", "Robert F. Kennedy", "Joseph Patrick Kennedy II"],
-    value=[17, 17, 15, 15, 2, 2, 3, 1, 3, 1, 1, 1, 1, 1, 1, 2, 1, 1])
-
-# create figure
-fig =px.sunburst(
-    data,
-    names='person',
-    parents='parent',
-    values='value',
-)
-
-# show figure
-fig.show()
-```
 131. For more on pie charts in `plotly`:
 - [`plotly`, Pie Charts in Python](https://plotly.com/python/pie-charts/)
 - [`plotly.express.pie`](https://plotly.com/python-api-reference/generated/plotly.express.pie)
@@ -769,7 +748,7 @@ fig.show()
 import plotly.express as px
 
 # create figure
-fig = px.bar(x=["a", "a", "b", 3], y = [1,2,3,4])
+fig = px.bar(x=["a", "b", "c", "d"], y = [1,2,3,4])
 
 # update x axis type
 fig.update_xaxes(type='category')
@@ -1213,15 +1192,13 @@ fig.show()
 # import plotly
 import plotly.express as px
 
-# create figure
-fig = px.scatter_mapbox(height=300)
+# load dataframe
+df = px.data.carshare()
 
-# update figure base map layer
-fig.update_layout(mapbox_style="open-street-map")
-
-# update figure margin
-fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-
+# create plot
+fig = px.scatter_mapbox(df, lat="centroid_lat", lon="centroid_lon", color="peak_hour", size="car_hours",
+                  color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10,
+                  mapbox_style="carto-positron")
 # show figure
 fig.show()
 ```
@@ -1233,13 +1210,18 @@ fig.show()
 239. Another example that uses public tiles from the United States Geological Survey (USGS). No access token required.
 
 ```Python
-# import plotly
+# import packages
+import pandas as pd
 import plotly.express as px
 
-# create figure
-fig = px.scatter_mapbox()
+# load data
+us_cities = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/us-cities-top-1k.csv")
 
-# update figure base map
+# create figure
+fig = px.scatter_mapbox(us_cities, lat="lat", lon="lon", hover_name="City", hover_data=["State", "Population"],
+                        color_discrete_sequence=["fuchsia"], zoom=3, height=300)
+
+# update figure layout
 fig.update_layout(
     mapbox_style="white-bg",
     mapbox_layers=[
@@ -1253,7 +1235,7 @@ fig.update_layout(
         }
       ])
 
-# update figure layout
+# update figure margin
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
 # show figure
@@ -1263,17 +1245,19 @@ fig.show()
 240. One last example using `dark` from the Mapbox service. An access token is required.
 
 ```Python
-# load mapbox access token
-token = open(".mapbox_token").read()
+# set mapbox access token
+px.set_mapbox_access_token("YOUR ACCESS TOKEN GOES HERE")
 
 # import plotly
 import plotly.express as px
 
-# create figure
-fig = px.scatter_mapbox()
+# load dataframe
+df = px.data.carshare()
 
-# update figure base map layer
-fig.update_layout(mapbox_style="dark", mapbox_accesstoken=token)
+# create plot
+fig = px.scatter_mapbox(df, lat="centroid_lat", lon="centroid_lon", color="peak_hour", size="car_hours",
+                  color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10,
+                  mapbox_style="dark")
 
 # update figure layout
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
@@ -1339,13 +1323,14 @@ fig = px.scatter_mapbox(us_cities, lat="lat", lon="lon", hover_name="City", hove
 import plotly.express as px
 
 # set mapbox access token
-px.set_mapbox_access_token(open(".mapbox_token").read())
+px.set_mapbox_access_token("YOUR TOKEN GOES HERE")
 
 # load data
 df = px.data.carshare()
 
 # create figure
 fig = px.scatter_mapbox(df, lat="centroid_lat", lon="centroid_lon", color="peak_hour", size="car_hours", color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10)
+
 # show figure
 fig.show()
 ```
@@ -1362,6 +1347,8 @@ fig.show()
 - [`plotly`, Discrete Colors in Python](https://plotly.com/python/discrete-color/)
 
 254. We can also use `px.scatter_mapbox()` in combination with `GeoPandas`.
+
+<blockquote>NOTE: To use GeoPandas, you will need to open the Anaconda navigator and follow <a href="https://geopandas.readthedocs.io/en/latest/getting_started/install.html">the instructions provided with the package documentation</a>.</blockquote> 
 
 255. An example that includes point data for natural earth cities.
 ```Python
