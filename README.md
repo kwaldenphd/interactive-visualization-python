@@ -773,7 +773,7 @@ import plotly.graph_objects as go
 import pandas as pd
 
 # create dataframe
-df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/2014_usa_states.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/kwaldenphd/interactive-visualization-python/main/data/2014_usa_states.csv')
 
 # create figure
 fig = go.Figure(data=[go.Table(
@@ -1065,7 +1065,7 @@ import plotly.graph_objects as go
 import pandas as pd
 
 # load data
-df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/2011_february_us_airport_traffic.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/kwaldenphd/interactive-visualization-python/main/data/2011_february_us_airport_traffic.csv')
 
 # set column names and data types
 df['text'] = df['airport'] + '' + df['city'] + ', ' + df['state'] + '' + 'Arrivals: ' + df['cnt'].astype(str)
@@ -1117,7 +1117,7 @@ from urllib.request import urlopen
 import json
 
 # load url data
-with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
+with urlopen('https://raw.githubusercontent.com/kwaldenphd/interactive-visualization-python/main/data/geojson-counties-fips.json') as response:
     counties = json.load(response)
 
 # select first feature in dataset
@@ -1158,7 +1158,7 @@ counties["features"][0]
 import pandas as pd
 
 # load dataframe
-df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv",
+df = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/interactive-visualization-python/main/data/fips-unemp-16.csv",
                    dtype={"fips": str})
 # show first five rows
 df.head()
@@ -1176,14 +1176,14 @@ from urllib.request import urlopen
 import json
 
 # load geometric data
-with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
+with urlopen('https://raw.githubusercontent.com/kwaldenphd/interactive-visualization-python/main/data/geojson-counties-fips.json') as response:
     counties = json.load(response)
 
 # import pandas
 import pandas as pd
 
 # load dataframe
-df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv",
+df = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/interactive-visualization-python/main/data/fips-unemp-16.csv",
                    dtype={"fips": str})
 
 # import plotly
@@ -1313,7 +1313,7 @@ import pandas as pd
 import plotly.express as px
 
 # load data
-us_cities = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/us-cities-top-1k.csv")
+us_cities = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/interactive-visualization-python/main/data/us-cities-top-1k.csv")
 
 # create figure
 fig = px.scatter_mapbox(us_cities, lat="lat", lon="lon", hover_name="City", hover_data=["State", "Population"],
@@ -1375,7 +1375,7 @@ fig.show()
 import pandas as pd
 
 # load dataframe
-us_cities = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/us-cities-top-1k.csv")
+us_cities = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/interactive-visualization-python/main/data/us-cities-top-1k.csv")
 
 # import plotly 
 import plotly.express as px
@@ -1512,14 +1512,14 @@ from urllib.request import urlopen
 import json
 
 # load geojson data
-with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
+with urlopen('https://raw.githubusercontent.com/kwaldenphd/interactive-visualization-python/main/data/geojson-counties-fips.json') as response:
     counties = json.load(response)
 
 # import pandas
 import pandas as pd
 
 # load attribute data as dataframe
-df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv",
+df = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/interactive-visualization-python/main/data/fips-unemp-16.csv",
                    dtype={"fips": str})
 
 # import plotly
