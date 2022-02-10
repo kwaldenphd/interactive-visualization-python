@@ -23,6 +23,7 @@ The author consulted the following resources when writing  this tutorial:
 # Table of Contents
 
 - [Lab notebook template](#lab-notebook-template)
+- [Setup and environment](#setup-and-environment)
 - [Overview](#overview)
   * [`bokeh`](#bokeh)
   * [`plotly`](#plotly)
@@ -56,6 +57,81 @@ The author consulted the following resources when writing  this tutorial:
 # Lab Notebook Template
 
 [Link to access the lab notebook template (Jupyter Notebook)](https://drive.google.com/file/d/1J4UZ0HBBSQYzTjbzAelzfwgSZ-YIdKeN/view?usp=sharing)
+
+# Setup and Environment
+
+## Plotly
+
+This lab explores two packages used for interactive visualization in Python: `bokeh` and `plotly`.
+
+To install `bokeh`:
+- using `pip`: `pip install bokeh`
+- using `conda`: `conda install -c bokeh`
+
+
+To install `plotly`:
+- using `pip`: `pip install plotly`
+- using `conda`: `conda install -c plotly`
+
+## GeoPandas
+
+Later in this lab, we'll be using a package called `GeoPandas` for plotting spatial data.
+
+Installing and configuring `Geopandas` requires creating a new Python environment.
+
+A few resources that can get folks started:
+  
+**Installing and Configuring `geopandas`**:
+- Anaconda
+  * Tanish Gupta, "[Fastest Way to Install Geopandas in Jupyter Notebooks](https://medium.com/analytics-vidhya/fastest-way-to-install-geopandas-in-jupyter-notebook-on-windows-8f734e11fa2b)" *Analytics Vidhya* (6 December 2020)
+  * Anaconda, "[conda-forge packages, geopandas](https://anaconda.org/conda-forge/geopandas)" *Anaconda documentation*
+  * GeoPandas, "[Installation](https://geopandas.org/getting_started/install.html)" *GeoPandas documentation*
+- Google CoLab
+  * Abdishakur Hassan, Jupyter notebook on using `geopandas` in Google CoLab, from "[Geographic data science tutorials with Python](https://github.com/shakasom/GDS)" *GitHub repository*
+    * [Google CoLab](https://colab.research.google.com/github/shakasom/GDS/blob/master/Part1%20-%20Introduction.ipynb)
+    * [GitHub](https://github.com/shakasom/GDS/blob/master/Part1%20-%20Introduction.ipynb)
+
+Additional `GeoPandas` resources:
+- Jonathan Soma, "[Mapping with geopandas](https://jonathansoma.com/lede/foundations-2017/classes/geopandas/mapping-with-geopandas/)" from 2017 "[Foundations of Computing](https://jonathansoma.com/lede/foundations-2017/)" course, Columbia Graduate School of Journalism
+- CoderzColumn, "[Plotting Static Maps with geopandas](https://coderzcolumn.com/tutorials/data-science/plotting-static-maps-with-geopandas-working-with-geospatial-data)" *CoderzColumn* (11 March 2020)
+- GeoPandas, "[Plotting with Geoplot and GeoPandas](https://geopandas.org/gallery/plotting_with_geoplot.html)" *GeoPandas documentation*
+
+## Mapbox Access Token
+
+Later in this lab, we'll be working with features of the Mapbox API that require an access token.
+
+Sign up for a free Mapbox account:
+- https://account.mapbox.com/auth/signup/
+
+Once you have signed up and logged in, click `Token` in the top level menu (between `Dashboard` and `Statistics`).
+- https://account.mapbox.com/access-tokens/
+
+Click the `Create a token` button to create a new access token:
+- https://account.mapbox.com/access-tokens/create
+
+Choose a descriptive name for your token ("Elements of Computing Lab" works fine). The default settings for which boxes are checked/unchecked are fine.
+
+Click the `Create token` button at the bottom of the page.
+
+Save this token value (string of numbers and letters) for later in the lab.
+
+## Geocoding Data
+
+Lab notebook question 2 asks you to generate map visualizations.
+
+There are a number of sample datasets used in the lab that have geospatial attributes.
+
+But if you're wanting to work with your own data and it does not have geospatial attributes (latitude and longitude), you'll need to add that information via a process called geocoding.
+
+Free online geocoding services:
+- [LocalFocus data journalism batch geocoder](https://geocode.localfocus.nl/)
+- [Texas A&M Geocoding Services](https://geoservices.tamu.edu/Services/Geocode/)
+  * *Requires creating a free account*
+  
+There are also Python libraries that support geocoding.
+- [`GeoPy`](https://geopy.readthedocs.io/en/stable/)
+- [`Geocoder`](https://geocoder.readthedocs.io/providers/Mapbox.html) (requires a free Mapbox API key)
+- Abdishakur, ["Geocode with Python"](https://towardsdatascience.com/geocode-with-python-161ec1e62b89) *Towards Data Science* (15 September 2019)
 
 # Overview
 
@@ -1035,25 +1111,7 @@ fig.show()
 - We set `projection` to `natural earth` to change the underlying base map layer.
 
 191. We can also create a map from geospatial data stored in a `pandas` `DataFrame` using `GeoPandas`.
-
-NOTE: Installing and configuring `Geopandas` requires creating a new Python environment.
-
-A few resources that can get folks started:
-  
-**Installing and Configuring `geopandas`**:
-- Anaconda
-  * Tanish Gupta, "[Fastest Way to Install Geopandas in Jupyter Notebooks](https://medium.com/analytics-vidhya/fastest-way-to-install-geopandas-in-jupyter-notebook-on-windows-8f734e11fa2b)" *Analytics Vidhya* (6 December 2020)
-  * Anaconda, "[conda-forge packages, geopandas](https://anaconda.org/conda-forge/geopandas)" *Anaconda documentation*
-  * GeoPandas, "[Installation](https://geopandas.org/getting_started/install.html)" *GeoPandas documentation*
-- Google CoLab
-  * Abdishakur Hassan, Jupyter notebook on using `geopandas` in Google CoLab, from "[Geographic data science tutorials with Python](https://github.com/shakasom/GDS)" *GitHub repository*
-    * [Google CoLab](https://colab.research.google.com/github/shakasom/GDS/blob/master/Part1%20-%20Introduction.ipynb)
-    * [GitHub](https://github.com/shakasom/GDS/blob/master/Part1%20-%20Introduction.ipynb)
-
-Additional `GeoPandas` resources:
-- Jonathan Soma, "[Mapping with geopandas](https://jonathansoma.com/lede/foundations-2017/classes/geopandas/mapping-with-geopandas/)" from 2017 "[Foundations of Computing](https://jonathansoma.com/lede/foundations-2017/)" course, Columbia Graduate School of Journalism
-- CoderzColumn, "[Plotting Static Maps with geopandas](https://coderzcolumn.com/tutorials/data-science/plotting-static-maps-with-geopandas-working-with-geospatial-data)" *CoderzColumn* (11 March 2020)
-- GeoPandas, "[Plotting with Geoplot and GeoPandas](https://geopandas.org/gallery/plotting_with_geoplot.html)" *GeoPandas documentation*
+- [Link to more info on `GeoPandas` installation and configuration](#geopandas)
 
 192. An example using US airport traffic data.
 
