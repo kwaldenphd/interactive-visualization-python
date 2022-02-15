@@ -38,7 +38,7 @@ The author consulted the following resources when writing  this tutorial:
       * [Donut Charts](#donut-charts)
       * [Sunburst Charts](#sunburst-charts)
     * [Bubble Charts](#bubble-charts)
-	* [Tables](#tables)
+    * [Tables](#tables)
   * [Plotting Categorical Data](#plotting-categorical-data)
   * [Lab Notebook Question 1](#lab-notebook-question-1)
 - [Maps](#maps)
@@ -80,7 +80,7 @@ Later in this lab, we'll be using a package called `GeoPandas` for plotting spat
 Installing and configuring `Geopandas` requires creating a new Python environment.
 
 A few resources that can get folks started:
-  
+ 
 **Installing and Configuring `geopandas`**:
 - Anaconda
   * Tanish Gupta, "[Fastest Way to Install Geopandas in Jupyter Notebooks](https://medium.com/analytics-vidhya/fastest-way-to-install-geopandas-in-jupyter-notebook-on-windows-8f734e11fa2b)" *Analytics Vidhya* (6 December 2020)
@@ -127,7 +127,7 @@ Free online geocoding services:
 - [LocalFocus data journalism batch geocoder](https://geocode.localfocus.nl/)
 - [Texas A&M Geocoding Services](https://geoservices.tamu.edu/Services/Geocode/)
   * *Requires creating a free account*
-  
+ 
 There are also Python libraries that support geocoding.
 - [`GeoPy`](https://geopy.readthedocs.io/en/stable/)
 - [`Geocoder`](https://geocoder.readthedocs.io/providers/Mapbox.html) (requires a free Mapbox API key)
@@ -135,15 +135,14 @@ There are also Python libraries that support geocoding.
 
 # Overview
 
-1. Up to this point, we have been generatic static image plots in Python using a combination of `pandas`, `matplotlib`, and `seaborn`.
+1. Up to this point, we have been generic static image plots in Python using a combination of `pandas`, `matplotlib`, and `seaborn`.
 
 2. But in many cases we may want to generate interactive plots that can exist on the web.
 
 3. We see this type of interactivity in data journalism projects:
-- [*New York Times' The Upshot*](https://www.nytimes.com/section/upshot)
+- *NewYorkTimes* [TheUpshot](https://www.nytimes.com/section/upshot)
 - [*FiveThirtyEight*](https://fivethirtyeight.com/)
 - [*The Guardian*](https://www.theguardian.com/data)
-- [The Pudding](https://pudding.cool/)
 - *The Atlantic*, ["The Language of The State of the Union"](https://www.theatlantic.com/politics/archive/2015/01/the-language-of-the-state-of-the-union/384575/) (18 January 2015)
 
 4. We see this kind of interactivity in dashboard-style interfaces, like the [Johns Hopkins University COVID-19 Dashboard](https://coronavirus.jhu.edu/map.html).
@@ -168,7 +167,7 @@ There are also Python libraries that support geocoding.
 # import bokeh
 from bokeh.plotting import figure, output_file, show
 
-# create figure 
+# create figure
 p = figure(plot_width = 400, plot_height = 400)
 
 # add data to figure
@@ -183,7 +182,7 @@ show(p)
 - [`bokeh` documentation](https://docs.bokeh.org/en/latest/index.html#)
 - [`bokeh`, Installation](https://docs.bokeh.org/en/latest/docs/installation.html)
 - [`bokeh`, User Guide](https://docs.bokeh.org/en/latest/docs/user_guide.html)
-- [`bokeh`, Tutorial](https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/7b6da26945e284b19df07daecc6beabdb7adbe81)
+- [`bokeh`, Tutorial](htthttps://mybinder.org/v2/gh/bokeh/bokeh-notebooks/7b6da26945e284b19df07daecc6beabdb7adbe81)
 - [`bokeh`, Reference](https://docs.bokeh.org/en/latest/docs/reference.html#refguide)
 - Charlie Harper, "Visualizing Data with Bokeh and Pandas," *The Programming Historian* 7 (2018), [https://doi.org/10.46430/phen0081](https://doi.org/10.46430/phen0081)
 
@@ -216,13 +215,13 @@ show(p)
 22. For more on Plotly products:
 - [Dash Enterprise](https://plotly.com/dash/)
 - [Consulting and Training](https://plotly.com/consulting-and-oem/)
-- [Chart Studio](https://chart-studio.plotly.com/create/#/)
+- [Chart Studio](https://plotly.com/chart-studio/)
 
 23. Plotly's enterprise products are used by corporations that include NVIDIA, Tesla, Shell, Citi Bank, and Amgen.
 
 24. Plotly's Chart Studio product is used by a range of journalism outfits and companies, including S&P Global, The Washington Post, Wired, Tesla, and Medium.
 
-25. At the time this tutorial was written (December 2020), Plotly's senior leadership team has no women in technical roles and no people of color.
+25. At the time this tutorial was written (December 2020), Plotly's senior leadership team had no women in technical roles and no people of color.
 
 ## `bokeh` vs. `plotly`
 
@@ -261,9 +260,9 @@ show(p)
 
 35. Plotly.js, the JavaScript library `plotly` is based on understands figures as trees with named nodes called attributes.
 
-36. The root node of the tree as three top-level attributes.
+36. The root node of the tree has three top-level attributes.
 
-37. The top-level ***`data`*** attribute consists of a lists of dicts referred to as traces.
+37. The top-level ***`data`*** attribute consists of a list of dicts referred to as traces.
 
 38. Each trace has a plot type (scatter, bar, pie, etc.), and is drawn on a single subplot.
 
@@ -334,7 +333,7 @@ Figure({
 
 52. In `plotly`, traces compatible with these subplots support `xaxis` and `yaxis` attributes.
 
-53. Trace types compatible with 2D cartesian subplots incldue scatterplots, bar charts, histograms, and box plots.
+53. Trace types compatible with 2D cartesian subplots include scatterplots, bar charts, histograms, and box plots.
 
 54. Both `X` and `Y` axes support a `type` attribute.
 
@@ -346,9 +345,9 @@ Figure({
 
 ## `plotly.express`
 
-58. The `plotly.express` module contains functions that can create entire figures at once. 
+58. The `plotly.express` module contains functions that can create entire figures at once.
 
-59. `plotly.express` functions are a designed to be a user-friendly point of entry to the `plotly` package.
+59. `plotly.express` functions are designed to be a user-friendly point of entry to the `plotly` package.
 
 60. A graph object is created as part of any `plotly.express` function, but the point of the `plotly.express` function is to significantly reduce the amount of code needed to create, customize, and render the graph object.
 
@@ -359,9 +358,6 @@ Figure({
 62. Without any additional arguments, the default formatting and style options are applied.
 
 ```Python
-# import plotly.express
-import plotly.express as px
-
 # create figure 
 fig = px.scatter(x=[0, 1, 2, 3, 4], y=[0, 1, 4, 9, 16])
 
@@ -375,9 +371,6 @@ fig.show()
 
 65. An example using data about flowers.
 ```Python
-# import plotly.express
-import plotly.express as px
-
 # load sample data already stored as a dataframe
 df = px.data.iris()
 
@@ -388,7 +381,7 @@ fig = px.scatter(df, x="sepal_width", y="sepal_length")
 fig.show()
 ```
 
-66. In the `dataframe` example, we passed the entire data frame to `px.scatter()`, and specified with columns to use for the `X` and `Y` axis.
+66. In the `dataframe` example, we passed the entire data frame to `px.scatter()`, and specify columns to use for the `X` and `Y` axis.
 
 67. In the resulting figure, we can see how `plotly` assigns the column names as axis labels.
 
@@ -397,9 +390,6 @@ fig.show()
 69. We can also modify the information displayed in the hover label.
 
 ```Python
-# import plotly.express
-import plotly.express as px
-
 # load sample data already stored as a dataframe
 df = px.data.iris()
 
@@ -429,9 +419,6 @@ fig.show()
 75. This example uses example data on life expectancy.
 
 ```Python
-# import plotly
-import plotly.express as px
-
 # load dataframe subset 
 df = px.data.gapminder().query("country=='Canada'")
 
@@ -442,7 +429,7 @@ fig = px.line(df, x="year", y="lifeExp", title='Life expectancy in Canada')
 fig.show()
 ```
 
-76. In this example, we pass a subset of the `gapminder` dataframe to the `px.line()` fucntion.
+76. In this example, we pass a subset of the `gapminder` dataframe to the `px.line()` function.
 
 77. We specify which fields to use for the `X` and `Y` axis values, and we give the figure a title.
 
@@ -451,9 +438,6 @@ fig.show()
 79. We could filter the data frame accordingly and use the `color` parameter.
 
 ```Python
-# import plotly
-import plotly.express as px
-
 # load dataframe subset 
 df = px.data.gapminder().query("continent=='Oceania'")
 
@@ -467,9 +451,6 @@ fig.show()
 80. Let's say we want to modify the line plot to include a line for individual countries and color the lines by continent.
 
 ```Python
-# import plotly
-import plotly.express as px
-
 # load dataframe subset
 df = px.data.gapminder().query("continent != 'Asia'")
 
@@ -486,7 +467,7 @@ fig.show()
 
 83. We use `hover_name` to set a title or name for the hover labels.
 
-84. The country name is now at the top of each over label.
+84. The country name is now at the top of each hover label.
 
 85. For more on line plots in `plotly`:
 - [`plotly`, Line Charts in Python](https://plotly.com/python/line-charts/)
@@ -502,9 +483,6 @@ fig.show()
 88. An example using population data from the previous example's dataset.
 
 ```Python
-# import plotly
-import plotly.express as px
-
 # load subset of existing dataframe
 data_canada = px.data.gapminder().query("country == 'Canada'")
 
@@ -515,7 +493,7 @@ fig = px.bar(data_canada, x='year', y='pop')
 fig.show()
 ```
 
-89. In this example, the `year` column is assiged as the `X` axis value, and the `pop` column is assigned as the `Y` axis value.
+89. In this example, the `year` column is assigned as the `X` axis value, and the `pop` column is assigned as the `Y` axis value.
 
 90. We can also generate a stacked bar chart using `px.bar()`.
 
@@ -529,10 +507,7 @@ fig.show()
 
 95. A quick comparison of long and wide data for the same Olympic medal dataset.
 
-```Plotly
-# import plotly
-import plotly.express as px
-
+```Python
 # create data table from long dataframe
 long_df = px.data.medals_long()
 
@@ -540,10 +515,7 @@ long_df = px.data.medals_long()
 long_df
 ```
 
-```Plotly
-# import plotly
-import plotly.express as px
-
+```Python
 # create data table from long dataframe
 wide_df = px.data.medals_wide()
 
@@ -557,9 +529,6 @@ wide_df
 
 97. To create a stacked bar chart using the long data form:
 ```Python
-# import plotly
-import plotly.express as px
-
 # load dataframe
 long_df = px.data.medals_long()
 
@@ -572,9 +541,6 @@ fig.show()
 
 98. To create a stacked bar chart using the wide data form:
 ```Python
-# import plotly
-import plotly.express as px
-
 # load dataframe
 wide_df = px.data.medals_wide()
 
@@ -589,9 +555,6 @@ fig.show()
 
 100. For the wide-format example, we might want to relabel the fields when generating the hover labels.
 ```Python
-# import plotly
-import plotly.express as px
-
 # load dataframe
 wide_df = px.data.medals_wide()
 
@@ -607,9 +570,6 @@ fig.show()
 102. If we wanted to change the styling for the wide-format example, we could specify a style template (similar to a style sheet), a colormap, and axis labels.
 
 ```Python
-# import plotly
-import plotly.express as px
-
 # load dataframe
 wide_df = px.data.medals_wide()
 
@@ -631,7 +591,7 @@ fig.show()
 
 106. We used `.update_layout()` to set a font family for the figure and axis titles, and also hid the legend.
 
-107. We can also set the bar mode using `.update_layout()` with the `barmode` attribute. 
+107. We can also set the bar mode using `.update_layout()` with the `barmode` attribute.
 
 108. Setting `barmode` to `stack` produces a stacked bar chart.
 
@@ -643,6 +603,7 @@ fig.show()
 
 110. We can set the `orientation` attribute to `h` to produce a horizontal bar chart.
 ```Python
+# horizontal bar chart
 fig = px.bar(data, x="X field", y="Y field", orientation="h")
 ```
 
@@ -662,9 +623,6 @@ fig = px.bar(data, x="X field", y="Y field", orientation="h")
 
 114. An example using our global population sample data:
 ```Python
-# import plotly
-import plotly.express as px
-
 # select dataframe subset
 df = px.data.gapminder().query("year == 2007").query("continent == 'Europe'")
 
@@ -685,9 +643,6 @@ fig.show()
 117. Another example using the restaurant bill and tip data.
 
 ```Python
-# import plotly
-import plotly.express as px
-
 # load dataframe
 df = px.data.tips()
 
@@ -743,9 +698,6 @@ fig.show()
 130. Each sector in the sunburst chart is analogous to a slice of the pie in a pie chart.
 
 ```Python
-# import plotly
-import plotly.express as px
-
 # create dictionary with data
 data = dict(
     character=["Eve", "Cain", "Seth", "Enos", "Noam", "Abel", "Awan", "Enoch", "Azura"],
@@ -776,18 +728,15 @@ fig.show()
 
 ### Bubble Charts
 
-133. A bubble chart is as scatter plot in which the marker size is tied to a third dimension of the data.
+133. A bubble chart is a scatter plot in which the marker size is tied to a third dimension of the data.
 
-134. We can create bubble charts in `plotly.express` using the `px.scatter()` function nad assigning the `size` parameter to a data field.
+134. We can create bubble charts in `plotly.express` using the `px.scatter()` function and assigning the `size` parameter to a data field.
 
 135. An example using a single year of the global population data, where per capita GDP is the `X` axis value, and average life expectancy is the `Y` axis value.
 
 136. Marker marker size is determined by population.
 
 ```Python
-# import plotly
-import plotly.express as px
-
 # create dataframe
 df = px.data.gapminder()
 
@@ -800,7 +749,7 @@ fig.show()
 
 137. In this example, we use `px.scatter()` to create a scatter plot.
 
-138. By setting `size` to `pop`, the marker size is determined by the numeric value in the `pop` field. 
+138. By setting `size` to `pop`, the marker size is determined by the numeric value in the `pop` field.
 
 139. We also set a maximum marker size using `size_max`.
 
@@ -883,7 +832,7 @@ fig.show()
 156. The axis type determines how the data is plotted in the resulting figure.
 
 157. Axis types recognized in `plotly`:
-- `linear` 
+- `linear`
 - `log`
 - `date`
 - `category`
@@ -893,19 +842,16 @@ fig.show()
 
 159. If `plotly` does not recognize the data as `multicategory`, `date`, or `category` (it checks sequentially in that order), it defaults to `linear`.
 
-160. When testing for `multicategory` data, `plotly` looks for to see if there is a nested array.
+160. When testing for `multicategory` data, `plotly` looks to see if there is a nested array.
 
 161. When testing for `date` or `category`, `plotly` requires more than twice as many distinct date or category strings as distinct numbers in order to choose one of these axis types.
 
 162. We can imagine scenarios in which we are working with categorical data that would not be accurately auto-detected by `plotly`.
 
-163. We can instruct `plotly` to recongize an axis as having categorical data through the `xaxis_type` and `yaxis_type` attributes.
+163. We can instruct `plotly` to recognize an axis as having categorical data through the `xaxis_type` and `yaxis_type` attributes.
 
 164. An example of categorical data represented as a bar chart.
 ```Python
-# import plotly
-import plotly.express as px
-
 # create figure
 fig = px.bar(x=["a", "b", "c", "d"], y = [1,2,3,4])
 
@@ -921,12 +867,9 @@ fig.show()
 
 167. We can also control the category order by passing a dictionary to the `category_orders` parameter.
 
-168. An example with side-by-side bar charts of categorical data for the resturaunt and tip data.
+168. An example with side-by-side bar charts of categorical data for the restaurant and tip data.
 
 ```Python
-# import plotly
-import plotly.express as px
-
 # load data
 df = px.data.tips()
 
@@ -954,7 +897,7 @@ fig.show()
 
 ## Lab Notebook Question 1
 
-Q1: Build at least three different types of plots using plotly and data stored in a Pandas DataFrame. Include code + comments. 
+Q1: Build at least three different types of plots using plotly and data stored in a Pandas DataFrame. Include code + comments.
 - *I encourage folks to use this question to explore visualizations you might use for the final project.*
 
 Each plot should include the following elements:
@@ -994,14 +937,14 @@ Free online geocoding services:
 - [LocalFocus data journalism batch geocoder](https://geocode.localfocus.nl/)
 - [Texas A&M Geocoding Services](https://geoservices.tamu.edu/Services/Geocode/)
   * *Requires creating a free account*
-  
+ 
 There are also Python libraries that support geocoding.
 - [`GeoPy`](https://geopy.readthedocs.io/en/stable/)
 - [`Geocoder`](https://geocoder.readthedocs.io/providers/Mapbox.html) (requires a free Mapbox API key)
 - Abdishakur, ["Geocode with Python"](https://towardsdatascience.com/geocode-with-python-161ec1e62b89) *Towards Data Science* (15 September 2019)
 
 178. `plotly` supports two different types of maps.
-- ***Mapbox maps*** are tile-based maps that are rendered using tiles that join together to form the map plot. 
+- ***Mapbox maps*** are tile-based maps that are rendered using tiles that join together to form the map plot.
 - ***Geo maps*** are outline-based maps that are rendered using the `layout.geo` object  that contains map configuration information.
 
 ### Geo Maps, or Outline-Based Maps
@@ -1033,9 +976,6 @@ fig.show()
 
 181. There are a few options for zooming or focusing the area represented in the base map. We can set the `layout.geo.fitbounds` attribute to `locations` to automatically center the visual base map range based on the data being plotted.
 ```Python
-# import plotly
-import plotly.express as px
-
 # create geographic line plot
 fig = px.line_geo(lat=[0,15,20,35], lon=[5,10,25,30])
 
@@ -1063,18 +1003,15 @@ fig.show()
 
 #### Point Data
 
-184. Now that we have a base map layer that will serve as the coordinate system for our plot, we can plot data using this coorinate system.
+184. Now that we have a base map layer that will serve as the coordinate system for our plot, we can plot data using this coordinate system.
 
-185. When we understand maps a just another time of plot that uses a different projection system, maps with markers are just another kind of scatterplot.
+185. When we understand maps are just another type of plot that uses a different projection system, maps with markers are just another kind of scatterplot.
 
 186. We can use the `px.scatter_geo()` function to plot point data with geospatial dimensions.
 
 187. We can create a point map for the global population dataset.
 
 ```Python
-# import plotly
-import plotly.express as px
-
 # load single year of data
 df = px.data.gapminder().query("year == 2007")
 
@@ -1093,9 +1030,6 @@ fig.show()
 189. Let's say we wanted to use a different type of global projection, and color the points by continent.
 
 ```Python
-# import plotly
-import plotly.express as px
-
 # load single year of data
 df = px.data.gapminder().query("year == 2007")
 
@@ -1162,7 +1096,7 @@ fig.show()
 198. We can use the `px.choropleth()` function to create an outline-based choropleth map in `plotly`.
 
 199. Choropleth maps require two main types of input to generate a map:
-- ***Geometry information***: can be supplied using a GeoJSON file in which each feature (polygon) has an id field that can be used to connect attribute data; 
+- ***Geometry information***: can be supplied using a GeoJSON file in which each feature (polygon) has an id field that can be used to connect attribute data;
   * `plotly` includes built-in geometries for US states and world countries
 - ***Attribute data***, or a list of values indexed by feature identifiers (an id reflected in the geometry information)
 
@@ -1204,11 +1138,11 @@ counties["features"][0]
     [-86.411172, 32.409937],
     [-86.496774, 32.344437]]]},
  'id': '01001'}
- ```
- 
+```
+
 202. We have our geometric information loaded.
  
-203. Now on to the attribute data, or data values indexed by an id field.
+203. Now onto the attribute data, or data values indexed by an id field.
  
 204. This example uses county-level unemployment data, indexed by [FIPS code](https://en.wikipedia.org/wiki/FIPS_county_code) as the unique id.
  
@@ -1244,9 +1178,6 @@ import pandas as pd
 # load dataframe
 df = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/interactive-visualization-python/main/data/fips-unemp-16.csv",
                    dtype={"fips": str})
-
-# import plotly
-import plotly.express as px
 
 # create figure
 fig = px.choropleth(df, geojson=counties, locations='fips', color='unemp',
@@ -1287,7 +1218,7 @@ fig.show()
 
 216. Now on to tile-based maps.
 
-217. ***Mapbox maps*** are tile-based maps that are rendered using tiles that join together to form the map plot. 
+217. ***Mapbox maps*** are tile-based maps that are rendered using tiles that join together to form the map plot.
 
 218. Mapbox tile maps are layer-based.
 
@@ -1321,7 +1252,7 @@ fig.show()
 230. `white-bg` is an empty white canvas and includes no external HTTP requests.
 
 231. Raster tiles from public tile servers:
-- `open-street-map
+- `open-street-map`
 - `carto-positron`
 - `carto-darkmatter`
 - `stamen-terrain`
@@ -1339,16 +1270,13 @@ fig.show()
 
 233. We can also specify the base map layer using a Mapbox service style URL.
 
-234. These styles require an access token. 
+234. These styles require an access token.
 
 235. Browse the [Mapbox Gallery](https://www.mapbox.com/gallery/).
 
 236. Let's create a base map layer using `open-street-map`.
 
 ```Python
-# import plotly
-import plotly.express as px
-
 # load dataframe
 df = px.data.carshare()
 
@@ -1369,7 +1297,6 @@ fig.show()
 ```Python
 # import packages
 import pandas as pd
-import plotly.express as px
 
 # load data
 us_cities = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/interactive-visualization-python/main/data/us-cities-top-1k.csv")
@@ -1427,7 +1354,7 @@ fig.show()
 
 241. Now we can use the `px.scatter_mapbox()` function to add point data to our figure.
 
-242. This example take sthe `open-street-map` base map from the previous section and adds point data for 1,000 US cities with highest population count.
+242. This example takes the `open-street-map` base map from the previous section and adds point data for 1,000 US cities with the highest population count.
 
 ```Python
 # import pandas
@@ -1435,9 +1362,6 @@ import pandas as pd
 
 # load dataframe
 us_cities = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/interactive-visualization-python/main/data/us-cities-top-1k.csv")
-
-# import plotly 
-import plotly.express as px
 
 # create figure
 fig = px.scatter_mapbox(us_cities, lat="lat", lon="lon", hover_name="City", hover_data=["State", "Population"],
@@ -1453,7 +1377,7 @@ fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 ```
 
-243. We specify which fields in the `us_cities` dataframe incldue latitude and longitude information (`lat` and `lon`).
+243. We specify which fields in the `us_cities` dataframe include latitude and longitude information (`lat` and `lon`).
 
 244. We set a color sequence with discrete colors.
 
@@ -1461,12 +1385,14 @@ fig.show()
 
 246. If we wanted to color the points based on population size, we would want to switch to a continuous color scale.
 ```Python
+# color points based on population value
 fig = px.scatter_mapbox(us_cities, lat="lat", lon="lon", hover_name="City", hover_data=["State", "Population"],
                         color_continuous_scale=px.colors.sequential.Viridis, color="Population", zoom=3, height=300)
 ```
 
 247. If we wanted our point size to be based on the population value, we would modify the `size` parameter.
 ```Python
+# size points based on population value
 fig = px.scatter_mapbox(us_cities, lat="lat", lon="lon", hover_name="City", hover_data=["State", "Population"],
                         color_discrete_sequence=["fuchsia"], zoom=3, height=300, size="Population")
 ```
@@ -1476,9 +1402,6 @@ fig = px.scatter_mapbox(us_cities, lat="lat", lon="lon", hover_name="City", hove
 249. In this example, point size is based on the number of car hours (`car_hours`) and point color is based on time of day (`peak_hour`).
 
 ```Python
-# import plotly
-import plotly.express as px
-
 # set mapbox access token
 px.set_mapbox_access_token("YOUR TOKEN GOES HERE")
 
@@ -1505,30 +1428,8 @@ fig.show()
 
 254. We can also use `px.scatter_mapbox()` in combination with `GeoPandas`.
 
-NOTE: Installing and configuring `Geopandas` requires creating a new Python environment.
-
-A few resources that can get folks started:
-  
-**Installing and Configuring `geopandas`**:
-- Anaconda
-  * Tanish Gupta, "[Fastest Way to Install Geopandas in Jupyter Notebooks](https://medium.com/analytics-vidhya/fastest-way-to-install-geopandas-in-jupyter-notebook-on-windows-8f734e11fa2b)" *Analytics Vidhya* (6 December 2020)
-  * Anaconda, "[conda-forge packages, geopandas](https://anaconda.org/conda-forge/geopandas)" *Anaconda documentation*
-  * GeoPandas, "[Installation](https://geopandas.org/getting_started/install.html)" *GeoPandas documentation*
-- Google CoLab
-  * Abdishakur Hassan, Jupyter notebook on using `geopandas` in Google CoLab, from "[Geographic data science tutorials with Python](https://github.com/shakasom/GDS)" *GitHub repository*
-    * [Google CoLab](https://colab.research.google.com/github/shakasom/GDS/blob/master/Part1%20-%20Introduction.ipynb)
-    * [GitHub](https://github.com/shakasom/GDS/blob/master/Part1%20-%20Introduction.ipynb)
-
-Additional `GeoPandas` resources:
-- Jonathan Soma, "[Mapping with geopandas](https://jonathansoma.com/lede/foundations-2017/classes/geopandas/mapping-with-geopandas/)" from 2017 "[Foundations of Computing](https://jonathansoma.com/lede/foundations-2017/)" course, Columbia Graduate School of Journalism
-- CoderzColumn, "[Plotting Static Maps with geopandas](https://coderzcolumn.com/tutorials/data-science/plotting-static-maps-with-geopandas-working-with-geospatial-data)" *CoderzColumn* (11 March 2020)
-- GeoPandas, "[Plotting with Geoplot and GeoPandas](https://geopandas.org/gallery/plotting_with_geoplot.html)" *GeoPandas documentation*
-
 255. An example that includes point data for natural earth cities.
 ```Python
-# import plotly
-import plotly.express as px
-
 # import geopandas
 import geopandas as gpd
 
@@ -1553,7 +1454,7 @@ fig.show()
 256. We can also create tile-map choropleth maps using the `px.choropleth_mapbox()` function.
 
 257. Tile-map choropleth maps require the same two main types of input to generate a map:
-- ***Geometry information***: can be supplied using a GeoJSON file in which each feature (polygon) has an id field that can be used to connect attribute data; 
+- ***Geometry information***: can be supplied using a GeoJSON file in which each feature (polygon) has an id field that can be used to connect attribute data;
   * `plotly` includes built-in geometries for US states and world countries
 - ***Attribute data***, or a list of values indexed by feature identifiers (an id reflected in the geometry information)
 
@@ -1561,7 +1462,7 @@ fig.show()
 
 259. With `px.choropleth_mapbox()`, each row of the dataframe is represented by a polygon.
 
-260. An sample choropleth map of the county unemployment data, using the base layer `carto-positron` which does not require an access token.
+260. A sample choropleth map of the county unemployment data, using the base layer `carto-positron` which does not require an access token.
 
 ```Python
 # import urllib
@@ -1580,9 +1481,6 @@ import pandas as pd
 # load attribute data as dataframe
 df = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/interactive-visualization-python/main/data/fips-unemp-16.csv",
                    dtype={"fips": str})
-
-# import plotly
-import plotly.express as px
 
 # create figure
 fig = px.choropleth_mapbox(df, geojson=counties, locations='fips', color='unemp',
@@ -1635,11 +1533,11 @@ Each plot should include the following elements:
 
 Types of maps to choose from:
 - Geo Maps, or Outline-Based Maps
-  * Point map
-  * Choropleth map
+  * Point map, `px.scatter_geo()`
+  * Choropleth map `px.choropleth()`
 - Mapbox or Tile-Based Maps
-  * Point map
-  * Choropleth map
+  * Point map, `px.scatter_mapbox()`
+  * Choropleth map, `px.choropleth_mapbox()`
 
 # Additional Plot Types and Resources
 
@@ -1655,7 +1553,7 @@ Filled area plots:
 - [`plotly`, Python Figure Reference: `scatter` Traces](https://plotly.com/python/reference/scatter)
   * [`line` parameter](https://plotly.com/python/reference/scatter/#scatter-line)
   * [`fill` parameter](https://plotly.com/python/reference/scatter/#scatter-fill)
-  
+ 
 Sankey Diagram:
 - [`plotly`, Sankey Diagram in Python](https://plotly.com/python/sankey-diagram/)
 - [`plotly`, Python Figure Reference: `sankey` Traces](https://plotly.com/python/reference/sankey)
@@ -1665,19 +1563,19 @@ Treemap charts:
 - [`plotly.express.treemap`](https://plotly.com/python-api-reference/generated/plotly.express.treemap)
 - [`plotly`, Python Figure Reference: `treemap` Traces](https://plotly.com/python/reference/treemap)
 
-For more types of statistical charts: 
+For more types of statistical charts:
 - [`plotly`, Plotly Python Open Source Graphing Library Statistical Charts](https://plotly.com/python/statistical-charts/)
 
-For more types of scientific charts: 
+For more types of scientific charts:
 - [`plotly`, Plotly Python Open Source Graphing Library Scientific Charts](https://plotly.com/python/scientific-charts/)
 
-For more types of financial charts: 
+For more types of financial charts:
 - [`plotly`, Plotly Python Open Source Graphing Library Financial Charts](https://plotly.com/python/financial-charts/)
 
-For more types of maps: 
+For more types of maps:
 - [`plotly`, Plotly Open Source Graphing Library Maps](https://plotly.com/python/maps/)
 
-Full gallery of chart types: 
+Full gallery of chart types:
 - [`plotly`, Plotly Python Open Source Graphing Library](https://plotly.com/python/)
 
 # Exporting from `plotly`
@@ -1686,7 +1584,7 @@ Full gallery of chart types:
 
 269. But since version 4.0, `plotly` is offline only, which means all figures are rendered in the local environment.
 
-270. Even if figures are displaying in a web browser window, the figure does not exist online--the web browser is loading a figure from the local environment.
+270. Even if figures are displayed in a web browser window, the figure does not exist online--the web browser is loading a figure from the local environment.
 
   * For more on `plotly`'s move to offline-only: plotly, ["Plotly.py 4.0 is here: Offline Only, Express First, Displayable Anywhere"](https://medium.com/plotly/plotly-py-4-0-is-here-offline-only-express-first-displayable-anywhere-fc444e5659ee) *Medium* (22 July 2019).
 
@@ -1720,15 +1618,16 @@ fig.write_image("filepath/filename.pdf")
 
 <blockquote>Q3: Add to the code for at least one of the figures generated earlier in this lab to save the figure as a static image. Include code + comments.</blockquote>
 
-## Saving to HTML 
+## Saving to HTML
 
-276. We can also export `plotly` figures as `HTML` files which will can be loaded in a web browser.
+276. We can also export `plotly` figures as `HTML` files which can be loaded in a web browser.
 
 277. Unlike static image exports, these `HTML` files will include the interactivity of the `plotly` figure.
 
 278. Once a figure has been created, we can use the `.write_html()` method to save the figure as an `HTML` file.
 
 ```Python
+# save to html
 fig.write_html("filepath/filename.html")
 ```
 
@@ -1738,7 +1637,7 @@ fig.write_html("filepath/filename.html")
 
 ## `dash`
 
-280. `plotly` figures can also be part of an itneractive web app built using `dash`.
+280. `plotly` figures can also be part of an interactive web app built using `dash`.
 
 281. [For more on getting started with `dash`](https://github.com/kwaldenphd/dash-python/)
 
@@ -1746,7 +1645,7 @@ fig.write_html("filepath/filename.html")
 
 [Link to access the lab notebook template (Jupyter Notebook)](https://drive.google.com/file/d/1J4UZ0HBBSQYzTjbzAelzfwgSZ-YIdKeN/view?usp=sharing)
 
-Q1: Build at least three different types of plots using plotly and data stored in a Pandas DataFrame. Include code + comments. 
+Q1: Build at least three different types of plots using plotly and data stored in a Pandas DataFrame. Include code + comments.
 - *I encourage folks to use this question to explore visualizations you might use for the final project.*
 
 Each plot should include the following elements:
@@ -1783,11 +1682,11 @@ Each plot should include the following elements:
 
 Types of maps to choose from:
 - Geo Maps, or Outline-Based Maps
-  * Point map
-  * Choropleth map
+  * Point map, `px.scatter_geo()`
+  * Choropleth map `px.choropleth()`
 - Mapbox or Tile-Based Maps
-  * Point map
-  * Choropleth map
+  * Point map, `px.scatter_mapbox()`
+  * Choropleth map, `px.choropleth_mapbox()`
 
 Q3: Add to the code for at least one of the figures generated earlier in this lab to save the figure as a static image. Include code + comments.
 
