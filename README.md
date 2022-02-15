@@ -182,7 +182,7 @@ show(p)
 - [`bokeh` documentation](https://docs.bokeh.org/en/latest/index.html#)
 - [`bokeh`, Installation](https://docs.bokeh.org/en/latest/docs/installation.html)
 - [`bokeh`, User Guide](https://docs.bokeh.org/en/latest/docs/user_guide.html)
-- [`bokeh`, Tutorial](htthttps://mybinder.org/v2/gh/bokeh/bokeh-notebooks/7b6da26945e284b19df07daecc6beabdb7adbe81)
+- [`bokeh`, Tutorial](https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/7b6da26945e284b19df07daecc6beabdb7adbe81)
 - [`bokeh`, Reference](https://docs.bokeh.org/en/latest/docs/reference.html#refguide)
 - Charlie Harper, "Visualizing Data with Bokeh and Pandas," *The Programming Historian* 7 (2018), [https://doi.org/10.46430/phen0081](https://doi.org/10.46430/phen0081)
 
@@ -215,7 +215,7 @@ show(p)
 22. For more on Plotly products:
 - [Dash Enterprise](https://plotly.com/dash/)
 - [Consulting and Training](https://plotly.com/consulting-and-oem/)
-- [Chart Studio](https://plotly.com/chart-studio/)
+- [Chart Studio](https://chart-studio.plotly.com/create/#/)
 
 23. Plotly's enterprise products are used by corporations that include NVIDIA, Tesla, Shell, Citi Bank, and Amgen.
 
