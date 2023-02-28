@@ -1,7 +1,6 @@
 # Interactive Visualization in Python
 
-<a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license"><img style="border-width: 0;" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" alt="Creative Commons License" /></a>
-This tutorial is licensed under a <a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+<a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license"><img style="border-width: 0;" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" alt="Creative Commons License" /></a>This tutorial was written by Katherine Walden and is licensed under a <a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
 
 ## Lab Goals
 
@@ -15,6 +14,13 @@ By the end of this lab, students will be able to:
 - Be able to use `plotly.express` functions to generate their own figures, with a basic level of customization
 - Understand how to navigate and interact with `plotly` documentation for tutorials and troubleshooting
 
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=80085ef5-e5ec-44a1-ac44-ae31012ed0ae">Lecture/live coding playlist</a></td>
+  </tr>
+  </table>
+
 ## Acknowledgements
 
 The author consulted the following resources when writing  this tutorial:
@@ -22,6 +28,7 @@ The author consulted the following resources when writing  this tutorial:
 
 # Table of Contents
 
+- [Lecture & Live Coding](#lecture--live-coding)
 - [Lab notebook template](#lab-notebook-template)
 - [Setup and environment](#setup-and-environment)
 - [Overview](#overview)
@@ -53,6 +60,23 @@ The author consulted the following resources when writing  this tutorial:
 - [Lab Notebook Questions](#lab-notebook-questions)
 
 [Click here to access the lab procedure as a Jupyter Notebook](https://drive.google.com/file/d/1gEz2spZgoGbPVUqsDRovR8UqUpiZsv-8/view?usp=sharing)
+
+# Lecture & Live Coding
+
+Throughout this lab, you will see a Panopto icon at the start of select sections.
+
+This icon indicates there is lecture/live coding asynchronous content that accompanies this section of the lab. 
+
+You can click the link in the figure caption to access these materials (ND users only).
+
+Example:
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=80085ef5-e5ec-44a1-ac44-ae31012ed0ae">Lecture/live coding playlist</a></td>
+  </tr>
+  </table>
 
 # Lab Notebook Template
 
@@ -135,33 +159,25 @@ There are also Python libraries that support geocoding.
 
 # Overview
 
-1. Up to this point, we have been generic static image plots in Python using a combination of `pandas`, `matplotlib`, and `seaborn`.
+Up to this point, we have been generic static image plots in Python using a combination of `pandas`, `matplotlib`, and `seaborn`. But in many cases we may want to generate interactive plots that can exist on the web.
 
-2. But in many cases we may want to generate interactive plots that can exist on the web.
-
-3. We see this type of interactivity in data journalism projects:
+We see this type of interactivity in data journalism projects:
 - *NewYorkTimes* [TheUpshot](https://www.nytimes.com/section/upshot)
 - [*FiveThirtyEight*](https://fivethirtyeight.com/)
 - [*The Guardian*](https://www.theguardian.com/data)
 - *The Atlantic*, ["The Language of The State of the Union"](https://www.theatlantic.com/politics/archive/2015/01/the-language-of-the-state-of-the-union/384575/) (18 January 2015)
 
-4. We see this kind of interactivity in dashboard-style interfaces, like the [Johns Hopkins University COVID-19 Dashboard](https://coronavirus.jhu.edu/map.html).
+We also see this kind of interactivity in dashboard-style interfaces, like the [Johns Hopkins University COVID-19 Dashboard](https://coronavirus.jhu.edu/map.html).
 
-5. The two leading Python packages that can be used to generate interactive visualizations for the web are `bokeh` and `plotly`.
-
-6. We'll provide a brief overview for each, with some comparison considerations, before focusing on `plotly`.
+The two leading Python packages that can be used to generate interactive visualizations for the web are `bokeh` and `plotly`. We'll go over a brief overview for each, with some comparison considerations, before focusing on `plotly`.
 
 ## `bokeh`
 
-7. "Bokeh is an interactive visualization library for modern web browsers. It provides elegant, concise construction of versatile graphics, and affords high-performance interactivity over large or streaming datasets. Bokeh can help anyone who would like to quickly and easily make interactive plots, dashboards, and data applications" ([bokeh documentation](https://docs.bokeh.org/en/latest/index.html))
+"Bokeh is an interactive visualization library for modern web browsers. It provides elegant, concise construction of versatile graphics, and affords high-performance interactivity over large or streaming datasets. Bokeh can help anyone who would like to quickly and easily make interactive plots, dashboards, and data applications" ([bokeh documentation](https://docs.bokeh.org/en/latest/index.html))
 
-8. `bokeh` emerged in 2013, and uses a glyph and model based approach when building interactive visualizations.
+`bokeh` emerged in 2013, and uses a glyph and model based approach when building interactive visualizations. `bokeh` is built on `D3.js`, a JavaScript library for interactive visualization. Full customization in `bokeh` requires some knowledge of JavaScript.                                                                                                                                                 
 
-9. `bokeh` is built on `D3.js`, a JavaScript library for interactive visualization.
-
-10. Full customization in `bokeh` requires some knowledge of JavaScript.                                                                                                                                                 
-
-11. Sample code and output for a `bokeh` plot.
+Sample code and output for a `bokeh` plot.
 
 ```Python
 # import bokeh
@@ -178,7 +194,7 @@ show(p)
 ```
 <p align="center"><a href="https://github.com/kwaldenphd/interactive-visualization-python/blob/main/Figure_1.png?raw=true"><img class="aligncenter" src="https://github.com/kwaldenphd/interactive-visualization-python/blob/main/Figure_1.png?raw=true" /></a></p>
 
-12. For more on `bokeh`:
+For more on `bokeh`:
 - [`bokeh` documentation](https://docs.bokeh.org/en/latest/index.html#)
 - [`bokeh`, Installation](https://docs.bokeh.org/en/latest/docs/installation.html)
 - [`bokeh`, User Guide](https://docs.bokeh.org/en/latest/docs/user_guide.html)
@@ -188,19 +204,11 @@ show(p)
 
 ## `plotly`
 
-13. "Plotly is a technical computing company headquartered in Montreal, Quebec, that develops online data analytics and visualization tools. Plotly provides online graphing, analytics, and statistics tools for individuals and collaboration, as well as scientific graphing libraries for Python, R, MATLAB, Perl, Julia, Arduino, and REST" ([Wikipedia](https://en.wikipedia.org/wiki/Plotly)).
+"Plotly is a technical computing company headquartered in Montreal, Quebec, that develops online data analytics and visualization tools. Plotly provides online graphing, analytics, and statistics tools for individuals and collaboration, as well as scientific graphing libraries for Python, R, MATLAB, Perl, Julia, Arduino, and REST" ([Wikipedia](https://en.wikipedia.org/wiki/Plotly)).
 
-14. The `plotly` Python graphing library is supported by the Plotly company.
+The `plotly` Python graphing library is supported by the Plotly company. Plotly relies on Python and the Django framework, using JavaScript, D3.js, HTML, and CSS for its front-end. Plotly files are stored on Amazon Web Services' Simple Storage Service (S3). The company was founded in 2012 and went on to be a featured startup at 2013 PyCon, sponsoring the SciPy conference in 2018. During Series A funding, Plotly raised $5.5 million, supported by MHS Capital, Siemens Venture Capital, Rho Ventures, Real Ventures, and Silicon Valley Bank.
 
-15. Plotly relies on Python and the Django framework, using JavaScript, D3.js, HTML, and CSS for its front-end.
-
-16. Plotly files are stored on Amazon Web Services' Simple Storage Service (S3).
-
-17. The company was founded in 2012 and went on to be a featured startup at 2013 PyCon, sponsoring the SciPy conference in 2018.
-
-18. During Series A funding, Plotly raised $5.5 million, supported by MHS Capital, Siemens Venture Capital, Rho Ventures, Real Ventures, and Silicon Valley Bank.
-
-19. Plotly offers a range of products, some of which are free or open-source, and others that are subscription based.
+Plotly offers a range of products, some of which are free or open-source, and others that are subscription based.
 - ***Dash***: an open-source web application framework for Python, R, and Julia
 - ***Chart Studio***: a graphical user interface for analyzing and visualizing data; single-user version is free, enterprise deployments have a pricing model
 - ***API libraries***: open-source graphing libraries for Python, R, and Julia
@@ -208,38 +216,22 @@ show(p)
 - ***PLotly.js***: open-source JavaScript graphic and dashboard library
 - ***Plotly Enterprise***: pricing model for local Plotly installation and deployment
 
-20. In recent years, Plotly has moved into machine learning and artificial intelligence app support and artificial intelligence supply chain technology and continues to expand its enterprise pricing options.
+In recent years, Plotly has moved into machine learning and artificial intelligence app support and artificial intelligence supply chain technology and continues to expand its enterprise pricing options. 
+- For more on Plotly history: [Plotly, "About Us"](https://plotly.com/about-us/)
+- For more on Plotly products:
+  - [Dash Enterprise](https://plotly.com/dash/)
+  - [Consulting and Training](https://plotly.com/consulting-and-oem/)
+  - [Chart Studio](https://plotly.com/chart-studio/)
 
-21. For more on Plotly history: [Plotly, "About Us"](https://plotly.com/about-us/)
-
-22. For more on Plotly products:
-- [Dash Enterprise](https://plotly.com/dash/)
-- [Consulting and Training](https://plotly.com/consulting-and-oem/)
-- [Chart Studio](https://plotly.com/chart-studio/)
-
-23. Plotly's enterprise products are used by corporations that include NVIDIA, Tesla, Shell, Citi Bank, and Amgen.
-
-24. Plotly's Chart Studio product is used by a range of journalism outfits and companies, including S&P Global, The Washington Post, Wired, Tesla, and Medium.
-
-25. At the time this tutorial was written (December 2020), Plotly's senior leadership team had no women in technical roles and no people of color.
+Plotly's enterprise products are used by corporations that include NVIDIA, Tesla, Shell, Citi Bank, and Amgen. Plotly's Chart Studio product is used by a range of journalism outfits and companies, including S&P Global, The Washington Post, Wired, Tesla, and Medium.
 
 ## `bokeh` vs. `plotly`
 
-26. At first glance, `bokeh` and `plotly` appear to have similar features and functionality.
+At first glance, `bokeh` and `plotly` appear to have similar features and functionality. Both are based on JavaScript libraries, can work with data stored in `pandas`, and generate interactive web applications.
 
-27. Both are based on JavaScript libraries, can work with data stored in `pandas`, and generate interactive web applications.
+The packages have very different syntax for how they build visualizations and applications, and they rely on different back-end infrastructure when deploying web applications. In addition to having the support and infrastructure of the Plotly company, `plotly` has a significantly larger user community comprised of individuals and corporations. `plotly` graphing libraries are also available in languages other than Python, most notably R and Julia, while `bokeh` is designed for Python, with the stand-alone BokehJS library available for JavaScript.
 
-28. The packages have very different syntax for how they build visualizations and applications, and they rely on different back-end infrastructure when deploying web applications.
-
-29. In addition to having the support and infrastructure of the Plotly company, `plotly` has a significantly larger user community comprised of individuals and corporations.
-
-30. `plotly` graphing libraries are also available in languages other than Python, most notably R and Julia.
-
-31. `bokeh` is designed for Python, with the stand-alone BokehJS library available for JavaScript.
-
-32. This tutorial focuses on `plotly`, but the `bokeh` resources highlighted above are a useful place to start for working with the other package.
-
-33. For more in-depth `bokeh` and `plotly` comparisons:
+This lab focuses on `plotly`, but the `bokeh` resources highlighted above are a useful place to start for working with the other package. For more in-depth `bokeh` and `plotly` comparisons:
 - Paul Iacomi, ["Plotly vs. Bokeh: Interactive Python Visualisation Pros and Cons"](https://pauliacomi.com/2020/06/07/plotly-v-bokeh.html) *personal blog* (7 June 2020)
 - stackshare, ["Bokeh vs Plotly](https://stackshare.io/stackups/bokeh-vs-plotly)
 - Flavian, ["Bokeh vs Dash- Which is the Best Framework for Python?](https://www.sicara.ai/blog/2018-01-30-bokeh-dash-best-dashboard-framework-python) *Sicara* (20 February 2020)
@@ -250,7 +242,7 @@ show(p)
 
 # Getting Started with `plotly`
 
-34. To install `plotly`:
+To install `plotly`:
 - using `pip`: `pip install plotly`
 - using `conda`: `conda install -c plotly`
 - using Jupyter Notebook: `pip install "notebook>=5.3" "ipywidgets>=7.2"`
@@ -258,38 +250,24 @@ show(p)
 
 ## The Mechanics of `plotly`
 
-35. Plotly.js, the JavaScript library `plotly` is based on understands figures as trees with named nodes called attributes.
+Plotly.js, the JavaScript library `plotly` is based on understands figures as trees with named nodes called attributes. The root node of the tree has three top-level attributes.
 
-36. The root node of the tree has three top-level attributes.
+- The top-level ***`data`*** attribute consists of a list of dicts referred to as traces.
+  - Each trace has a plot type (scatter, bar, pie, etc.), and is drawn on a single subplot. Traces can have a single legend, and other attributes depending on trace type.
 
-37. The top-level ***`data`*** attribute consists of a list of dicts referred to as traces.
+- The top-level ***`layout`*** attribute is referred to as "the layout" and consists of a dict with attributes that control non-data parts of the figure. Parts of the figure governed by the `layout` attribute include:
+  - Dimensions and margins
+  - Templates, fonts, colors, hover labels
+  - Titles and legends 
+  - Non-data marks such as annotations, shapes, and images
+  - Controls like buttons, toggles, menus, or sliders
 
-38. Each trace has a plot type (scatter, bar, pie, etc.), and is drawn on a single subplot.
+- The top-level ***`frames`*** attribute does not exist for all types of plots. `frames` consists of a list of dicts that define sequential frames in an animated plot. Each frame in the sequence has its own `data` attribute (and other parameters).
 
-39. Traces can have a single legend, and other attributes depending on trace type.
+When building a figure, you do not have to populate every attribute of every object. The JavaScript layer can compute default values for some unspecified attributes.
 
-40. The top-level ***`layout`*** attribute is referred to as "the layout" and consists of a dict with attributes that control non-data parts of the figure.
+Let's look at an example for a simple line plot, using `plotly`:
 
-41. Parts of the figure governed by the `layout` attribute include:
-- Dimensions and margins
-- Templates, fonts, colors, hover labels
-- Titles and legends
-- Non-data marks such as annotations, shapes, and images
-- Controls like buttons, toggles, menus, or sliders
-
-42. The top-level ***`frames`*** attribute does not exist for all types of plots.
-
-43. `frames` consists of a list of dicts that define sequential frames in an animated plot.
-
-44. Each frame in the sequence has its own `data` attribute (and other parameters).
-
-45. When building a figure, you do not have to populate every attribute of every object.
-
-46. The JavaScript layer can compute default values for some unspecified attributes.
-
-47. Let's look at an example for a simple line plot.
-
-48. Python code that generates the plot using `plotly`:
 ```Python
 # import plotly
 import plotly.express as px
@@ -304,7 +282,7 @@ print(fig)
 fig.show()
 ```
 
-49. The JSON object generated as part of `plotly`'s back-end process:
+The JSON object generated as part of `plotly`'s back-end process:
 ```
 Figure({
     'data': [{'hovertemplate': 'x=%{x}<br>y=%{y}<extra></extra>',
@@ -327,35 +305,24 @@ Figure({
 })
 ```
 
-50. We can use `fig.to_dict()` and `fig.to_json()` to represent the back-end of a `plotly` figure as a dictionary or JSON object, respectively.
+We can use `fig.to_dict()` and `fig.to_json()` to represent the back-end of a `plotly` figure as a dictionary or JSON object, respectively.
 
-51. 2D Cartesian coordinate system subplots are the most commonly-used type of subplot.
+A few notes on this figure structure:
+- 2D Cartesian coordinate system subplots are the most commonly-used type of subplot. In `plotly`, traces compatible with these subplots support `xaxis` and `yaxis` attributes. Trace types compatible with 2D cartesian subplots include scatterplots, bar charts, histograms, and box plots.
 
-52. In `plotly`, traces compatible with these subplots support `xaxis` and `yaxis` attributes.
+- Both `X` and `Y` axes support a `type` attribute. The `type` attribute can modify a trace to show continuous values, temporal values, or categorical values.
 
-53. Trace types compatible with 2D cartesian subplots include scatterplots, bar charts, histograms, and box plots.
-
-54. Both `X` and `Y` axes support a `type` attribute.
-
-55. The `type` attribute can modify a trace to show continuous values, temporal values, or categorical values.
-
-56. For more on the figure data structure: [`plotly`, "The Figure Data Structure in Python"](https://plotly.com/python/figure-structure/)
-
-57. For more on `plotly` fundamental syntax: [Plotly Python Open Source Graphing Library Fundamentals](https://plotly.com/python/plotly-fundamentals/)
+Additional info:
+- Figure data structure: [`plotly`, "The Figure Data Structure in Python"](https://plotly.com/python/figure-structure/)
+- `plotly` fundamental syntax: [Plotly Python Open Source Graphing Library Fundamentals](https://plotly.com/python/plotly-fundamentals/)
 
 ## `plotly.express`
 
-58. The `plotly.express` module contains functions that can create entire figures at once.
-
-59. `plotly.express` functions are designed to be a user-friendly point of entry to the `plotly` package.
-
-60. A graph object is created as part of any `plotly.express` function, but the point of the `plotly.express` function is to significantly reduce the amount of code needed to create, customize, and render the graph object.
+The `plotly.express` module contains functions that can create entire figures at once. `plotly.express` functions are designed to be a user-friendly point of entry to the `plotly` package. A graph object is created as part of any `plotly.express` function, but the point of the `plotly.express` function is to significantly reduce the amount of code needed to create, customize, and render the graph object.
 
 ### Scatter Plots
 
-61. To create a scatterplot using `plotly.express`, we use the `px.scatter()` function, which takes values for the `X` and `Y` axis.
-
-62. Without any additional arguments, the default formatting and style options are applied.
+To create a scatterplot using `plotly.express`, we use the `px.scatter()` function, which takes values for the `X` and `Y` axis. Without any additional arguments, the default formatting and style options are applied.
 
 ```Python
 # create figure 
@@ -365,11 +332,9 @@ fig = px.scatter(x=[0, 1, 2, 3, 4], y=[0, 1, 4, 9, 16])
 fig.show()
 ```
 
-63. Everything from tick marks to axis labels to grid lines to hover labels has been generated by the `plotly.express` defaults.
+Everything from tick marks to axis labels to grid lines to hover labels has been generated by the `plotly.express` defaults. To create a scatterplot from data stored in a `DataFrame`, the same general syntax specifying `X` and `Y` values still applies.
 
-64. To create a scatterplot from data stored in a `DataFrame`, the same general syntax specifying `X` and `Y` values still applies.
-
-65. An example using data about flowers.
+An example using data about flowers.
 ```Python
 # load sample data already stored as a dataframe
 df = px.data.iris()
@@ -381,13 +346,9 @@ fig = px.scatter(df, x="sepal_width", y="sepal_length")
 fig.show()
 ```
 
-66. In the `dataframe` example, we passed the entire data frame to `px.scatter()`, and specify columns to use for the `X` and `Y` axis.
+In the `dataframe` example, we passed the entire data frame to `px.scatter()`, and specify columns to use for the `X` and `Y` axis. In the resulting figure, we can see how `plotly` assigns the column names as axis labels.
 
-67. In the resulting figure, we can see how `plotly` assigns the column names as axis labels.
-
-68. We can modify point color and size to reflect underlying values in the data frame.
-
-69. We can also modify the information displayed in the hover label.
+We can modify point color and size to reflect underlying values in the data frame (using `color` and `size`). We can also modify the information displayed in the hover label (using `hover_data`).
 
 ```Python
 # load sample data already stored as a dataframe
@@ -400,13 +361,9 @@ fig = px.scatter(df, x="sepal_width", y="sepal_length", color="species", size="p
 fig.show()
 ```
 
-70. In this modified example, `color` specifies what field to use to color points.
+In this modified example, `color` specifies what field to use to color points, `size` specifies what field to use to size points, and `hover_data` adds fields not already incorporated in the figure to the hover label, which now includes 5 different fields.
 
-71. `size` specifies what field to use to size points.
-
-72. `hover_data` adds fields not already incorporated in the figure to the hover label, which now includes 5 different fields.
-
-73. For more on scatter plots in `plotly`:
+For more on scatter plots in `plotly`:
 - [`plotly`, Scatter Plots in Python](https://plotly.com/python/line-and-scatter/)
 - [`plotly.express.scatter`](https://plotly.com/python-api-reference/generated/plotly.express.scatter)
 - [`plotly`, Python Figure Reference: `scatter` Traces](https://plotly.com/python/reference/scatter/)
@@ -414,9 +371,7 @@ fig.show()
 
 ### Line Plots
 
-74. We can create a simple line plot using `px.line()`.
-
-75. This example uses example data on life expectancy.
+We can create a simple line plot using `px.line()`. This example uses example data on life expectancy.
 
 ```Python
 # load dataframe subset 
@@ -429,13 +384,9 @@ fig = px.line(df, x="year", y="lifeExp", title='Life expectancy in Canada')
 fig.show()
 ```
 
-76. In this example, we pass a subset of the `gapminder` dataframe to the `px.line()` function.
+In this example, we pass a subset of the `gapminder` dataframe to the `px.line()` function. We specify which fields to use for the `X` and `Y` axis values, and we give the figure a title.
 
-77. We specify which fields to use for the `X` and `Y` axis values, and we give the figure a title.
-
-78. Let's say we wanted to create a line plot with data for two countries.
-
-79. We could filter the data frame accordingly and use the `color` parameter.
+Let's say we wanted to create a line plot with data for two countries. We could filter the data frame accordingly and use the `color` parameter.
 
 ```Python
 # load dataframe subset 
@@ -448,7 +399,7 @@ fig = px.line(df, x="year", y="lifeExp", color='country', title='Life Expectancy
 fig.show()
 ```
 
-80. Let's say we want to modify the line plot to include a line for individual countries and color the lines by continent.
+Let's say we want to modify the line plot to include a line for individual countries and color the lines by continent.
 
 ```Python
 # load dataframe subset
@@ -461,26 +412,18 @@ fig = px.line(df, x="year", y="lifeExp", color='continent', line_group='country'
 fig.show()
 ```
 
-81. In the modified example, we color the lines by continent and group the lines by country.
+In the modified example, we color the lines by continent and group the lines by country. We also use `line_group` to group rows in a column into lines and `hover_name` to set a title or name for the hover labels. The country name is now at the top of each hover label.
 
-82. We also use `line_group` to group rows in a column into lines.
-
-83. We use `hover_name` to set a title or name for the hover labels.
-
-84. The country name is now at the top of each hover label.
-
-85. For more on line plots in `plotly`:
+For more on line plots in `plotly`:
 - [`plotly`, Line Charts in Python](https://plotly.com/python/line-charts/)
 - [`plotly.express.line`](https://plotly.com/python-api-reference/generated/plotly.express.line)
 - [`plotly`, Python Figure Reference: `scatter` Traces](https://plotly.com/python/reference/scatter/)
 
 ### Bar Charts
 
-86. We can create a bar chart using `px.bar()`.
+We can create a bar chart using `px.bar()`. In the default settings, each row of the dataframe is represented as a rectangular mark.
 
-87. In the default settings, each row of the dataframe is represented as a rectangular mark.
-
-88. An example using population data from the previous example's dataset.
+An example using population data from the previous example's dataset.
 
 ```Python
 # load subset of existing dataframe
@@ -493,19 +436,13 @@ fig = px.bar(data_canada, x='year', y='pop')
 fig.show()
 ```
 
-89. In this example, the `year` column is assigned as the `X` axis value, and the `pop` column is assigned as the `Y` axis value.
+In this example, the `year` column is assigned as the `X` axis value, and the `pop` column is assigned as the `Y` axis value.
 
-90. We can also generate a stacked bar chart using `px.bar()`.
+We can also generate a stacked bar chart using `px.bar()`. Let's take a look at a stacked bar chart for sample data stored in two different formats. As we learned in the `pandas` lab, data can be stored in a long or wide form.
+- ***Long-form data*** has one row per observation and one column per variable. Also known as tidy data.
+- ***Wide-form data*** has one row per value of the first variable, and one column per value of the second value.
 
-91. Let's take a look at a stacked bar chart for sample data stored in two different formats.
-
-92. As we learned in the `pandas` lab, data can be stored in a long or wide form.
-
-93. ***Long-form data*** has one row per observation and one column per variable. Also known as tidy data.
-
-94. ***Wide-form data*** has one row per value of the first variable, and one column per value of the second value.
-
-95. A quick comparison of long and wide data for the same Olympic medal dataset.
+A quick comparison of long and wide data for the same Olympic medal dataset.
 
 ```Python
 # create data table from long dataframe
@@ -523,11 +460,11 @@ wide_df = px.data.medals_wide()
 wide_df
 ```
 
-96. `plotly.express` and `px.bar()` can generate the same plot from either data form.
+`plotly.express` and `px.bar()` can generate the same plot from either data form.
 
 #### Stacked Bar Charts
 
-97. To create a stacked bar chart using the long data form:
+To create a stacked bar chart using the long data form:
 ```Python
 # load dataframe
 long_df = px.data.medals_long()
@@ -539,7 +476,7 @@ fig = px.bar(long_df, x="nation", y="count", color="medal", title="Long-Form Inp
 fig.show()
 ```
 
-98. To create a stacked bar chart using the wide data form:
+To create a stacked bar chart using the wide data form:
 ```Python
 # load dataframe
 wide_df = px.data.medals_wide()
@@ -551,9 +488,7 @@ fig = px.bar(wide_df, x="nation", y=["gold", "silver", "bronze"], title="Wide-Fo
 fig.show()
 ```
 
-99. In the wide-format example, we pass a list of columns to the `Y` axis.
-
-100. For the wide-format example, we might want to relabel the fields when generating the hover labels.
+In the wide-format example, we pass a list of columns to the `Y` axis. For the wide-format example, we might want to relabel the fields when generating the hover labels.
 ```Python
 # load dataframe
 wide_df = px.data.medals_wide()
@@ -565,9 +500,7 @@ fig = px.bar(wide_df, x="nation", y=["gold", "silver", "bronze"], title="Wide-Fo
 fig.show()
 ```
 
-101. In the modified example, we passed a dictionary to `labels` to manually rename those fields in the hover label.
-
-102. If we wanted to change the styling for the wide-format example, we could specify a style template (similar to a style sheet), a colormap, and axis labels.
+In the modified example, we passed a dictionary to `labels` to manually rename those fields in the hover label. If we wanted to change the styling for the wide-format example, we could specify a style template (similar to a style sheet), a colormap, and axis labels.
 
 ```Python
 # load dataframe
@@ -583,33 +516,28 @@ fig.update_layout(font_family="Rockwell", showlegend=False)
 fig.show()
 ```
 
-103. In the styled modified example, we again modified the field labels by passing a dictionary to `labels`.
+In the styled modified example, we again modified the field labels by passing a dictionary to `labels`. A few other notes on this example:
+- We specified color by field value using `color_discrete_map`.
+- We set a style template using `template`.
+- We used `.update_layout()` to set a font family for the figure and axis titles, and also hid the legend.
 
-104. We specified color by field value using `color_discrete_map`.
-
-105. We set a style template using `template`.
-
-106. We used `.update_layout()` to set a font family for the figure and axis titles, and also hid the legend.
-
-107. We can also set the bar mode using `.update_layout()` with the `barmode` attribute.
-
-108. Setting `barmode` to `stack` produces a stacked bar chart.
+We can also set the bar mode using `.update_layout()` with the `barmode` attribute. Setting `barmode` to `stack` produces a stacked bar chart.
 
 ### Grouped Bar Charts
 
-109. Setting `barmode` to `group` produces a grouped bar chart.
+Setting `barmode` to `group` produces a grouped bar chart.
 
 ### Horizontal Bar Charts
 
-110. We can set the `orientation` attribute to `h` to produce a horizontal bar chart.
+We can set the `orientation` attribute to `h` to produce a horizontal bar chart.
 ```Python
 # horizontal bar chart
 fig = px.bar(data, x="X field", y="Y field", orientation="h")
 ```
 
-111. Remember in a horizontal bar chart, the `X` and `Y` axis values are the inverse of a vertical bar chart.
+Remember in a horizontal bar chart, the `X` and `Y` axis values are the inverse of a vertical bar chart.
 
-112. For more on bar charts in `plotly`:
+For more on bar charts in `plotly`:
 - [`plotly`, Bar Charts in Python](https://plotly.com/python/bar-charts/)
 - [`plotly`, Grouped Bar Chart](https://plotly.com/python/bar-charts/#grouped-bar-chart)
 - [`plotly`, Stacked Bar Chart](https://plotly.com/python/bar-charts/#stacked-bar-chart)
@@ -619,9 +547,7 @@ fig = px.bar(data, x="X field", y="Y field", orientation="h")
 
 ### Pie Charts
 
-113. We can create a pie chart using `px.pie()`.
-
-114. An example using our global population sample data:
+We can create a pie chart using `px.pie()`. An example using our global population sample data:
 ```Python
 # select dataframe subset
 df = px.data.gapminder().query("year == 2007").query("continent == 'Europe'")
@@ -636,11 +562,9 @@ fig = px.pie(df, values='pop', names='country', title='Population of European co
 fig.show()
 ```
 
-115. Perhaps a useful example of the limited utility of pie charts.
+Perhaps a useful example of the limited utility of pie charts. In this example, we pass the filtered dataframe to `px.pie()`, and specify the `pop` field as the slice value and `country` as the slice name.
 
-116. In this example, we pass the filtered dataframe to `px.pie()`, and specify the `pop` field as the slice value and `country` as the slice name.
-
-117. Another example using the restaurant bill and tip data.
+Another example using the restaurant bill and tip data.
 
 ```Python
 # load dataframe
@@ -653,17 +577,11 @@ fig = px.pie(df, values='tip', names='day')
 fig.show()
 ```
 
-118. In this example, we pass the entire data frame to `px.pie()` and assign `tip` as the slice value and `day` as the slice name.
-
-119. Each day is a slice of the pie, and `plotly.express` and the `px.pie()` function have done the underlying calculations to show the aggregate tip data as a percent.
+In this example, we pass the entire data frame to `px.pie()` and assign `tip` as the slice value and `day` as the slice name. Each day is a slice of the pie, and `plotly.express` and the `px.pie()` function have done the underlying calculations to show the aggregate tip data as a percent.
 
 #### Donut Charts
 
-120. A donut chart is a modified pie chart with an empty circle at the middle of the pie.
-
-121. We can create a donut chart by creating a graph object and specifying a value for the `hole` parameter.
-
-123. This example does not use `plotly.express` and instead creates the graph object manually.
+A donut chart is a modified pie chart with an empty circle at the middle of the pie. We can create a donut chart by creating a graph object and specifying a value for the `hole` parameter. This example does not use `plotly.express` and instead creates the graph object manually.
 ```Python
 # import plotly
 import plotly.graph_objects as go
@@ -681,21 +599,11 @@ fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
 fig.show()
 ```
 
-124. There's a lot to get into in terms of the differences between `plotly.express` function syntax and `plotly.graph_object` syntax.
-
-125. For our purposes, we can focus on how values, labels, and a hole parameter are passed to `go.Figure()` and `go.Pie()` to create the plot.
+There's a lot to get into in terms of the differences between `plotly.express` function syntax and `plotly.graph_object` syntax. For our purposes, we can focus on how values, labels, and a hole parameter are passed to `go.Figure()` and `go.Pie()` to create the plot.
 
 #### Sunburst Charts
 
-126. Multilevel pie charts are known as sunburst charts.
-
-127. We can create a sunburst chart using the `plotly.express` `px.sunburst()` function.
-
-128. Let's say we have a family tree that we want to represent using a sunburst chart.
-
-129. With `px.sunburst()`, each row of the `DataFrame` is a sector of the sunburst.
-
-130. Each sector in the sunburst chart is analogous to a slice of the pie in a pie chart.
+Multilevel pie charts are known as sunburst charts. We can create a sunburst chart using the `plotly.express` `px.sunburst()` function. Let's say we have a family tree that we want to represent using a sunburst chart. With `px.sunburst()`, each row of the `DataFrame` is a sector of the sunburst. Each sector in the sunburst chart is analogous to a slice of the pie in a pie chart.
 
 ```Python
 # create dictionary with data
@@ -716,25 +624,19 @@ fig =px.sunburst(
 fig.show()
 ```
 
-131. For more on pie charts in `plotly`:
+For more on pie charts in `plotly`:
 - [`plotly`, Pie Charts in Python](https://plotly.com/python/pie-charts/)
 - [`plotly.express.pie`](https://plotly.com/python-api-reference/generated/plotly.express.pie)
 - [`plotly`, Python Figure Reference: `pie` Traces](https://plotly.com/python/reference/pie/)
 
-132. For more on sunburst charts in `plotly`:
+For more on sunburst charts in `plotly`:
 - [`plotly`, Sunburst Charts in Python](https://plotly.com/python/sunburst-charts/)
 - [`plotly.express.sunburst`](https://plotly.com/python-api-reference/generated/plotly.express.sunburst)
 - [`plotly`, Python Figure Reference: `sunburst` Traces](https://plotly.com/python/reference/sunburst/)
 
 ### Bubble Charts
 
-133. A bubble chart is a scatter plot in which the marker size is tied to a third dimension of the data.
-
-134. We can create bubble charts in `plotly.express` using the `px.scatter()` function and assigning the `size` parameter to a data field.
-
-135. An example using a single year of the global population data, where per capita GDP is the `X` axis value, and average life expectancy is the `Y` axis value.
-
-136. Marker marker size is determined by population.
+A bubble chart is a scatter plot in which the marker size is tied to a third dimension of the data. We can create bubble charts in `plotly.express` using the `px.scatter()` function and assigning the `size` parameter to a data field. An example using a single year of the global population data, where per capita GDP is the `X` axis value, and average life expectancy is the `Y` axis value. Marker marker size is determined by population.
 
 ```Python
 # create dataframe
@@ -747,28 +649,16 @@ fig = px.scatter(df.query("year==2007"), x="gdpPercap", y="lifeExp", size="pop",
 fig.show()
 ```
 
-137. In this example, we use `px.scatter()` to create a scatter plot.
+In this example, we use `px.scatter()` to create a scatter plot. By setting `size` to `pop`, the marker size is determined by the numeric value in the `pop` field. We also set a maximum marker size using `size_max`. By setting `color` to `continent`, the marker color is determined by the `continent` field string. We set a name or title for the hover labels using `hover_name`. Setting `log_x` to `True` (the default for this attribute is `False`) means the `X` axis will be log-scaled in cartesian coordinates.
 
-138. By setting `size` to `pop`, the marker size is determined by the numeric value in the `pop` field.
-
-139. We also set a maximum marker size using `size_max`.
-
-140. By setting `color` to `continent`, the marker color is determined by the `continent` field string.
-
-141. We set a name or title for the hover labels using `hover_name`.
-
-142. Setting `log_x` to `True` (the default for this attribute is `False`) means the `X` axis will be log-scaled in cartesian coordinates.
-
-143. For more on bubble charts in `plotly`:
+For more on bubble charts in `plotly`:
 - [`plotly`, Bubble Charts in Python](https://plotly.com/python/bubble-charts/)
 - [`plotly.express.scatter`](https://plotly.com/python-api-reference/generated/plotly.express.scatter)
 - [`plotly`, Python Figure Reference: `scatter` Traces](https://plotly.com/python/reference/scatter/)
 
 ### Tables
 
-144. `plotly.express` does not include a table function, but we can create a graph object table using `go.Figure()` in combination with `go.Table()`.
-
-145. We can create two columns of data with sample scores for `A` and `B` letter grades.
+`plotly.express` does not include a table function, but we can create a graph object table using `go.Figure()` in combination with `go.Table()`. We can create two columns of data with sample scores for `A` and `B` letter grades.
 
 ```Python
 # import plotly
@@ -782,15 +672,9 @@ fig = go.Figure(data=[go.Table(header=dict(values=['A Scores', 'B Scores']),
 fig.show()
 ```
 
-146. There's a lot to get into in terms of the differences between `plotly.express` function syntax and `plotly.graph_object` syntax.
+There's a lot to get into in terms of the differences between `plotly.express` function syntax and `plotly.graph_object` syntax. For our purposes, we can focus on how the table header takes a dictionary with column labels, and the cells also take a dictionary with two lists of values. These dictionaries are passed to `go.Figure()` and `go.Table()` to create the plot. We could also generate a table from data stored in a `pandas` `DataFrame`.
 
-147. For our purposes, we can focus on how the table header takes a dictionary with column labels, and the cells also take a dictionary with two lists of values.
-
-148. These dictionaries are passed to `go.Figure()` and `go.Table()` to create the plot.
-
-149. We could also generate a table from data stored in a `pandas` `DataFrame`.
-
-150. This example also includes style parameters for the table.
+This example also includes style parameters for the table.
 ```Python
 # import plotly
 import plotly.graph_objects as go
@@ -815,42 +699,31 @@ fig = go.Figure(data=[go.Table(
 fig.show()
 ```
 
-151. This example includes style attributes like `fill_color` and `align` for both `header` and `cells`.
+This example includes style attributes like `fill_color` and `align` for both `header` and `cells`. For `header`, this example takes a dictionary with the `DataFrame` column labels as a list, and the `DataFrame` column values as values for the `cells`.
 
-152. For `header`, this example takes a dictionary with the `DataFrame` column labels as a list, and the `DataFrame` column values as values for the `cells`.
-
-153. For more on tables in `plotly`:
+For more on tables in `plotly`:
 - [`plotly`, Tables in Python](https://plotly.com/python/table/)
 - [`plotly`, Python Figure Reference: `table` Traces](https://plotly.com/python/reference/table/)
 
 ## Plotting Categorical Data
 
-154. For our purposes, categorical data is defined as qualitative, nominal, or ordinal data that is discrete, or non-continuous.
+For our purposes, categorical data is defined as qualitative, nominal, or ordinal data that is discrete, or non-continuous. Categorical data contrasts with numerical data that is continuous. The axis type determines how the data is plotted in the resulting figure.
 
-155. Categorical data contrasts with numerical data that is continuous.
-
-156. The axis type determines how the data is plotted in the resulting figure.
-
-157. Axis types recognized in `plotly`:
+Axis types recognized in `plotly`:
 - `linear`
 - `log`
 - `date`
 - `category`
 - `multicategory`
 
-158. The axis type is auto-detected by `plotly` based on the data linked to the specific axis.
+The axis type is auto-detected by `plotly` based on the data linked to the specific axis.
+- If `plotly` does not recognize the data as `multicategory`, `date`, or `category` (it checks sequentially in that order), it defaults to `linear`.
+- When testing for `multicategory` data, `plotly` looks to see if there is a nested array.
+- When testing for `date` or `category`, `plotly` requires more than twice as many distinct date or category strings as distinct numbers in order to choose one of these axis types.
 
-159. If `plotly` does not recognize the data as `multicategory`, `date`, or `category` (it checks sequentially in that order), it defaults to `linear`.
+We can imagine scenarios in which we are working with categorical data that would not be accurately auto-detected by `plotly`. We can instruct `plotly` to recognize an axis as having categorical data through the `xaxis_type` and `yaxis_type` attributes.
 
-160. When testing for `multicategory` data, `plotly` looks to see if there is a nested array.
-
-161. When testing for `date` or `category`, `plotly` requires more than twice as many distinct date or category strings as distinct numbers in order to choose one of these axis types.
-
-162. We can imagine scenarios in which we are working with categorical data that would not be accurately auto-detected by `plotly`.
-
-163. We can instruct `plotly` to recognize an axis as having categorical data through the `xaxis_type` and `yaxis_type` attributes.
-
-164. An example of categorical data represented as a bar chart.
+An example of categorical data represented as a bar chart.
 ```Python
 # create figure
 fig = px.bar(x=["a", "b", "c", "d"], y = [1,2,3,4])
@@ -861,13 +734,10 @@ fig.update_xaxes(type='category')
 # show figure
 fig.show()
 ```
-165. In this example, the auto-detected `X` axis type would be `linear`.
 
-166. By using `.update_xaxes(type='category')`, we force the `X` axis to be categorical.
+In this example, the auto-detected `X` axis type would be `linear`. By using `.update_xaxes(type='category')`, we force the `X` axis to be categorical.
 
-167. We can also control the category order by passing a dictionary to the `category_orders` parameter.
-
-168. An example with side-by-side bar charts of categorical data for the restaurant and tip data.
+We can also control the category order by passing a dictionary to the `category_orders` parameter. An example with side-by-side bar charts of categorical data for the restaurant and tip data.
 
 ```Python
 # load data
@@ -882,15 +752,13 @@ fig = px.bar(df, x="day", y="total_bill", color="smoker", barmode="group", facet
 fig.show()
 ```
 
-169. In addition to setting `color`, `barmode`, and `facet_col` parameters, we pass a dictionary to `category_orders` to determine the order for each category in the plot.
+In addition to setting `color`, `barmode`, and `facet_col` parameters, we pass a dictionary to `category_orders` to determine the order for each category in the plot.
 
-170. We can also automatically sort categories by name or total value by using `.update_xaxes()` or `.update_yaxes()` in combination with the `categoryorder` parameter.
+We can also automatically sort categories by name or total value by using `.update_xaxes()` or `.update_yaxes()` in combination with the `categoryorder` parameter.
+- Setting `categoryorder` to `category ascending` or `category descending` sorts categories alphabetically.
+- Setting `categoryorder` to `total ascending` or `total descending` sorts categories numerically by total value.
 
-171. Setting `categoryorder` to `category ascending` or `category descending` sorts categories alphabetically.
-
-172. Setting `categoryorder` to `total ascending` or `total descending` sorts categories numerically by total value.
-
-173. For more on categorical data and `plotly`:
+For more on categorical data and `plotly`:
 - [`plotly`, Categorical Axes in Python](https://plotly.com/python/categorical-axes/)
 - [`plotly`, Axes in Python](https://plotly.com/python/axes/)
 - [`plotly`, Python Figure Reference: `layout.xaxis`](https://plotly.com/python/reference/layout/xaxis/)
@@ -925,13 +793,9 @@ Plot types to choose from:
 
 ### Maps
 
-174. Up to this point, we have been working with data plotted on a 2D cartesian coordinate system, with `x` and `y` axes.
+Up to this point, we have been working with data plotted on a 2D cartesian coordinate system, with `x` and `y` axes. For our purposes, it's most useful to think of maps in the same way--as data plotted on a coordinate system. Except for maps, that coordinate system is typically some type of latitude or longitude based projection, and the data to be plotted includes explicit location information (rather than a numerical or categorical field that can be mapped to an axis).
 
-175. For our purposes, it's most useful to think of maps in the same way--as data plotted on a coordinate system.
-
-176. Except for maps, that coordinate system is typically some type of latitude or longitude based projection, and the data to be plotted includes explicit location information (rather than a numerical or categorical field that can be mapped to an axis).
-
-177. A few resources related to geocoding:
+A few resources related to geocoding:
 
 Free online geocoding services:
 - [LocalFocus data journalism batch geocoder](https://geocode.localfocus.nl/)
@@ -943,7 +807,7 @@ There are also Python libraries that support geocoding.
 - [`Geocoder`](https://geocoder.readthedocs.io/providers/Mapbox.html) (requires a free Mapbox API key)
 - Abdishakur, ["Geocode with Python"](https://towardsdatascience.com/geocode-with-python-161ec1e62b89) *Towards Data Science* (15 September 2019)
 
-178. `plotly` supports two different types of maps.
+`plotly` supports two different types of maps.
 - ***Mapbox maps*** are tile-based maps that are rendered using tiles that join together to form the map plot.
 - ***Geo maps*** are outline-based maps that are rendered using the `layout.geo` object  that contains map configuration information.
 
@@ -951,9 +815,7 @@ There are also Python libraries that support geocoding.
 
 #### Base Map Layer
 
-179. `plotly` Geo maps have a built-in base map layer composed of "physical" and "cultural" data from the [Natural Earth Dataset](https://www.naturalearthdata.com/downloads/).
-
-180. We can show or hide, as well as modify, various components of this base layer. For example, we can take a look at the built-in base map, showing only country sub-units.
+`plotly` Geo maps have a built-in base map layer composed of "physical" and "cultural" data from the [Natural Earth Dataset](https://www.naturalearthdata.com/downloads/). We can show or hide, as well as modify, various components of this base layer. For example, we can take a look at the built-in base map, showing only country sub-units.
 ```Python
 # import plotly
 import plotly.graph_objects as go
@@ -974,7 +836,7 @@ fig.update_layout(height=300, margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 ```
 
-181. There are a few options for zooming or focusing the area represented in the base map. We can set the `layout.geo.fitbounds` attribute to `locations` to automatically center the visual base map range based on the data being plotted.
+There are a few options for zooming or focusing the area represented in the base map. We can set the `layout.geo.fitbounds` attribute to `locations` to automatically center the visual base map range based on the data being plotted.
 ```Python
 # create geographic line plot
 fig = px.line_geo(lat=[0,15,20,35], lon=[5,10,25,30])
@@ -989,9 +851,7 @@ fig.update_layout(height=300, margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 ```
 
-182. We can also set the scope of a map using a named sub-set.
-
-183. Available named scopes include:
+We can also set the scope of a map using a named sub-set. Available named scopes include:
 - `world`
 - `usa`
 - `europe`
@@ -1003,13 +863,9 @@ fig.show()
 
 #### Point Data
 
-184. Now that we have a base map layer that will serve as the coordinate system for our plot, we can plot data using this coordinate system.
+Now that we have a base map layer that will serve as the coordinate system for our plot, we can plot data using this coordinate system. When we understand maps are just another type of plot that uses a different projection system, maps with markers are just another kind of scatterplot. We can use the `px.scatter_geo()` function to plot point data with geospatial dimensions.
 
-185. When we understand maps are just another type of plot that uses a different projection system, maps with markers are just another kind of scatterplot.
-
-186. We can use the `px.scatter_geo()` function to plot point data with geospatial dimensions.
-
-187. We can create a point map for the global population dataset.
+We can create a point map for the global population dataset.
 
 ```Python
 # load single year of data
@@ -1022,12 +878,12 @@ fig = px.scatter_geo(df, locations="iso_alpha", size="pop")
 fig.show()
 ```
 
-188. A few notes on this example:
+A few notes on this example:
 - We pass the entire data frame `df` to the `px.scatter_geo()` function.
 - We use `locations` to note the column with location information.
 - The `size` parameter determines the size of each marker based on the `pop` field value.
 
-189. Let's say we wanted to use a different type of global projection, and color the points by continent.
+Let's say we wanted to use a different type of global projection, and color the points by continent.
 
 ```Python
 # load single year of data
@@ -1040,15 +896,15 @@ fig = px.scatter_geo(df, locations="iso_alpha", size="pop", color="continent", h
 fig.show()
 ```
 
-190. A few notes on this modified example:
+A few notes on this modified example:
 - We set `color` to assign a color to each unique value in `continent`.
 - We set the `hover_name` to `country`.
 - We set `projection` to `natural earth` to change the underlying base map layer.
 
-191. We can also create a map from geospatial data stored in a `pandas` `DataFrame` using `GeoPandas`.
+We can also create a map from geospatial data stored in a `pandas` `DataFrame` using `GeoPandas`.
 - [Link to more info on `GeoPandas` installation and configuration](#geopandas)
 
-192. An example using US airport traffic data.
+An example using US airport traffic data.
 
 ```Python
 # import plotly
@@ -1081,26 +937,20 @@ fig.update_layout(
 # show figure
 fig.show()
 ```
-193. In this example, we use `plotly`'s `graph_object` syntax to create the figure and specify which columns in the `dataframe` include latitude and longitude information.
+In this example, we use `plotly`'s `graph_object` syntax to create the figure and specify which columns in the `dataframe` include latitude and longitude information.
 
 #### Polygon Data
 
-194. We can easily imagine a scenario in which a map with point data (or a scatterplot on a map projection system) is not the most effective way to represent data.
+We can easily imagine a scenario in which a map with point data (or a scatterplot on a map projection system) is not the most effective way to represent data. For example, when working with geospatial units that are not singular latitude and longitude points, representing an area using a polygon may yield a more insightful plot.
 
-195. For example, when working with geospatial units that are not singular latitude and longitude points, representing an area using a polygon may yield a more insightful plot.
+When working with data at the county, state, country, etc. level, polygons may be preferable to points. We call these kinds of maps ***choropleth maps***. We can use the `px.choropleth()` function to create an outline-based choropleth map in `plotly`.
 
-196. When working with data at the county, state, country, etc. level, polygons may be preferable to points.
-
-197. We call these kinds of maps ***choropleth maps***.
-
-198. We can use the `px.choropleth()` function to create an outline-based choropleth map in `plotly`.
-
-199. Choropleth maps require two main types of input to generate a map:
+Choropleth maps require two main types of input to generate a map:
 - ***Geometry information***: can be supplied using a GeoJSON file in which each feature (polygon) has an id field that can be used to connect attribute data;
   * `plotly` includes built-in geometries for US states and world countries
 - ***Attribute data***, or a list of values indexed by feature identifiers (an id reflected in the geometry information)
 
-200. Let's take a quick look at the underlying JSON object for a sample GeoJSON file.
+Let's take a quick look at the underlying JSON object for a sample GeoJSON file.
 
 ```Python
 # import urlrequest
@@ -1117,7 +967,7 @@ with urlopen('https://raw.githubusercontent.com/kwaldenphd/interactive-visualiza
 counties["features"][0]
 ```
 
-201. We are now seeing the underlying JSON object for the first feature in the county GeoJSON data.
+We are now seeing the underlying JSON object for the first feature in the county GeoJSON data.
 ```
 {'type': 'Feature',
  'properties': {'GEO_ID': '0500000US01001',
@@ -1140,11 +990,7 @@ counties["features"][0]
  'id': '01001'}
 ```
 
-202. We have our geometric information loaded.
- 
-203. Now onto the attribute data, or data values indexed by an id field.
- 
-204. This example uses county-level unemployment data, indexed by [FIPS code](https://en.wikipedia.org/wiki/FIPS_county_code) as the unique id.
+We have our geometric information loaded. Now onto the attribute data, or data values indexed by an id field. This example uses county-level unemployment data, indexed by [FIPS code](https://en.wikipedia.org/wiki/FIPS_county_code) as the unique id.
  
  ```Python
 # import pandas
@@ -1157,9 +1003,7 @@ df = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/interactive-visua
 df.head()
 ```
 
-205. Now we can work with the geometric information and the attribute data to generate a choropleth map.
-
-206. We do this using the `px.choropleth()` function.
+Now we can work with the geometric information and the attribute data to generate a choropleth map. We do this using the `px.choropleth()` function.
 
 ```Python
 # import urllib module
@@ -1194,21 +1038,15 @@ fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 ```
 
-207. Behold, a choropleth map showing unemployment rates for US counties.
+Behold, a choropleth map showing unemployment rates for US counties. A few notes on this example:
+- We set the `counties` GeoJSON as the geometric data
+We specify the common field to use to connect the two datasets, `fips`
+- We base polygon color on the `unemp` field using `color`
+- We set the number of colors or color range using `range_color`
+- We select a continuous colormap using `color_continuous_scale`
+- And we update the `unemp` field name using `labels`
 
-208. In this example, we set the `counties` GeoJSON as the geometric data.
-
-209. We specify the common field to use to connect the two datasets, `fips`.
-
-210. We base polygon color on the `unemp` field using `color`.
-
-211. We set the number of colors or color range using `range_color`.
-
-212. We select a continuous colormap using `color_continuous_scale`.
-
-213. And we update the `unemp` field name using `labels`.
-
-214. For more on outline-based maps in `plotly`:
+For more on outline-based maps in `plotly`:
 - [`plotly`, Map Configuration and Styling in Python](https://plotly.com/python/map-configuration/)
 - [`plotly`, Scatter Plots on Maps in Python](https://plotly.com/python/scatter-plots-on-maps/)
 - [`plotly`, Choropleth Maps in Python](https://plotly.com/python/choropleth-maps/)
@@ -1216,42 +1054,22 @@ fig.show()
 
 ### Mapbox and Tile-Based Maps
 
-216. Now on to tile-based maps.
+Now on to tile-based maps. ***Mapbox maps*** are tile-based maps that are rendered using tiles that join together to form the map plot. Mapbox tile maps are layer-based, where the base map layer is defined by `layout.mapbox.style`. The data layer plotted on the base map is controlled by a `plotly.express` or `graph_object` function. `layout.mapbox.layers` can define additional layers as needed.
 
-217. ***Mapbox maps*** are tile-based maps that are rendered using tiles that join together to form the map plot.
-
-218. Mapbox tile maps are layer-based.
-
-219. The base map layer is defined by `layout.mapbox.style`.
-
-220. The data layer plotted on the base map is controlled by a `plotly.express` or `graph_object` function.
-
-221. `layout.mapbox.layers` can define additional layers as needed.
-
-222. In the default `plotly` settings, these layers are rendered in the following order:
+In the default `plotly` settings, these layers are rendered in the following order:
 - base layer (`layout.mapbox.style`)
 - data layer (`trace` object)
 - additional layers (`layout.mapbox.layers`)
 
-223. In these examples, Mapbox refers to the open-source Mapbox GL JavaScript library.
+In these examples, Mapbox refers to the open-source Mapbox GL JavaScript library. The Mapbox JavaScript library is integrated into `plotly`. Some components of Mapbox are available without an access token. Other Mapbox components require an access token to use.
 
-224. The Mapbox JavaScript library is integrated into `plotly`.
-
-225. Some components of Mapbox are available without an access token.
-
-226. Other Mapbox components require an access token to use.
-
-227. Navigate to https://docs.mapbox.com/help/how-mapbox-works/access-tokens/ to set up a free Mapbox account and obtain an access token.
-
-228. When needed, the token can be set using the `px.set_mapbox_access_token()` configuration function.
+Navigate to https://docs.mapbox.com/help/how-mapbox-works/access-tokens/ to set up a free Mapbox account and obtain an access token. When needed, the token can be set using the `px.set_mapbox_access_token()` configuration function.
 
 #### Base Map Layer
 
-229. There are a few options for base map layers using `layout.mapbox.style`.
+There are a few options for base map layers using `layout.mapbox.style`. `white-bg` is an empty white canvas and includes no external HTTP requests.
 
-230. `white-bg` is an empty white canvas and includes no external HTTP requests.
-
-231. Raster tiles from public tile servers:
+Raster tiles from public tile servers:
 - `open-street-map`
 - `carto-positron`
 - `carto-darkmatter`
@@ -1259,7 +1077,7 @@ fig.show()
 - `stamen-toner`
 - `stamen-watercolor`
 
-232. Vector tiles from Mapbox service (require access token):
+Vector tiles from Mapbox service (require access token):
 - `basic`
 - `streets`
 - `outdoors`
@@ -1268,13 +1086,9 @@ fig.show()
 - `satellite`
 - `satellite-streets`
 
-233. We can also specify the base map layer using a Mapbox service style URL.
+We can also specify the base map layer using a Mapbox service style URL. These styles require an access token.
 
-234. These styles require an access token.
-
-235. Browse the [Mapbox Gallery](https://www.mapbox.com/gallery/).
-
-236. Let's create a base map layer using `open-street-map`.
+Let's create a base map layer using `open-street-map`.
 
 ```Python
 # load dataframe
@@ -1288,11 +1102,9 @@ fig = px.scatter_mapbox(df, lat="centroid_lat", lon="centroid_lon", color="peak_
 fig.show()
 ```
 
-237. We could change the value assigned to `mapbox_style` to change the base map layer style.
+We could change the value assigned to `mapbox_style` to change the base map layer style. In a situation where we are loading  a base map layer from a URL, we would set `mapbox_style` to `white-bg` to create a blank canvas for the external base map layer style.
 
-238. In a situation where we are loading  a base map layer from a URL, we would set `mapbox_style` to `white-bg` to create a blank canvas for the external base map layer style.
-
-239. Another example that uses public tiles from the United States Geological Survey (USGS). No access token required.
+Another example that uses public tiles from the United States Geological Survey (USGS). No access token required.
 
 ```Python
 # import packages
@@ -1326,7 +1138,7 @@ fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 ```
 
-240. One last example using `dark` from the Mapbox service. An access token is required.
+One last example using `dark` from the Mapbox service. An access token is required.
 
 ```Python
 # set mapbox access token
@@ -1352,9 +1164,7 @@ fig.show()
 
 #### Point data
 
-241. Now we can use the `px.scatter_mapbox()` function to add point data to our figure.
-
-242. This example takes the `open-street-map` base map from the previous section and adds point data for 1,000 US cities with the highest population count.
+Now we can use the `px.scatter_mapbox()` function to add point data to our figure. This example takes the `open-street-map` base map from the previous section and adds point data for 1,000 US cities with the highest population count.
 
 ```Python
 # import pandas
@@ -1377,29 +1187,23 @@ fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 ```
 
-243. We specify which fields in the `us_cities` dataframe include latitude and longitude information (`lat` and `lon`).
+We specify which fields in the `us_cities` dataframe include latitude and longitude information (`lat` and `lon`). We set a color sequence with discrete colors. But since no field is assigned for a color attribute, all points are the same color.
 
-244. We set a color sequence with discrete colors.
-
-245. But since no field is assigned for a color attribute, all points are the same color.
-
-246. If we wanted to color the points based on population size, we would want to switch to a continuous color scale.
+If we wanted to color the points based on population size, we would want to switch to a continuous color scale.
 ```Python
 # color points based on population value
 fig = px.scatter_mapbox(us_cities, lat="lat", lon="lon", hover_name="City", hover_data=["State", "Population"],
                         color_continuous_scale=px.colors.sequential.Viridis, color="Population", zoom=3, height=300)
 ```
 
-247. If we wanted our point size to be based on the population value, we would modify the `size` parameter.
+If we wanted our point size to be based on the population value, we would modify the `size` parameter.
 ```Python
 # size points based on population value
 fig = px.scatter_mapbox(us_cities, lat="lat", lon="lon", hover_name="City", hover_data=["State", "Population"],
                         color_discrete_sequence=["fuchsia"], zoom=3, height=300, size="Population")
 ```
 
-248. Another example that uses rideshare data for Montreal.
-
-249. In this example, point size is based on the number of car hours (`car_hours`) and point color is based on time of day (`peak_hour`).
+Another example that uses rideshare data for Montreal. In this example, point size is based on the number of car hours (`car_hours`) and point color is based on time of day (`peak_hour`).
 
 ```Python
 # set mapbox access token
@@ -1415,20 +1219,14 @@ fig = px.scatter_mapbox(df, lat="centroid_lat", lon="centroid_lon", color="peak_
 fig.show()
 ```
 
-250. We pass the entire dataframe to `px.scatter_mapbox` and specify which fields include geospatial information.
+We pass the entire dataframe to `px.scatter_mapbox` and specify which fields include geospatial information. We set `color` and `size` and assign a maximum size for the points. 
 
-251. We set `color` and `size` and assign a maximum size for the points.
-
-252. `plotly` includes a number of built-in discrete and continuous colormaps.
-
-253. To learn more about the built-in colormap options:
+`plotly` includes a number of built-in discrete and continuous colormaps. To learn more about the built-in colormap options:
 - [`plotly`, Continuous Color Scales and Color Bars in Python](https://plotly.com/python/colorscales/#color-scales-in-plotly-express)
 - [`plotly`, Built-In Continuous Color Scales in Python](https://plotly.com/python/builtin-colorscales/#using-builtin-continuous-color-scales)
 - [`plotly`, Discrete Colors in Python](https://plotly.com/python/discrete-color/)
 
-254. We can also use `px.scatter_mapbox()` in combination with `GeoPandas`.
-
-255. An example that includes point data for natural earth cities.
+We can also use `px.scatter_mapbox()` in combination with `GeoPandas`. An example that includes point data for natural earth cities.
 ```Python
 # import geopandas
 import geopandas as gpd
@@ -1451,18 +1249,12 @@ fig.show()
 
 #### Polygon Data
 
-256. We can also create tile-map choropleth maps using the `px.choropleth_mapbox()` function.
-
-257. Tile-map choropleth maps require the same two main types of input to generate a map:
+We can also create tile-map choropleth maps using the `px.choropleth_mapbox()` function. Tile-map choropleth maps require the same two main types of input to generate a map:
 - ***Geometry information***: can be supplied using a GeoJSON file in which each feature (polygon) has an id field that can be used to connect attribute data;
   * `plotly` includes built-in geometries for US states and world countries
 - ***Attribute data***, or a list of values indexed by feature identifiers (an id reflected in the geometry information)
 
-258. We'll use the same county unemployment data from the previous choropleth map section.
-
-259. With `px.choropleth_mapbox()`, each row of the dataframe is represented by a polygon.
-
-260. A sample choropleth map of the county unemployment data, using the base layer `carto-positron` which does not require an access token.
+We'll use the same county unemployment data from the previous choropleth map section. With `px.choropleth_mapbox()`, each row of the dataframe is represented by a polygon. A sample choropleth map of the county unemployment data, using the base layer `carto-positron` which does not require an access token.
 
 ```Python
 # import urllib
@@ -1499,21 +1291,15 @@ fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 ```
 
-260. And again, we have a choropleth map showing unemployment rates for US counties.
+And again, we have a choropleth map showing unemployment rates for US counties. A few notes on this example:
+- In this example, we set the `counties` GeoJSON as the geometric data.
+- We specify the common field to use to connect the two datasets, `fips`.
+- We base polygon color on the `unemp` field using `color`.
+- We set the number of colors or color range using `range_color`.
+- We select a continuous colormap using `color_continuous_scale`.
+- And we update the `unemp` field name using `labels`.
 
-261. In this example, we set the `counties` GeoJSON as the geometric data.
-
-262. We specify the common field to use to connect the two datasets, `fips`.
-
-263. We base polygon color on the `unemp` field using `color`.
-
-264. We set the number of colors or color range using `range_color`.
-
-265. We select a continuous colormap using `color_continuous_scale`.
-
-266. And we update the `unemp` field name using `labels`.
-
-267. For more on tile-based maps in `plotly`:
+For more on tile-based maps in `plotly`:
 - [`plotly`, Map Configuration and Styling in Python](https://plotly.com/python/map-configuration/)
 - [`plotly`, Mapbox Map Layers in Python](https://plotly.com/python/mapbox-layers/)
 - [`plotly`, Scatter Plots on Mapbox in Python](https://plotly.com/python/scattermapbox/)
@@ -1580,25 +1366,19 @@ Full gallery of chart types:
 
 # Exporting from `plotly`
 
-268. `plotly` figures are interactive when viewed in a web browser.
-
-269. But since version 4.0, `plotly` is offline only, which means all figures are rendered in the local environment.
-
-270. Even if figures are displayed in a web browser window, the figure does not exist online--the web browser is loading a figure from the local environment.
+`plotly` figures are interactive when viewed in a web browser. But since version 4.0, `plotly` is offline only, which means all figures are rendered in the local environment. Even if figures are displayed in a web browser window, the figure does not exist online--the web browser is loading a figure from the local environment.
 
   * For more on `plotly`'s move to offline-only: plotly, ["Plotly.py 4.0 is here: Offline Only, Express First, Displayable Anywhere"](https://medium.com/plotly/plotly-py-4-0-is-here-offline-only-express-first-displayable-anywhere-fc444e5659ee) *Medium* (22 July 2019).
 
 ## Static Image export
 
-271. We can export `plotly` figures as static image file formats (`.png`, `.jpeg`, `.svg`, and `.pdf`).
+We can export `plotly` figures as static image file formats (`.png`, `.jpeg`, `.svg`, and `.pdf`). Static image generation requires the [`Kaleido` package](https://github.com/plotly/Kaleido).
 
-272. Static image generation requires the [`Kaleido` package](https://github.com/plotly/Kaleido).
-
-273. To install `Kaleido`:
+To install `Kaleido`:
 - using `pip`: `pip install kaleido`
 - using `conda`: `conda install conda-forge python-kaleido`
 
-274. Once a figure has been created, we can use the `.write_image()` method in combination with `plotly` to write the figure to an image file.
+Once a figure has been created, we can use the `.write_image()` method in combination with `plotly` to write the figure to an image file.
 
 ```Python
 # write to png
@@ -1614,32 +1394,26 @@ fig.write_image("filepath/filename.svg")
 fig.write_image("filepath/filename.pdf")
 ```
 
-275. For more on static image export: [`plotly`, Static Image Export in Python](https://plotly.com/python/static-image-export/)
+For more on static image export: [`plotly`, Static Image Export in Python](https://plotly.com/python/static-image-export/)
 
 <blockquote>Q3: Add to the code for at least one of the figures generated earlier in this lab to save the figure as a static image. Include code + comments.</blockquote>
 
 ## Saving to HTML
 
-276. We can also export `plotly` figures as `HTML` files which can be loaded in a web browser.
-
-277. Unlike static image exports, these `HTML` files will include the interactivity of the `plotly` figure.
-
-278. Once a figure has been created, we can use the `.write_html()` method to save the figure as an `HTML` file.
+We can also export `plotly` figures as `HTML` files which can be loaded in a web browser. Unlike static image exports, these `HTML` files will include the interactivity of the `plotly` figure. Once a figure has been created, we can use the `.write_html()` method to save the figure as an `HTML` file.
 
 ```Python
 # save to html
 fig.write_html("filepath/filename.html")
 ```
 
-279. For more on HTML file export: [`plotly`, Interactive HTML Export in Python](https://plotly.com/python/interactive-html-export/)
+For more on HTML file export: [`plotly`, Interactive HTML Export in Python](https://plotly.com/python/interactive-html-export/)
 
 <blockquote>Q4: Add to the code for at least one of the figures generated earlier in this lab to save the figure as an HTML file. Include code + comments.</blockquote>
 
 ## `dash`
 
-280. `plotly` figures can also be part of an interactive web app built using `dash`.
-
-281. [For more on getting started with `dash`](https://github.com/kwaldenphd/dash-python/)
+`plotly` figures can also be part of an interactive web app built using `dash`. [For more on getting started with `dash`](https://github.com/kwaldenphd/dash-python/)
 
 # Lab Notebook Questions
 
