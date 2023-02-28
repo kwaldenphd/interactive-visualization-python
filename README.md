@@ -1110,7 +1110,7 @@ fig.show()
 
 Behold, a choropleth map showing unemployment rates for US counties. A few notes on this example:
 - We set the `counties` GeoJSON as the geometric data
-We specify the common field to use to connect the two datasets, `fips`
+- We specify the common field to use to connect the two datasets, `fips`
 - We base polygon color on the `unemp` field using `color`
 - We set the number of colors or color range using `range_color`
 - We select a continuous colormap using `color_continuous_scale`
