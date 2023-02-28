@@ -17,7 +17,7 @@ By the end of this lab, students will be able to:
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=80085ef5-e5ec-44a1-ac44-ae31012ed0ae">Lecture/live coding playlist</a></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=95dd1702-5640-4af4-811f-ae3e017f8091">Lecture/live coding playlist</a></td>
   </tr>
   </table>
 
@@ -74,7 +74,14 @@ Example:
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=80085ef5-e5ec-44a1-ac44-ae31012ed0ae">Lecture/live coding playlist</a></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=95dd1702-5640-4af4-811f-ae3e017f8091">Lecture/live coding playlist</a></td>
+  </tr>
+  </table>
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=853b474f-bf54-432f-8982-ae3d0036773e">Overview</a></td>
   </tr>
   </table>
 
@@ -83,6 +90,13 @@ Example:
 [Link to access the lab notebook template (Jupyter Notebook)](https://drive.google.com/file/d/1J4UZ0HBBSQYzTjbzAelzfwgSZ-YIdKeN/view?usp=sharing)
 
 # Setup and Environment
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=853b474f-bf54-432f-8982-ae3d0036773e">Overview</a></td>
+  </tr>
+  </table>
 
 ## Plotly
 
@@ -158,6 +172,13 @@ There are also Python libraries that support geocoding.
 - Abdishakur, ["Geocode with Python"](https://towardsdatascience.com/geocode-with-python-161ec1e62b89) *Towards Data Science* (15 September 2019)
 
 # Overview
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ec1f17b7-a517-4dc1-a65c-ae3d003b9730">Bokeh and Plotly Background</a></td>
+  </tr>
+  </table>
 
 Up to this point, we have been generic static image plots in Python using a combination of `pandas`, `matplotlib`, and `seaborn`. But in many cases we may want to generate interactive plots that can exist on the web.
 
@@ -250,6 +271,13 @@ To install `plotly`:
 
 ## The Mechanics of `plotly`
 
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9853137f-8a7a-428b-842c-ae3d003ec609">Plotly Mechanics</a></td>
+  </tr>
+  </table>
+
 Plotly.js, the JavaScript library `plotly` is based on understands figures as trees with named nodes called attributes. The root node of the tree has three top-level attributes.
 
 - The top-level ***`data`*** attribute consists of a list of dicts referred to as traces.
@@ -317,6 +345,13 @@ Additional info:
 - `plotly` fundamental syntax: [Plotly Python Open Source Graphing Library Fundamentals](https://plotly.com/python/plotly-fundamentals/)
 
 ## `plotly.express`
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7c15d7c1-c984-47fe-ab3c-ae3d004193bb">Plotly Express (Scatter Plots, Line Plots, Bar Charts)</a></td>
+  </tr>
+  </table>
 
 The `plotly.express` module contains functions that can create entire figures at once. `plotly.express` functions are designed to be a user-friendly point of entry to the `plotly` package. A graph object is created as part of any `plotly.express` function, but the point of the `plotly.express` function is to significantly reduce the amount of code needed to create, customize, and render the graph object.
 
@@ -547,6 +582,13 @@ For more on bar charts in `plotly`:
 
 ### Pie Charts
 
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2941d6b5-b9bd-49a7-bc76-ae3d0048934a">Pie Charts</a></td>
+  </tr>
+  </table>
+
 We can create a pie chart using `px.pie()`. An example using our global population sample data:
 ```Python
 # select dataframe subset
@@ -636,6 +678,13 @@ For more on sunburst charts in `plotly`:
 
 ### Bubble Charts
 
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ec4f1815-8c61-48dd-aaf3-ae3d004ad056">Bubble Charts</a></td>
+  </tr>
+  </table>
+
 A bubble chart is a scatter plot in which the marker size is tied to a third dimension of the data. We can create bubble charts in `plotly.express` using the `px.scatter()` function and assigning the `size` parameter to a data field. An example using a single year of the global population data, where per capita GDP is the `X` axis value, and average life expectancy is the `Y` axis value. Marker marker size is determined by population.
 
 ```Python
@@ -657,6 +706,13 @@ For more on bubble charts in `plotly`:
 - [`plotly`, Python Figure Reference: `scatter` Traces](https://plotly.com/python/reference/scatter/)
 
 ### Tables
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ec4f1815-8c61-48dd-aaf3-ae3d004ad056">Tables</a></td>
+  </tr>
+  </table>
 
 `plotly.express` does not include a table function, but we can create a graph object table using `go.Figure()` in combination with `go.Table()`. We can create two columns of data with sample scores for `A` and `B` letter grades.
 
@@ -706,6 +762,13 @@ For more on tables in `plotly`:
 - [`plotly`, Python Figure Reference: `table` Traces](https://plotly.com/python/reference/table/)
 
 ## Plotting Categorical Data
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c71f43c7-d9b9-4cdb-a645-ae3d004c615c">Categorical Data</a></td>
+  </tr>
+  </table>
 
 For our purposes, categorical data is defined as qualitative, nominal, or ordinal data that is discrete, or non-continuous. Categorical data contrasts with numerical data that is continuous. The axis type determines how the data is plotted in the resulting figure.
 
@@ -792,6 +855,13 @@ Plot types to choose from:
 - Table
 
 ### Maps
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=59ec6f25-e51d-4e2b-9d2d-ae3d004f02a8">Mapping</a></td>
+  </tr>
+  </table>
 
 Up to this point, we have been working with data plotted on a 2D cartesian coordinate system, with `x` and `y` axes. For our purposes, it's most useful to think of maps in the same way--as data plotted on a coordinate system. Except for maps, that coordinate system is typically some type of latitude or longitude based projection, and the data to be plotted includes explicit location information (rather than a numerical or categorical field that can be mapped to an axis).
 
@@ -1308,6 +1378,13 @@ For more on tile-based maps in `plotly`:
 
 ## Lab Notebook Question 2
 
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7d148e6a-f514-409a-af42-ae3d005c3045">Lab Notebook Question 2</a></td>
+  </tr>
+  </table>
+
 Q2: Build at least two different types of maps using plotly. Include code + comments.
 - *I encourage folks to use this question to explore visualizations you might use for the final project.*
 
@@ -1365,6 +1442,13 @@ Full gallery of chart types:
 - [`plotly`, Plotly Python Open Source Graphing Library](https://plotly.com/python/)
 
 # Exporting from `plotly`
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9b28d303-5222-411a-b8fc-ae3d005cf32f">Exporting From Plotly</a></td>
+  </tr>
+  </table>
 
 `plotly` figures are interactive when viewed in a web browser. But since version 4.0, `plotly` is offline only, which means all figures are rendered in the local environment. Even if figures are displayed in a web browser window, the figure does not exist online--the web browser is loading a figure from the local environment.
 
